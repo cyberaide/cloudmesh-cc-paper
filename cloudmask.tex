@@ -1,0 +1,78 @@
+\hypertarget{cloudmask-workflow}{%
+\section{Cloudmask Workflow}\label{cloudmask-workflow}}
+
+Cloudmesh cc comes with an example workflow that runs Cloudmask, which
+is a program that develops a model to classify sections of satellite
+images. Information regarding Cloudmask can be found at
+\url{https://github.com/laszewsk/mlcommons/tree/main/benchmarks/cloudmask\#readme}
+
+\hypertarget{running-the-cloudmask-workflow-on-rivanna}{%
+\subsection{Running the Cloudmask Workflow on
+Rivanna}\label{running-the-cloudmask-workflow-on-rivanna}}
+
+To execute the workflow on UVA's HPC supercomputer, Rivanna, first
+ensure that your UVA Computing ID is set with the following command,
+replacing the X's with your ID:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{me@mycomputer}\NormalTok{ $ cms set username=XXXXXX}
+\end{Highlighting}
+\end{Shaded}
+
+Then, connect to the UVA Anywhere VPN and then download the satellite
+data into your
+\href{https://www.rc.virginia.edu/userinfo/storage/non-sensitive-data/\#scratch}{scratch}
+directory on Rivanna:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{me@mycomputer}\NormalTok{ $ cms vpn connect}
+\ExtensionTok{me@mycomputer}\NormalTok{ $ ssh rivanna}
+\ExtensionTok{rivanna}\NormalTok{ $ cd /scratch/}\VariableTok{$USER}
+\ExtensionTok{rivanna}\NormalTok{ $ git clone https://github.com/laszewsk/mlcommons.git}
+\ExtensionTok{rivanna}\NormalTok{ $ cd mlcommons/benchmarks/cloudmask/target/rivanna}
+\ExtensionTok{rivanna}\NormalTok{ $ make data}
+\CommentTok{\# downloading the data will take a while.}
+\ExtensionTok{rivanna}\NormalTok{ $ exit}
+\end{Highlighting}
+\end{Shaded}
+
+Next, clone the \texttt{mlcommons} repository on your local machine and
+run the workflow:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{me@mycomputer}\NormalTok{ $ cd \textasciitilde{}/cm}
+\ExtensionTok{me@mycomputer}\NormalTok{ $ git clone https://github.com/laszewsk/mlcommons.git}
+\ExtensionTok{me@mycomputer}\NormalTok{ $ cd mlcommons}
+\ExtensionTok{me@mycomputer}\NormalTok{ $ pytest }\AttributeTok{{-}v} \AttributeTok{{-}x} \AttributeTok{{-}{-}capture}\OperatorTok{=}\NormalTok{no benchmarks/cloudmask/target/rivanna/run\_cloudmask\_workflow.py}
+\end{Highlighting}
+\end{Shaded}
+
+The workflow iterates through the five GPUs available on Rivanna---
+A100, V100, P100, RTX2080, and K80--- and runs the program three times
+on each GPU. Each run trains the model with 10, 30, and 50 epochs for
+benchmarking.
+
+Upon completing a run, the logs and benchmarks of the program can be
+found in the target folder:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{me@mycomputer}\NormalTok{ $ ssh rivanna}
+\ExtensionTok{rivanna}\NormalTok{ $ cd /scratch/}\VariableTok{$USER}\NormalTok{/mlcommons/benchmarks/cloudmask/target}
+\end{Highlighting}
+\end{Shaded}
+
+Additionally, the generated \texttt{.h5} model file can be found in the
+home directory:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{rivanna}\NormalTok{ $ cd \textasciitilde{}/sciml\_bench/outputs/slstr\_cloud/}
+\end{Highlighting}
+\end{Shaded}
+
+The program may take a while to run if the resources on Rivanna are
+being used by other jobs.
