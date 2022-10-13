@@ -67,21 +67,21 @@ quickstart. We will only focus on using the REST service.
 To start, the code is needed and we assume you are standing in the
 cloudmesh-cc directory. Use the following commands
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{git}\NormalTok{ clone https://github.com/cloudmesh/cloudmesh{-}cc.git}
-\BuiltInTok{cd}\NormalTok{ cloudmesh{-}cc}
-\ExtensionTok{pip}\NormalTok{ install }\AttributeTok{{-}e}\NormalTok{ .}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+```bash
+git clone https://github.com/cloudmesh/cloudmesh-cc.git
+cd cloudmesh-cc
+pip install -e .
+```
+\end{verbatim}
 
 We also assume you start the service with
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\ExtensionTok{cms}\NormalTok{ cc start }\AttributeTok{{-}{-}reload}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+```bash
+cms cc start --reload
+```
+\end{verbatim}
 
 \subsection{Creating a simple example}\label{creating-a-simple-example}
 
@@ -89,13 +89,13 @@ First let us create a simple workflow example that we already have
 included for you in our source code. We will use this workflow and copy
 it into a temporary directory:
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{mkdir} \AttributeTok{{-}p}\NormalTok{ /tmp/workflow{-}example}
-\FunctionTok{cp}\NormalTok{ tests/workflow{-}example/workflow{-}example.yaml /tmp/workflow{-}example}
-\FunctionTok{cp}\NormalTok{ tests/workflow{-}example/}\PreprocessorTok{*}\NormalTok{.sh /tmp/workflow{-}example}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+```bash
+mkdir -p /tmp/workflow-example
+cp tests/workflow-example/workflow-example.yaml /tmp/workflow-example
+cp tests/workflow-example/*.sh /tmp/workflow-example
+```
+\end{verbatim}
 
 We like you to inspect the example so you get an overview of how to
 define a workflow that is located in
@@ -180,7 +180,7 @@ to \texttt{http://127.0.0.1:8000/docs} and use the POST Upload method.
 
 \begin{figure}
 \centering
-\includegraphics{images/upload_api.png}
+\includegraphics[width=1.1\columnwidth]{images/upload_api.png}
 \caption{Browser API GUI for Cloudmesh Compute Cluster}
 \end{figure}
 
