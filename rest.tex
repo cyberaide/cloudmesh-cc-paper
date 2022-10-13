@@ -7,25 +7,25 @@ with programming languages other than Python.
 To use this feature, ensure that the FastAPI server is online with the
 following commands:
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{cd}\NormalTok{ \textasciitilde{}/cm/cloudmesh{-}cc}
-\ExtensionTok{cms}\NormalTok{ cc start}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+```bash
+cd ~/cm/cloudmesh-cc
+cms cc start
+```
+\end{verbatim}
 
 \subsection{List Workflows Available on Local
 Computer}\label{list-workflows-available-on-local-computer}
 
 The following command returns a dict that lists each available workflow.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\ExtensionTok{curl} \AttributeTok{{-}X} \StringTok{\textquotesingle{}GET\textquotesingle{}} \DataTypeTok{\textbackslash{}}
-    \StringTok{\textquotesingle{}http://127.0.0.1:8000/workflows\textquotesingle{}} \DataTypeTok{\textbackslash{}}
-    \AttributeTok{{-}H} \StringTok{\textquotesingle{}accept: application/json\textquotesingle{}}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+```bash
+curl -X 'GET' \
+    'http://127.0.0.1:8000/workflows' \
+    -H 'accept: application/json'
+```
+\end{verbatim}
 
 \subsection{Upload a Workflow}\label{upload-a-workflow}
 
@@ -38,14 +38,14 @@ specifying one of the following:
   a directory that contains the scripts and yaml
 \end{itemize}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\ExtensionTok{curl} \AttributeTok{{-}X} \StringTok{\textquotesingle{}POST\textquotesingle{}} \DataTypeTok{\textbackslash{}}
-    \StringTok{\textquotesingle{}http://127.0.0.1:8000/workflow?directory=\textasciitilde{}/cm/cloudmesh{-}cc/tests/workflow{-}example\textquotesingle{}} \DataTypeTok{\textbackslash{}}
-    \AttributeTok{{-}H} \StringTok{\textquotesingle{}accept: application/json\textquotesingle{}} \DataTypeTok{\textbackslash{}}
-    \AttributeTok{{-}d} \StringTok{\textquotesingle{}\textquotesingle{}}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+```bash
+curl -X 'POST' \
+    'http://127.0.0.1:8000/workflow?directory=~/cm/cloudmesh-cc/tests/workflow-example' \
+    -H 'accept: application/json' \
+    -d ''
+```
+\end{verbatim}
 
 \begin{itemize}
 \tightlist
@@ -54,14 +54,14 @@ specifying one of the following:
   scripts and yaml
 \end{itemize}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\ExtensionTok{curl} \AttributeTok{{-}X} \StringTok{\textquotesingle{}POST\textquotesingle{}} \DataTypeTok{\textbackslash{}}
-    \StringTok{\textquotesingle{}http://127.0.0.1:8000/workflow?archive=ThePathToYourArchiveFile\textquotesingle{}} \DataTypeTok{\textbackslash{}}
-    \AttributeTok{{-}H} \StringTok{\textquotesingle{}accept: application/json\textquotesingle{}} \DataTypeTok{\textbackslash{}}
-    \AttributeTok{{-}d} \StringTok{\textquotesingle{}\textquotesingle{}}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+```bash
+curl -X 'POST' \
+    'http://127.0.0.1:8000/workflow?archive=ThePathToYourArchiveFile' \
+    -H 'accept: application/json' \
+    -d ''
+```
+\end{verbatim}
 
 \begin{itemize}
 \tightlist
@@ -69,14 +69,14 @@ specifying one of the following:
   or a yaml file that specifies what jobs to run.
 \end{itemize}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\ExtensionTok{curl} \AttributeTok{{-}X} \StringTok{\textquotesingle{}POST\textquotesingle{}} \DataTypeTok{\textbackslash{}}
-    \StringTok{\textquotesingle{}http://127.0.0.1:8000/workflow?yaml=\textasciitilde{}/cm/cloudmesh{-}cc/tests/workflow{-}example/workflow{-}example.yaml\textquotesingle{}} \DataTypeTok{\textbackslash{}}
-    \AttributeTok{{-}H} \StringTok{\textquotesingle{}accept: application/json\textquotesingle{}} \DataTypeTok{\textbackslash{}}
-    \AttributeTok{{-}d} \StringTok{\textquotesingle{}\textquotesingle{}}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+```bash
+curl -X 'POST' \
+    'http://127.0.0.1:8000/workflow?yaml=~/cm/cloudmesh-cc/tests/workflow-example/workflow-example.yaml' \
+    -H 'accept: application/json' \
+    -d ''
+```
+\end{verbatim}
 
 \subsection{Delete a Workflow}\label{delete-a-workflow}
 
@@ -86,13 +86,13 @@ computer.
 To use it, replace \texttt{workflow-example} with the workflow you wish
 to delete.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\ExtensionTok{curl} \AttributeTok{{-}X} \StringTok{\textquotesingle{}DELETE\textquotesingle{}} \DataTypeTok{\textbackslash{}}
-    \StringTok{\textquotesingle{}http://127.0.0.1:8000/workflow/workflow{-}example\textquotesingle{}} \DataTypeTok{\textbackslash{}}
-    \AttributeTok{{-}H} \StringTok{\textquotesingle{}accept: application/json\textquotesingle{}}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+```bash
+curl -X 'DELETE' \
+    'http://127.0.0.1:8000/workflow/workflow-example' \
+    -H 'accept: application/json'
+```
+\end{verbatim}
 
 \subsection{Retrieve a Workflow}\label{retrieve-a-workflow}
 
@@ -103,13 +103,13 @@ of the statuses, and more.
 To use it, replace \texttt{workflow-example} with the workflow you wish
 to retrieve.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\ExtensionTok{curl} \AttributeTok{{-}X} \StringTok{\textquotesingle{}GET\textquotesingle{}} \DataTypeTok{\textbackslash{}}
-    \StringTok{\textquotesingle{}http://127.0.0.1:8000/workflow/workflow{-}example\textquotesingle{}} \DataTypeTok{\textbackslash{}}
-    \AttributeTok{{-}H} \StringTok{\textquotesingle{}accept: application/json\textquotesingle{}}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+```bash
+curl -X 'GET' \
+    'http://127.0.0.1:8000/workflow/workflow-example' \
+    -H 'accept: application/json'
+```
+\end{verbatim}
 
 \subsection{Run a Workflow}\label{run-a-workflow}
 
@@ -119,13 +119,13 @@ To use it, replace \texttt{workflow-example} with the workflow you wish
 to run. Additionally, to hide the graph of the workflow as it is run,
 replace \texttt{show=True} with \texttt{show=False}.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\ExtensionTok{curl} \AttributeTok{{-}X} \StringTok{\textquotesingle{}GET\textquotesingle{}} \DataTypeTok{\textbackslash{}}
-    \StringTok{\textquotesingle{}http://127.0.0.1:8000/workflow/run/workflow{-}example?show=True\textquotesingle{}} \DataTypeTok{\textbackslash{}}
-    \AttributeTok{{-}H} \StringTok{\textquotesingle{}accept: application/json\textquotesingle{}}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+```bash
+curl -X 'GET' \
+    'http://127.0.0.1:8000/workflow/run/workflow-example?show=True' \
+    -H 'accept: application/json'
+```
+\end{verbatim}
 
 \subsection{Add a Job to a Workflow}\label{add-a-job-to-a-workflow}
 
@@ -137,10 +137,10 @@ label, kind, status, progress, and script. To use the command, replace
 \texttt{workflow-example} with the workflow you wish to change.
 Additionally, change the other parameters, as desired.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\ExtensionTok{curl} \AttributeTok{{-}X} \StringTok{\textquotesingle{}POST\textquotesingle{}} \DataTypeTok{\textbackslash{}}
-    \StringTok{\textquotesingle{}http://127.0.0.1:8000/workflow/job/workflow{-}example?job=myJob\&user=aPerson\&host=local\&kind=local\&status=ready\&script=aJob.sh\&progress=0\&label=aLabel\textquotesingle{}} \DataTypeTok{\textbackslash{}}
-    \AttributeTok{{-}H} \StringTok{\textquotesingle{}accept: application/json\textquotesingle{}}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+```bash
+curl -X 'POST' \
+    'http://127.0.0.1:8000/workflow/job/workflow-example?job=myJob&user=aPerson&host=local&kind=local&status=ready&script=aJob.sh&progress=0&label=aLabel' \
+    -H 'accept: application/json'
+```
+\end{verbatim}
