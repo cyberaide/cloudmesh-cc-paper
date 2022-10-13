@@ -69,19 +69,15 @@ To start, the code is needed and we assume you are standing in the
 cloudmesh-cc directory. Use the following commands
 
 \begin{verbatim}
-```bash
 git clone https://github.com/cloudmesh/cloudmesh-cc.git
 cd cloudmesh-cc
 pip install -e .
-```
 \end{verbatim}
 
 We also assume you start the service with
 
 \begin{verbatim}
-```bash
 cms cc start --reload
-```
 \end{verbatim}
 
 \subsection{Creating a simple example}\label{creating-a-simple-example}
@@ -91,11 +87,9 @@ included for you in our source code. We will use this workflow and copy
 it into a temporary directory:
 
 \begin{verbatim}
-```bash
 mkdir -p /tmp/workflow-example
 cp tests/workflow-example/workflow-example.yaml /tmp/workflow-example
 cp tests/workflow-example/*.sh /tmp/workflow-example
-```
 \end{verbatim}
 
 We like you to inspect the example so you get an overview of how to
@@ -149,9 +143,7 @@ Before uploading a \texttt{tar} archive file, we must first create it
 using the previous example yaml and scripts that we copied.
 
 \begin{verbatim}
-```bash
 tar -C /tmp/workflow-example -cf workflow-example.tar .
-```
 \end{verbatim}
 
 \subsubsection{\texorpdfstring{Option 1: Upload via
@@ -161,12 +153,10 @@ We can upload the archive file by using the \texttt{curl} terminal
 command as follows:
 
 \begin{verbatim}
-```bash
 curl -X 'POST' \
   'http://127.0.0.1:8000/workflow?archive=workflow-example.tar' \
   -H 'accept: application/json' \
   -d ''
-```
 \end{verbatim}
 
 \subsubsection{\texorpdfstring{Option 2: Upload via
@@ -194,13 +184,11 @@ a Python enabled REST call. We will use Python requests to demonstrate
 this upload feature.
 
 \begin{verbatim}
-```python
 import requests
 
 r = requests.post('http://127.0.0.1:8000/workflow?archive=workflow-example.tar')
 print(r)
 print(r.text)
-```
 \end{verbatim}
 
 Printing \texttt{r} returns the response code from the API (a code of
@@ -234,12 +222,10 @@ A workflow can be uploaded easily with a curl command from the command
 line. On the command line execute:
 
 \begin{verbatim}
-```bash
 curl -X 'POST' \
   'http://127.0.0.1:8000/workflow?directory=~/cm/cloudmesh-cc/tests/workflow-example' \
   -H 'accept: application/json' \
   -d ''
-```
 \end{verbatim}
 
 \subsubsection{\texorpdfstring{Option 2: Upload via
@@ -260,13 +246,11 @@ Accessing the upload from the Python API is very easy. We will use
 python requests to demonstrate the upload of the workflow.
 
 \begin{verbatim}
-```python
 import requests
 
 r = requests.post('http://127.0.0.1:8000/workflow?directory=~/cm/cloudmesh-cc/tests/workflow-example')
 print(r)
 print(r.text)
-```
 \end{verbatim}
 
 Printing \texttt{r} returns the response code from the API (a code of

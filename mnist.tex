@@ -22,7 +22,8 @@ Then, issue commands:
 
 \begin{verbatim}
 cd ~/cm/cloudmesh-cc
-pytest -v -x --capture=no examples/example_run_mnist_workflow_exec.py
+pytest -v -x --capture=no examples\
+/example_run_mnist_workflow_exec.py
 \end{verbatim}
 
 This program uses SLURM and a shell script to iterate through the
@@ -31,15 +32,16 @@ available GPUs on Rivanna, which are V100, A100, K80, P100, and RTX2080.
 On a successful run, the output will be similar to the following:
 
 \begin{table}[!ht]
+\caption{MNIST Performance as obtained by cloudmesh-cc on various graphics cards using workflow scheduling}
     \centering
-    \begin{tabular}{|l|l|}
+    \begin{tabular}{lr}
     \hline
         Name & Time \\ \hline
-        v100 & 138.087 \\ \hline
-        a100 & 106.046 \\ \hline
-        k80 & 171.057 \\ \hline
-        p100 & 202.055 \\ \hline
-        rtx2080 & 138.048 \\ \hline
+        a100 & 106.046 \\ 
+        v100 & 138.087 \\ 
+        rtx2080 & 138.048 \\
+        k80 & 171.057 \\ 
+        p100 & 202.055 \\
     \end{tabular}
   \end{table}
   
