@@ -10,38 +10,38 @@ the portrayal of the graph.
 A workflow yaml file with three Shell script jobs \texttt{a},
 \texttt{b}, and \texttt{c} is as follows:
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\ExtensionTok{workflow:}
-  \ExtensionTok{nodes:}
-    \ExtensionTok{a:}
-       \ExtensionTok{name:}\NormalTok{ a}
-       \ExtensionTok{user:}\NormalTok{ gregor}
-       \ExtensionTok{host:}\NormalTok{ localhost}
-       \ExtensionTok{kind:}\NormalTok{ local}
-       \ExtensionTok{status:}\NormalTok{ ready}
-       \ExtensionTok{label:} \StringTok{\textquotesingle{}\{name\}\textbackslash{}nprogress=\{progress\}\textquotesingle{}}
-       \ExtensionTok{script:}\NormalTok{ test{-}a.sh}
-    \ExtensionTok{b:}
-       \ExtensionTok{name:}\NormalTok{ b}
-       \ExtensionTok{user:}\NormalTok{ gregor}
-       \ExtensionTok{host:}\NormalTok{ localhost}
-       \ExtensionTok{kind:}\NormalTok{ local}
-       \ExtensionTok{status:}\NormalTok{ ready}
-       \ExtensionTok{label:} \StringTok{\textquotesingle{}\{name\}\textbackslash{}nprogress=\{progress\}\textquotesingle{}}
-       \ExtensionTok{script:}\NormalTok{ test{-}b.sh}
-    \ExtensionTok{c:}
-      \ExtensionTok{name:}\NormalTok{ c}
-      \ExtensionTok{user:}\NormalTok{ gregor}
-      \ExtensionTok{host:}\NormalTok{ localhost}
-      \ExtensionTok{kind:}\NormalTok{ local}
-      \ExtensionTok{status:}\NormalTok{ ready}
-      \ExtensionTok{label:} \StringTok{\textquotesingle{}\{name\}\textbackslash{}nprogress=\{progress\}\textquotesingle{}}
-      \ExtensionTok{script:}\NormalTok{ test{-}c.sh}
-  \ExtensionTok{dependencies:}
-    \ExtensionTok{{-}}\NormalTok{ a,b,c}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+```text
+workflow:
+  nodes:
+    a:
+       name: a
+       user: gregor
+       host: localhost
+       kind: local
+       status: ready
+       label: '{name}\nprogress={progress}'
+       script: test-a.sh
+    b:
+       name: b
+       user: gregor
+       host: localhost
+       kind: local
+       status: ready
+       label: '{name}\nprogress={progress}'
+       script: test-b.sh
+    c:
+      name: c
+      user: gregor
+      host: localhost
+      kind: local
+      status: ready
+      label: '{name}\nprogress={progress}'
+      script: test-c.sh
+  dependencies:
+    - a,b,c
+```
+\end{verbatim}
 
 \subsection{Example Workflows}\label{example-workflows}
 
@@ -66,14 +66,14 @@ the yaml workflow files.
 
 For example, a label could be defined as follows:
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{workflow:}
-\NormalTok{  nodes:}
-\NormalTok{    start:}
-\NormalTok{      label: \textquotesingle{}start\textbackslash{}nCreated=\{created.\%Y/\%m/\%d, \%H{-}{-}\%M{-}{-}\%S\}\textbackslash{}nWorkflow Started=\{t0.\%Y/\%m/\%d, \%H{-}{-}\%M{-}{-}\%S\}\textbackslash{}nNow=\{now.\%Y/\%m/\%d, \%H{-}{-}\%M{-}{-}\%S\}\textbackslash{}nElapsed=\{dt0.\%M{-}{-}\%S\}\textquotesingle{}}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+```text
+workflow:
+  nodes:
+    start:
+      label: 'start\nCreated={created.%Y/%m/%d, %H--%M--%S}\nWorkflow Started={t0.%Y/%m/%d, %H--%M--%S}\nNow={now.%Y/%m/%d, %H--%M--%S}\nElapsed={dt0.%M--%S}'
+```
+\end{verbatim}
 
 This creates a node on the graph that looks similar to the following
 example:
@@ -161,22 +161,22 @@ The following is an example of a node in YAML format that uses a box
 shape and an empty style. The empty style defaults to \texttt{filled},
 which allows the node to change color when the job status is changed.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{workflow:}
-\NormalTok{  nodes:}
-\NormalTok{    start:}
-\NormalTok{      label: \textquotesingle{}start\textbackslash{}nCreated=\{created.\%Y/\%m/\%d, \%H{-}{-}\%M{-}{-}\%S\}\textbackslash{}nWorkflow Started=\{t0.\}\textbackslash{}nElapsed=\{dt0.\}\textquotesingle{}}
-\NormalTok{      kind: local}
-\NormalTok{      user: grey}
-\NormalTok{      host: local}
-\NormalTok{      status: ready}
-\NormalTok{      exec: \textquotesingle{}echo hello\textquotesingle{}}
-\NormalTok{      name: start}
-\NormalTok{      shape: box}
-\NormalTok{      style: \textquotesingle{}\textquotesingle{}}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+```text
+workflow:
+  nodes:
+    start:
+      label: 'start\nCreated={created.%Y/%m/%d, %H--%M--%S}\nWorkflow Started={t0.}\nElapsed={dt0.}'
+      kind: local
+      user: grey
+      host: local
+      status: ready
+      exec: 'echo hello'
+      name: start
+      shape: box
+      style: ''
+```
+\end{verbatim}
 
 \subsection{Defining dependencies in the
 workflow}\label{defining-dependencies-in-the-workflow}
@@ -184,20 +184,20 @@ workflow}\label{defining-dependencies-in-the-workflow}
 Dependencies are specified in the order which jobs should be run, from
 left to right. They are listed under the workflow in the yaml file.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\ExtensionTok{workflow:}
-  \ExtensionTok{nodes:}
-    \ExtensionTok{a:}
-       \ExtensionTok{name:}\NormalTok{ a}
-    \ExtensionTok{b:}
-       \ExtensionTok{name:}\NormalTok{ b}
-    \ExtensionTok{c:}
-       \ExtensionTok{name:}\NormalTok{ c}
-  \ExtensionTok{dependencies:}
-    \ExtensionTok{{-}}\NormalTok{ a,b,c}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+```bash
+workflow:
+  nodes:
+    a:
+       name: a
+    b:
+       name: b
+    c:
+       name: c
+  dependencies:
+    - a,b,c
+```
+\end{verbatim}
 
 \subsection{Reporting Progress}\label{reporting-progress}
 
@@ -214,19 +214,19 @@ workflows, they must adhere to the guidelines as follows.
 
 For shell and Slurm scripts \texttt{.sh}, the script must contain:
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{echo} \StringTok{"\# cloudmesh status=running progress=1 pid=}\VariableTok{$$}\StringTok{"}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+```bash
+echo "# cloudmesh status=running progress=1 pid=$$"
+```
+\end{verbatim}
 
 at the beginning of the script, and
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{echo} \StringTok{"\# cloudmesh status=done progress=100 pid=}\VariableTok{$$}\StringTok{"}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+```bash
+echo "# cloudmesh status=done progress=100 pid=$$"
+```
+\end{verbatim}
 
 at the end of the script.
 
@@ -239,18 +239,18 @@ to the progress function.
 
 py\_script.py
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\ExtensionTok{from}\NormalTok{ cloudmesh.common.StopWatch import progress}
-\ExtensionTok{from}\NormalTok{ cloudmesh.common.Shell import Shell}
-\ExtensionTok{filename}\NormalTok{ = Shell.map\_filename}\ErrorTok{(}\StringTok{\textquotesingle{}./py\_script.log\textquotesingle{}}\KeywordTok{)}\ExtensionTok{.path}
-\ExtensionTok{progress}\ErrorTok{(}\VariableTok{progress}\OperatorTok{=}\NormalTok{1, }\VariableTok{filename}\OperatorTok{=}\NormalTok{filename}\KeywordTok{)}
+\begin{verbatim}
+```bash
+from cloudmesh.common.StopWatch import progress
+from cloudmesh.common.Shell import Shell
+filename = Shell.map_filename('./py_script.log').path
+progress(progress=1, filename=filename)
 
-\CommentTok{\# your script does what you want it to do here...}
+# your script does what you want it to do here...
 
-\ExtensionTok{progress}\ErrorTok{(}\VariableTok{progress}\OperatorTok{=}\NormalTok{100, }\VariableTok{filename}\OperatorTok{=}\NormalTok{filename}\KeywordTok{)}
-\end{Highlighting}
-\end{Shaded}
+progress(progress=100, filename=filename)
+```
+\end{verbatim}
 
 The statements do not need to be at the absolute beginning or end of the
 script, but the progress must:
