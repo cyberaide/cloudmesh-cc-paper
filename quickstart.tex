@@ -10,38 +10,41 @@ be executed on local or remote compute resources.
 
 In Figure 1 we depict a simple example workflow to be executed where
 each task is executed sequentially. The status of the execution can be
-displayed as table or as graph. In Figure 1, we showcase how the graph
+displayed as table or as graph. In Figure \ref{fig:workflow-process}, we showcase how the graph
 changes its appearance over time.
 
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2083}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1944}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1806}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1944}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1944}}@{}}
-\toprule
-\begin{minipage}[b]{\linewidth}\raggedright
+\begin{figure*}[htb]
+
+\begin{minipage}[b]{0.15\textwidth}
 Step 0
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\includegraphics{images/workflow-example.pdf}
+\end{minipage} 
+\ \
+\begin{minipage}[b]{0.15\textwidth}
 Step 0.5
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Step 1
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\includegraphics{images/workflow-example-1.5.pdf} 
+\end{minipage} \ \
+\begin{minipage}[b]{0.15\textwidth}
+Step 1 \includegraphics{images/workflow-example-2.pdf}
+\end{minipage} 
+\ \
+\begin{minipage}[b]{0.15\textwidth}
 Step 2
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Step 3
-\end{minipage} \\
-\midrule
-\endhead
-Definition & Running first task & Finished first task & Finished second
-task & Completed workflow \\
-\includegraphics{images/workflow-example.svg} &
-\includegraphics{images/workflow-example-1.5.svg} &
-\includegraphics{images/workflow-example-2.svg} &
-\includegraphics{images/workflow-example-3.svg} &
-\includegraphics{images/workflow-example-5.svg} \\
-\bottomrule
-\end{longtable}
+\includegraphics{images/workflow-example-3.pdf}
+
+\end{minipage} 
+\ \
+\begin{minipage}[b]{0.15\textwidth}
+Step 3 
+\includegraphics{images/workflow-example-5.pdf}
+\end{minipage} 
+
+% Definition & Running first task & Finished first task & Finished second
+% task & Completed workflow \\
+
+\caption{caption missing}\label{fig:workflow-process}
+\end{figure*}
+
 
 \textbf{Figure 1:} Execution and display graph of an example workflow
 over time
@@ -103,7 +106,6 @@ define a workflow that is located in
 and is located in the folder \emph{tests/workflow-example/}
 
 \begin{itemize}
-\tightlist
 \item
   \href{https://github.com/cloudmesh/cloudmesh-cc/blob/main/tests/workflow-example/workflow-example.yaml}{workflow-example.yaml}
 \item
@@ -121,7 +123,6 @@ service. We showcase here how to
 \item
   \begin{enumerate}
   \def\labelenumi{\Alph{enumi}.}
-  \tightlist
   \item
     upload workflows as tar/xz file of a self containing directory, or
   \end{enumerate}
@@ -129,7 +130,6 @@ service. We showcase here how to
   \begin{enumerate}
   \def\labelenumi{\Alph{enumi}.}
   \setcounter{enumi}{1}
-  \tightlist
   \item
     upload all files in a directory recursively
   \end{enumerate}
@@ -195,15 +195,15 @@ As we use a REST service, we can also easily upload the workflow through
 a Python enabled REST call. We will use Python requests to demonstrate
 this upload feature.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\ImportTok{import}\NormalTok{ requests}
+\begin{verbatim}
+```python
+import requests
 
-\NormalTok{r }\OperatorTok{=}\NormalTok{ requests.post(}\StringTok{\textquotesingle{}http://127.0.0.1:8000/workflow?archive=workflow{-}example.tar\textquotesingle{}}\NormalTok{)}
-\BuiltInTok{print}\NormalTok{(r)}
-\BuiltInTok{print}\NormalTok{(r.text)}
-\end{Highlighting}
-\end{Shaded}
+r = requests.post('http://127.0.0.1:8000/workflow?archive=workflow-example.tar')
+print(r)
+print(r.text)
+```
+\end{verbatim}
 
 Printing \texttt{r} returns the response code from the API (a code of
 200 indicates success). Printing \texttt{r.text} returns the message
@@ -235,14 +235,14 @@ the command line, via the browser GUI, and via the Python API.
 A workflow can be uploaded easily with a curl command from the command
 line. On the command line execute:
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\ExtensionTok{curl} \AttributeTok{{-}X} \StringTok{\textquotesingle{}POST\textquotesingle{}} \DataTypeTok{\textbackslash{}}
-  \StringTok{\textquotesingle{}http://127.0.0.1:8000/workflow?directory=\textasciitilde{}/cm/cloudmesh{-}cc/tests/workflow{-}example\textquotesingle{}} \DataTypeTok{\textbackslash{}}
-  \AttributeTok{{-}H} \StringTok{\textquotesingle{}accept: application/json\textquotesingle{}} \DataTypeTok{\textbackslash{}}
-  \AttributeTok{{-}d} \StringTok{\textquotesingle{}\textquotesingle{}}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+```bash
+curl -X 'POST' \
+  'http://127.0.0.1:8000/workflow?directory=~/cm/cloudmesh-cc/tests/workflow-example' \
+  -H 'accept: application/json' \
+  -d ''
+```
+\end{verbatim}
 
 \subsubsection{\texorpdfstring{Option 2: Upload via
 \texttt{/docs}}{Option 2: Upload via /docs}}\label{option-2-upload-via-docs-1}
@@ -258,18 +258,18 @@ directory field and then click Execute.
 \subsubsection{Option 3: Upload via the Python
 API}\label{option-3-upload-via-the-python-api-1}
 
-Accessing the upload from the Pythin API is very easy. We will use
+Accessing the upload from the Python API is very easy. We will use
 python requests to demonstrate the upload of the workflow.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\ImportTok{import}\NormalTok{ requests}
+\begin{verbatim}
+```python
+import requests
 
-\NormalTok{r }\OperatorTok{=}\NormalTok{ requests.post(}\StringTok{\textquotesingle{}http://127.0.0.1:8000/workflow?directory=\textasciitilde{}/cm/cloudmesh{-}cc/tests/workflow{-}example\textquotesingle{}}\NormalTok{)}
-\BuiltInTok{print}\NormalTok{(r)}
-\BuiltInTok{print}\NormalTok{(r.text)}
-\end{Highlighting}
-\end{Shaded}
+r = requests.post('http://127.0.0.1:8000/workflow?directory=~/cm/cloudmesh-cc/tests/workflow-example')
+print(r)
+print(r.text)
+```
+\end{verbatim}
 
 Printing \texttt{r} returns the response code from the API (a code of
 200 indicates success). Printing \texttt{r.text} returns the message
@@ -281,7 +281,6 @@ call}\label{parameters-to-the-upload-a-workflow-with-a-rest-call}
 The upload REST URL can take different parameters, such as
 
 \begin{itemize}
-\tightlist
 \item
   \texttt{?directory=name}
 \item
