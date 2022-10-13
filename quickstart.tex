@@ -1,5 +1,4 @@
-\hypertarget{quickstart}{%
-\section{Quickstart}\label{quickstart}}
+\section{Quickstart}\label{quickstart}
 
 The Cloudmesh Compute Cluster service allows you to execute analytical,
 computational workflows which run programs on remote compute resources.
@@ -63,8 +62,7 @@ allows the easy interaction through a Web-based Portal.
 Let us demonstrate a number of selected features with the help of this
 quickstart. We will only focus on using the REST service.
 
-\hypertarget{setup}{%
-\subsection{Setup}\label{setup}}
+\subsection{Setup}\label{setup}
 
 To start, the code is needed and we assume you are standing in the
 cloudmesh-cc directory. Use the following commands
@@ -85,8 +83,7 @@ We also assume you start the service with
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{creating-a-simple-example}{%
-\subsection{Creating a simple example}\label{creating-a-simple-example}}
+\subsection{Creating a simple example}\label{creating-a-simple-example}
 
 First let us create a simple workflow example that we already have
 included for you in our source code. We will use this workflow and copy
@@ -138,9 +135,8 @@ service. We showcase here how to
   \end{enumerate}
 \end{itemize}
 
-\hypertarget{a.-upload-and-run-a-workflow-embedded-in-an-archive-file}{%
 \subsection{A. Upload and run a workflow embedded in an archive
-file}\label{a.-upload-and-run-a-workflow-embedded-in-an-archive-file}}
+file}\label{a.-upload-and-run-a-workflow-embedded-in-an-archive-file}
 
 We can upload an archive file which contains all the workflow files,
 including the yaml specification file and the scripts. Providing an
@@ -149,8 +145,7 @@ may enable the workflow to be better suited towards portability and
 simplicity, where one can share an archive file with another user. We
 will choose here a tar file as example.
 
-\hypertarget{create-tar-archive-file}{%
-\subsubsection{Create tar archive file}\label{create-tar-archive-file}}
+\subsubsection{Create tar archive file}\label{create-tar-archive-file}
 
 Before uploading a \texttt{tar} archive file, we must first create it
 using the previous example yaml and scripts that we copied.
@@ -161,9 +156,8 @@ using the previous example yaml and scripts that we copied.
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{option-1-upload-via-curl}{%
 \subsubsection{\texorpdfstring{Option 1: Upload via
-\texttt{curl}}{Option 1: Upload via curl}}\label{option-1-upload-via-curl}}
+\texttt{curl}}{Option 1: Upload via curl}}\label{option-1-upload-via-curl}
 
 We can upload the archive file by using the \texttt{curl} terminal
 command as follows:
@@ -177,9 +171,8 @@ command as follows:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{option-2-upload-via-docs}{%
 \subsubsection{\texorpdfstring{Option 2: Upload via
-\texttt{/docs}}{Option 2: Upload via /docs}}\label{option-2-upload-via-docs}}
+\texttt{/docs}}{Option 2: Upload via /docs}}\label{option-2-upload-via-docs}
 
 As the service is using also an OpenAPI 2.0 specification the workflow
 can also be uploaded implicitly through the specification GUI. Navigate
@@ -195,9 +188,8 @@ Please click \texttt{Try\ it\ out} and then enter
 \texttt{\textasciitilde{}/cm/cloudmesh-cc/workflow-example.tar} in the
 \texttt{archive} field and then click Execute.
 
-\hypertarget{option-3-upload-via-the-python-api}{%
 \subsubsection{Option 3: Upload via the Python
-API}\label{option-3-upload-via-the-python-api}}
+API}\label{option-3-upload-via-the-python-api}
 
 As we use a REST service, we can also easily upload the workflow through
 a Python enabled REST call. We will use Python requests to demonstrate
@@ -217,18 +209,16 @@ Printing \texttt{r} returns the response code from the API (a code of
 200 indicates success). Printing \texttt{r.text} returns the message
 from the API, such as a success or error message.
 
-\hypertarget{option-4-upload-with-a-third-party-rest-framework}{%
 \subsubsection{Option 4: Upload with a third party REST
-framework}\label{option-4-upload-with-a-third-party-rest-framework}}
+framework}\label{option-4-upload-with-a-third-party-rest-framework}
 
 Naturally if you like to use a different REST API you can do so. You can
 also use different programming languages and we leave it up to you to
 choose the framework of your choice to interact with the REST service,
 popular choices are JavaScript, Go, C/C++, matlab, and R, to name a few.
 
-\hypertarget{b.-upload-a-dir-that-contains-workflow-directory}{%
 \subsection{B. Upload a dir that contains workflow
-directory}\label{b.-upload-a-dir-that-contains-workflow-directory}}
+directory}\label{b.-upload-a-dir-that-contains-workflow-directory}
 
 To increase flexibility and allow quick experiments, users can specify a
 workflow directory which contains the yaml specification file and the
@@ -239,9 +229,8 @@ specified directory.
 There are three different ways to upload the dir: via \texttt{curl} on
 the command line, via the browser GUI, and via the Python API.
 
-\hypertarget{option-1-upload-via-curl-1}{%
 \subsubsection{\texorpdfstring{Option 1: Upload via
-\texttt{curl}}{Option 1: Upload via curl}}\label{option-1-upload-via-curl-1}}
+\texttt{curl}}{Option 1: Upload via curl}}\label{option-1-upload-via-curl-1}
 
 A workflow can be uploaded easily with a curl command from the command
 line. On the command line execute:
@@ -255,9 +244,8 @@ line. On the command line execute:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{option-2-upload-via-docs-1}{%
 \subsubsection{\texorpdfstring{Option 2: Upload via
-\texttt{/docs}}{Option 2: Upload via /docs}}\label{option-2-upload-via-docs-1}}
+\texttt{/docs}}{Option 2: Upload via /docs}}\label{option-2-upload-via-docs-1}
 
 Also here one can upload the needed files with the OpenAPI specification
 interface on the service. Navigate to
@@ -267,9 +255,8 @@ Click \texttt{Try\ it\ out} and then enter
 \texttt{\textasciitilde{}/cm/cloudmesh-cc/tests/workflow-example} in the
 directory field and then click Execute.
 
-\hypertarget{option-3-upload-via-the-python-api-1}{%
 \subsubsection{Option 3: Upload via the Python
-API}\label{option-3-upload-via-the-python-api-1}}
+API}\label{option-3-upload-via-the-python-api-1}
 
 Accessing the upload from the Pythin API is very easy. We will use
 python requests to demonstrate the upload of the workflow.
@@ -288,9 +275,8 @@ Printing \texttt{r} returns the response code from the API (a code of
 200 indicates success). Printing \texttt{r.text} returns the message
 from the API, such as a success or error message.
 
-\hypertarget{parameters-to-the-upload-a-workflow-with-a-rest-call}{%
 \subsection{Parameters to the Upload a workflow with a REST
-call}\label{parameters-to-the-upload-a-workflow-with-a-rest-call}}
+call}\label{parameters-to-the-upload-a-workflow-with-a-rest-call}
 
 The upload REST URL can take different parameters, such as
 
@@ -325,8 +311,7 @@ allows for a script specified by the yaml to be uploaded later. The yaml
 can even work without scripts by using the \texttt{exec} specification
 within the yaml.
 
-\hypertarget{run-the-workflow}{%
-\subsection{Run the workflow}\label{run-the-workflow}}
+\subsection{Run the workflow}\label{run-the-workflow}
 
 To run, navigate to homepage at \texttt{http://127.0.0.1:8000/} and
 click the workflow-example on the left side. Then click Run.

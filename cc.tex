@@ -1,15 +1,10 @@
-\hypertarget{hybrid-multi-cloud-analytics-services-framework}{%
 \section{Hybrid Multi-Cloud Analytics Services
-Framework}\label{hybrid-multi-cloud-analytics-services-framework}}
+Framework}\label{hybrid-multi-cloud-analytics-services-framework}
 
 \textbf{Cloudmesh Controlled Computing through Workflows}
 
-Gregor von Laszewski (laszewski@gmail.com)\(^*\), Jacques Fleischer
 
-\(^*\) Corresponding author
-
-\hypertarget{background}{%
-\subsection{Background}\label{background}}
+\subsection{Background}\label{background}
 
 High-performance computing (HPC) is for decades a very important tool
 for science. Scientific tasks can be leveraging the processing power of
@@ -31,17 +26,14 @@ platforms in a dynamic queue with visualization and data storage.
 See @fig:fastapi-service.
 
 \begin{figure}
-\hypertarget{fig:fastapi-service}{%
 \centering
-\includegraphics[width=0.5\textwidth,height=\textheight]{images/fastapi-service.png}
+\includegraphics[width=1.0\columnwidth]{images/fastapi-service.png}
 \caption{OpenAPI Description of the REST Interface to the
 Workflow}\label{fig:fastapi-service}
-}
 \end{figure}
 
-\hypertarget{workflow-controlled-computing}{%
 \subsection{Workflow Controlled
-Computing}\label{workflow-controlled-computing}}
+Computing}\label{workflow-controlled-computing}
 
 This software was developed end enhancing Cloudmesh, a suite of software
 to make using cloud and HPC resources easier. Specifically, we have
@@ -56,8 +48,8 @@ The software developed is freely available and can easily be installed
 with standard Python tools so integration in the Python ecosystem using
 virtualenv's and Anaconda is simple.
 
-\hypertarget{workflow-functionality}{%
-\subsection{Workflow Functionality}\label{workflow-functionality}}
+
+\subsection{Workflow Functionality}\label{workflow-functionality}
 
 A hybrid multi-cloud analytics service framework was created to manage
 heterogeneous and remote workflows, queues, and jobs. It was designed
@@ -69,8 +61,7 @@ and the Linux-based virtual image WSL. Jobs can be visualized and saved
 as a YAML and SVG data file. This workflow was extensively tested for
 functionality and reproducibility.
 
-\hypertarget{quickstart}{%
-\subsection{Quickstart}\label{quickstart}}
+\subsection{Quickstart}\label{quickstart}
 
 To test the workflow program, prepare a cm directory in your home
 directory by executing the following commands in a terminal:
@@ -94,9 +85,8 @@ This test runs three jobs within a singular workflow: the first job runs
 a local shell script, the second runs a local Python script, and the
 third runs a local Jupyter notebook.
 
-\hypertarget{application-demonstration-using-mnist}{%
 \subsection{Application demonstration using
-MNIST}\label{application-demonstration-using-mnist}}
+MNIST}\label{application-demonstration-using-mnist}
 
 The Modified National Institute of Standards and Technology Database is
 a machine learning database based on image processing Various MNIST
@@ -109,15 +99,12 @@ PyTorch training.
 See @fig:workflow-uml.
 
 \begin{figure}
-\hypertarget{fig:workflow-uml}{%
 \centering
 \includegraphics{images/workflow-uml.png}
 \caption{Design for the workflow.}\label{fig:workflow-uml}
-}
 \end{figure}
 
-\hypertarget{design}{%
-\subsection{Design}\label{design}}
+\subsection{Design}\label{design}
 
 The hybrid multi-cloud analytics service framework was created to ensure
 running jobs across many platforms. We designed a small and streamlined
@@ -165,8 +152,7 @@ This architectural component building this framework is depicted
 pages are provided on how to install it:
 \href{https://github.com/cloudmesh/cloudmesh-cc}{cloudmesh-cc}.
 
-\hypertarget{summary}{%
-\subsection{Summary}\label{summary}}
+\subsection{Summary}\label{summary}
 
 The main interaction with the workflow is through the command line. With
 the framework, researchers and scientists should be able to create jobs
@@ -181,8 +167,7 @@ framework.
 Improvements to this project will include code cleanup and manual
 development.
 
-\hypertarget{references}{%
-\subsection{References}\label{references}}
+\subsection{References}\label{references}
 
 A poster based on a pre-alpha version of this code is available as ppt
 and PDF file. However, that version is no longer valid and is superseded
@@ -203,13 +188,3 @@ a team
 Please note also that the poster contains inaccurate statements and
 descriptions and should not be used as a reference to this work.
 
-\hypertarget{acknowledgments}{%
-\subsection{Acknowledgments}\label{acknowledgments}}
-
-Continued work was in part funded by the NSF CyberTraining: CIC:
-CyberTraining for Students and Technologies from Generation Z with the
-award numbers 1829704 and 2200409. We like to thank the following
-contributors for their help and evaluation in a pre-alpha version of the
-code: Jackson Miskill, Alex Beck, Alison Lu. We are excited that this
-effort contributed significantly to their increased understanding of
-Python and how to develop in a team using the Python ecosystem.
