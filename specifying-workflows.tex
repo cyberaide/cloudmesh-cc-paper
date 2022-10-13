@@ -1,13 +1,11 @@
-\hypertarget{specifying-workflows}{%
-\section{Specifying Workflows}\label{specifying-workflows}}
+\section{Specifying Workflows}\label{specifying-workflows}
 
 Users of cloudmesh cc must follow a certain configuration style to best
 specify how a workflow should be run. Customization options include
 specifying the job types, the order of how the jobs should be run, and
 the portrayal of the graph.
 
-\hypertarget{workflow-yaml-format}{%
-\subsection{Workflow YAML format}\label{workflow-yaml-format}}
+\subsection{Workflow YAML format}\label{workflow-yaml-format}
 
 A workflow yaml file with three Shell script jobs \texttt{a},
 \texttt{b}, and \texttt{c} is as follows:
@@ -45,16 +43,14 @@ A workflow yaml file with three Shell script jobs \texttt{a},
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{example-workflows}{%
-\subsection{Example Workflows}\label{example-workflows}}
+\subsection{Example Workflows}\label{example-workflows}
 
 Sample yaml files can be found at the following link:
 
 \url{https://github.com/cloudmesh/cloudmesh-cc/blob/main/tests/workflow-example/workflow-example.yaml}
 
-\hypertarget{defining-nodes-in-the-workflow}{%
 \subsection{Defining nodes in the
-workflow}\label{defining-nodes-in-the-workflow}}
+workflow}\label{defining-nodes-in-the-workflow}
 
 Nodes can be customized in various ways within the workflow
 configuration YAML file, including their job types (python, sh, jupyter,
@@ -62,9 +58,8 @@ or slurm), their virtual Python environment (by specifying
 \texttt{venv}), their appearance on the graph, and other
 characteristics.
 
-\hypertarget{defining-labels-for-the-workflow}{%
 \subsubsection{Defining labels for the
-workflow}\label{defining-labels-for-the-workflow}}
+workflow}\label{defining-labels-for-the-workflow}
 
 These variables must be in curly braces when defining the labels inside
 the yaml workflow files.
@@ -139,9 +134,8 @@ the format of the time must come immediately following the period.
   \texttt{cm.} cloudmesh variable that is read from \texttt{cms\ set}
 \end{itemize}
 
-\hypertarget{defining-format-for-timestamp-labels}{%
 \subsection{Defining format for timestamp
-labels}\label{defining-format-for-timestamp-labels}}
+labels}\label{defining-format-for-timestamp-labels}
 
 Various formats can be used for the timestamps, such as the American
 datetime format \texttt{\%m/\%d/\%Y,\ \%H-\/-\%M-\/-\%S} or the
@@ -153,9 +147,8 @@ day, hour, minute, and second, respectively), any format can be created.
 If no format is specified following the period after the variable, the
 datetime defaults to American format.
 
-\hypertarget{defining-graphviz-shapes-and-styles}{%
 \subsection{Defining graphviz shapes and
-styles}\label{defining-graphviz-shapes-and-styles}}
+styles}\label{defining-graphviz-shapes-and-styles}
 
 Any shape and style for the nodes in the graph can be chosen, as long as
 they are taken from the graphviz documentation:
@@ -185,9 +178,8 @@ which allows the node to change color when the job status is changed.
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{defining-dependencies-in-the-workflow}{%
 \subsection{Defining dependencies in the
-workflow}\label{defining-dependencies-in-the-workflow}}
+workflow}\label{defining-dependencies-in-the-workflow}
 
 Dependencies are specified in the order which jobs should be run, from
 left to right. They are listed under the workflow in the yaml file.
@@ -207,8 +199,7 @@ left to right. They are listed under the workflow in the yaml file.
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{reporting-progress}{%
-\subsection{Reporting Progress}\label{reporting-progress}}
+\subsection{Reporting Progress}\label{reporting-progress}
 
 When running scripts/jobs inside a workflow, the scripts must leverage
 some format of cloudmesh.progress to run successfully. Otherwise, the
@@ -219,8 +210,7 @@ The examples that are provided with cloudmesh-cc are already augmented
 with cloudmesh.progress. Thus, if a user is running self-made jobs and
 workflows, they must adhere to the guidelines as follows.
 
-\hypertarget{shell-and-slurm-scripts}{%
-\subsection{Shell and Slurm Scripts}\label{shell-and-slurm-scripts}}
+\subsection{Shell and Slurm Scripts}\label{shell-and-slurm-scripts}
 
 For shell and Slurm scripts \texttt{.sh}, the script must contain:
 
@@ -240,9 +230,8 @@ at the beginning of the script, and
 
 at the end of the script.
 
-\hypertarget{python-scripts-and-jupyter-notebooks}{%
 \subsection{Python Scripts and Jupyter
-Notebooks}\label{python-scripts-and-jupyter-notebooks}}
+Notebooks}\label{python-scripts-and-jupyter-notebooks}
 
 For Python scripts \texttt{.py} and Jupyter notebooks \texttt{.ipynb},
 the script must contain an import module from cloudmesh.common and calls
