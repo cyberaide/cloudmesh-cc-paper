@@ -67,12 +67,10 @@ the yaml workflow files.
 For example, a label could be defined as follows:
 
 \begin{verbatim}
-```text
 workflow:
   nodes:
     start:
       label: 'start\nCreated={created.%Y/%m/%d, %H--%M--%S}\nWorkflow Started={t0.%Y/%m/%d, %H--%M--%S}\nNow={now.%Y/%m/%d, %H--%M--%S}\nElapsed={dt0.%M--%S}'
-```
 \end{verbatim}
 
 This creates a node on the graph that looks similar to the following
@@ -96,7 +94,6 @@ corresponding letters remain consistent (\texttt{\%Y} \texttt{\%m}
 the format of the time must come immediately following the period.
 
 \begin{itemize}
-\tightlist
 \item
   \texttt{name} name of job
 \item
@@ -105,7 +102,6 @@ the format of the time must come immediately following the period.
   time labels:
 
   \begin{itemize}
-  \tightlist
   \item
     \texttt{now.} current time
   \item
@@ -162,7 +158,6 @@ shape and an empty style. The empty style defaults to \texttt{filled},
 which allows the node to change color when the job status is changed.
 
 \begin{verbatim}
-```text
 workflow:
   nodes:
     start:
@@ -175,7 +170,6 @@ workflow:
       name: start
       shape: box
       style: ''
-```
 \end{verbatim}
 
 \subsection{Defining dependencies in the
@@ -185,7 +179,6 @@ Dependencies are specified in the order which jobs should be run, from
 left to right. They are listed under the workflow in the yaml file.
 
 \begin{verbatim}
-```bash
 workflow:
   nodes:
     a:
@@ -196,7 +189,6 @@ workflow:
        name: c
   dependencies:
     - a,b,c
-```
 \end{verbatim}
 
 \subsection{Reporting Progress}\label{reporting-progress}
@@ -215,17 +207,13 @@ workflows, they must adhere to the guidelines as follows.
 For shell and Slurm scripts \texttt{.sh}, the script must contain:
 
 \begin{verbatim}
-```bash
 echo "# cloudmesh status=running progress=1 pid=$$"
-```
 \end{verbatim}
 
 at the beginning of the script, and
 
 \begin{verbatim}
-```bash
 echo "# cloudmesh status=done progress=100 pid=$$"
-```
 \end{verbatim}
 
 at the end of the script.
@@ -240,7 +228,6 @@ to the progress function.
 py\_script.py
 
 \begin{verbatim}
-```bash
 from cloudmesh.common.StopWatch import progress
 from cloudmesh.common.Shell import Shell
 filename = Shell.map_filename('./py_script.log').path
@@ -249,14 +236,12 @@ progress(progress=1, filename=filename)
 # your script does what you want it to do here...
 
 progress(progress=100, filename=filename)
-```
 \end{verbatim}
 
 The statements do not need to be at the absolute beginning or end of the
 script, but the progress must:
 
 \begin{itemize}
-\tightlist
 \item
   be written to a filename with the same name as the script, ending in
   \texttt{.log}
