@@ -150,11 +150,11 @@ will choose here a tar file as example.
 Before uploading a \texttt{tar} archive file, we must first create it
 using the previous example yaml and scripts that we copied.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{tar} \AttributeTok{{-}C}\NormalTok{ /tmp/workflow{-}example }\AttributeTok{{-}cf}\NormalTok{ workflow{-}example.tar .}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+```bash
+tar -C /tmp/workflow-example -cf workflow-example.tar .
+```
+\end{verbatim}
 
 \subsubsection{\texorpdfstring{Option 1: Upload via
 \texttt{curl}}{Option 1: Upload via curl}}\label{option-1-upload-via-curl}
@@ -162,14 +162,14 @@ using the previous example yaml and scripts that we copied.
 We can upload the archive file by using the \texttt{curl} terminal
 command as follows:
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\ExtensionTok{curl} \AttributeTok{{-}X} \StringTok{\textquotesingle{}POST\textquotesingle{}} \DataTypeTok{\textbackslash{}}
-  \StringTok{\textquotesingle{}http://127.0.0.1:8000/workflow?archive=workflow{-}example.tar\textquotesingle{}} \DataTypeTok{\textbackslash{}}
-  \AttributeTok{{-}H} \StringTok{\textquotesingle{}accept: application/json\textquotesingle{}} \DataTypeTok{\textbackslash{}}
-  \AttributeTok{{-}d} \StringTok{\textquotesingle{}\textquotesingle{}}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+```bash
+curl -X 'POST' \
+  'http://127.0.0.1:8000/workflow?archive=workflow-example.tar' \
+  -H 'accept: application/json' \
+  -d ''
+```
+\end{verbatim}
 
 \subsubsection{\texorpdfstring{Option 2: Upload via
 \texttt{/docs}}{Option 2: Upload via /docs}}\label{option-2-upload-via-docs}
