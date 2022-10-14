@@ -278,18 +278,13 @@ call}\label{parameters-to-the-upload-a-workflow-with-a-rest-call}
 
 The upload REST URL can take different parameters, such as
 
-\begin{itemize}
-\item
-  \mintinline{bash}|?directory=name|
-\item
-  \mintinline{bash}|?archive=name.tar.gz|
-\item
-  \mintinline{bash}|?archive=name.tgz|
-\item
-  \mintinline{bash}|?archive=name.xz|
-\item
-  \mintinline{bash}|?yaml=name|
-\end{itemize}
+\begin{minted}[breaklines]{bash}
+directory=name
+archive=name.tar.gz
+archive=name.tgz
+archive=name.xz
+yaml=name
+\end{minted}
 
 The semantic of the upload is specified through its parameter. Only one
 of them can be used at a time.

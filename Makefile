@@ -8,7 +8,7 @@ all: $(FILENAME).pdf
 # MAIN LATEXMK RULE
 
 $(FILENAME).pdf: $(FILENAME).tex
-	latexmk -quiet -bibtex $(PREVIEW_CONTINUOUSLY) -f -pdf -pdflatex="pdflatex -synctex=1 -interaction=nonstopmode" -use-make $(FILENAME).tex
+	latexmk  -shell-escape -quiet -bibtex $(PREVIEW_CONTINUOUSLY) -f -pdf -pdflatex="pdflatex -synctex=1 -interaction=nonstopmode" -use-make $(FILENAME).tex
 
 .PRECIOUS: %.pdf
 .PHONY: watch
