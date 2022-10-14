@@ -14,40 +14,39 @@ To execute the workflow on UVA's HPC supercomputer, Rivanna, first
 ensure that your UVA Computing ID is set with the following command,
 replacing the X's with your ID:
 
-\begin{verbatim}
+\begin{minted}[breaklines]{bash}
 me@mycomputer $ cms set username=XXXXXX
-\end{verbatim}
+\end{minted}
 
 Then, connect to the UVA Anywhere VPN and then download the satellite
 data into your
 \href{https://www.rc.virginia.edu/userinfo/storage/non-sensitive-data/\#scratch}{scratch}
 directory on Rivanna:
 
-\begin{verbatim}
+\bigbreak
+\begin{minted}[breaklines]{bash}
 me@mycomputer $ cms vpn connect
 me@mycomputer $ ssh rivanna
 rivanna $ cd /scratch/$USER
-rivanna $ git clone https://github.com/laszewsk\
-/mlcommons.git
-rivanna $ cd mlcommons/benchmarks/cloudmask\
-/target/rivanna
+rivanna $ git clone https://github.com/laszewsk/mlcommons.git
+rivanna $ cd mlcommons/benchmarks/cloudmask/target/rivanna
 rivanna $ make data
 # downloading the data will take a while.
 rivanna $ exit
-\end{verbatim}
+\end{minted}
+\bigbreak
 
 Next, clone the \texttt{mlcommons} repository on your local machine and
 run the workflow:
 
-\begin{verbatim}
+\bigbreak
+\begin{minted}[breaklines]{bash}
 me@mycomputer $ cd ~/cm
-me@mycomputer $ git clone https://github.com\
-/laszewsk/mlcommons.git
+me@mycomputer $ git clone https://github.com/laszewsk/mlcommons.git
 me@mycomputer $ cd mlcommons
-me@mycomputer $ pytest -v -x --capture=no \ 
-benchmarks/cloudmask/target/rivanna/run_cloudmask\
-_workflow.py
-\end{verbatim}
+me@mycomputer $ pytest -v -x --capture=no benchmarks/cloudmask/target/rivanna/run_cloudmask_workflow.py
+\end{minted}
+\bigbreak
 
 The workflow iterates through the five GPUs available on Rivanna---
 A100, V100, P100, RTX2080, and K80--- and runs the program three times
@@ -57,18 +56,21 @@ benchmarking.
 Upon completing a run, the logs and benchmarks of the program can be
 found in the target folder:
 
-\begin{verbatim}
+\bigbreak
+\begin{minted}[breaklines]{bash}
 me@mycomputer $ ssh rivanna
-rivanna $ cd /scratch/$USER/mlcommons\
-/benchmarks/cloudmask/target
-\end{verbatim}
+rivanna $ cd /scratch/$USER/mlcommons/benchmarks/cloudmask/target
+\end{minted}
+\bigbreak
 
 Additionally, the generated \texttt{.h5} model file can be found in the
 home directory:
 
-\begin{verbatim}
- rivanna $ cd ~/sciml_bench/outputs/slstr_cloud/
- \end{verbatim}
+\bigbreak
+\begin{minted}[breaklines]{bash}
+rivanna $ cd ~/sciml_bench/outputs/slstr_cloud/
+\end{minted}
+\bigbreak
 
 The program may take a while to run if the resources on Rivanna are
 being used by other jobs.

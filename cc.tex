@@ -8,8 +8,8 @@ Framework}\label{hybrid-multi-cloud-analytics-services-framework}
 
 \subsection{Background}\label{background}
 
-High-performance computing (HPC) is for decades a very important tool
-for science. Scientific tasks can be leveraging the processing power of
+High-performance computing (HPC) has been, for decades, a very important tool
+for science. Scientific tasks can leverage the processing power of
 a supercomputer so they can run at previously unobtainable high speeds
 or utilize specialized hardware for acceleration that otherwise are not
 available to the user. HPC can be used for analytic programs that
@@ -17,7 +17,7 @@ leverage machine learning applied to large data sets to, for example,
 predict future values or to model current states. For such
 high-complexity projects, there are often multiple complex programs that
 may be running repeatedly in either competition or cooperation.
-Leveraging for example computational GPUs leads to several times higher
+Leveraging computational GPUs, for instance, leads to several times higher
 performance when applied to deep learning algorithms. With such
 projects, program execution is submitted as a job to a typically remote
 HPC center, where time is billed as node hours. Such projects must have
@@ -68,15 +68,16 @@ functionality and reproducibility.
 To test the workflow program, prepare a cm directory in your home
 directory by executing the following commands in a terminal:
 
-\begin{verbatim}
+\bigbreak
+\begin{minted}[breaklines]{bash}
 $ mkdir ~/cm
 $ cd ~/cm
 $ pip install cloudmesh-installer -U
 $ cloudmesh-installer get cc
 $ cd cloudmesh-cc
-$ pytest -v -x --capture=no tests/test_199_\
-workflow_clean.py
-\end{verbatim}
+$ pytest -v -x --capture=no tests/test_199_workflow_clean.py
+\end{minted}
+\bigbreak
 
 This test runs three jobs within a singular workflow: the first job runs
 a local shell script, the second runs a local Python script, and the
@@ -86,14 +87,15 @@ third runs a local Jupyter notebook.
 MNIST}\label{application-demonstration-using-mnist}
 
 The Modified National Institute of Standards and Technology Database is
-a machine learning database based on image processing Various MNIST
+a machine learning database based on image processing. Various MNIST
 files involving different machine learning cases were modified and
-tested on various local and remote machines These cases include
+tested on various local and remote machines. These cases include
 Multilayer Perceptron, LSTM (Long short-term memory), Auto-Encoder,
 Convolutional, and Recurrent Neural Networks, Distributed Training, and
 PyTorch training.
 
-See \ref{fig:workflow-uml}.
+See Table \ref{table:mnist-times} for benchmarks of the MNIST workflow
+on UVA's supercomputer, Rivanna.
 
 \begin{figure}
 \centering
@@ -129,7 +131,7 @@ implemented while results from previous calculations can be used in
 later stages of the workflow.
 
 We have developed a simple-to-use API for this so programs can be
-formulated using the API in python. However, we embedded this API also
+formulated using the API in Python. However, we also embedded this API
 in a prototype REST service to showcase that integration into
 language-independent frameworks is possible. The obvious functions to
 manage workflows are supported including graph specification through
@@ -142,7 +144,7 @@ importance when we run very complex and long-running jobs.
 
 The REST service was implemented in FastAPI to leverage a small but fast
 service that features a much smaller footprint for implementation and
-setup in contrast to other similar REST service frameworks using python.
+setup in contrast to other similar REST service frameworks using Python.
 
 This architectural component building this framework is depicted
 @fig:workflow-uml. The code is available in this repository and manual
@@ -170,7 +172,7 @@ A poster based on a pre-alpha version of this code is available as ppt
 and PDF file. However, that version is no longer valid and is superseded
 by much improved efforts. The code summarized in the pre-alpha version
 was mainly used to teach a number of students Python and how to work in
-a team
+a team.
 
 \begin{itemize}
 \item

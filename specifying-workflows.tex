@@ -12,7 +12,7 @@ the portrayal of the graph.
 A workflow yaml file with three Shell script jobs \texttt{a},
 \texttt{b}, and \texttt{c} is as follows:
 
-\begin{verbatim}
+\begin{minted}[breaklines]{yaml}
 workflow:
   nodes:
     a:
@@ -41,7 +41,7 @@ workflow:
       script: test-c.sh
   dependencies:
     - a,b,c
-\end{verbatim}
+\end{minted}
 
 \subsection{Example Workflows}\label{example-workflows}
 
@@ -66,12 +66,12 @@ the yaml workflow files.
 
 For example, a label could be defined as follows:
 
-\begin{verbatim}
+\begin{minted}[breaklines]{yaml}
 workflow:
   nodes:
     start:
       label: 'start\nCreated={created.%Y/%m/%d, %H--%M--%S}\nWorkflow Started={t0.%Y/%m/%d, %H--%M--%S}\nNow={now.%Y/%m/%d, %H--%M--%S}\nElapsed={dt0.%M--%S}'
-\end{verbatim}
+\end{minted}
 
 This creates a node on the graph that looks similar to the following
 example:
@@ -157,7 +157,7 @@ The following is an example of a node in YAML format that uses a box
 shape and an empty style. The empty style defaults to \texttt{filled},
 which allows the node to change color when the job status is changed.
 
-\begin{verbatim}
+\begin{minted}[breaklines]{yaml}
 workflow:
   nodes:
     start:
@@ -170,7 +170,7 @@ workflow:
       name: start
       shape: box
       style: ''
-\end{verbatim}
+\end{minted}
 
 \subsection{Defining dependencies in the
 workflow}\label{defining-dependencies-in-the-workflow}
@@ -178,7 +178,7 @@ workflow}\label{defining-dependencies-in-the-workflow}
 Dependencies are specified in the order which jobs should be run, from
 left to right. They are listed under the workflow in the yaml file.
 
-\begin{verbatim}
+\begin{minted}[breaklines]{yaml}
 workflow:
   nodes:
     a:
@@ -189,7 +189,7 @@ workflow:
        name: c
   dependencies:
     - a,b,c
-\end{verbatim}
+\end{minted}
 
 \subsection{Reporting Progress}\label{reporting-progress}
 
@@ -227,7 +227,7 @@ to the progress function.
 
 py\_script.py
 
-\begin{verbatim}
+\begin{minted}[breaklines]{python}
 from cloudmesh.common.StopWatch import progress
 from cloudmesh.common.Shell import Shell
 filename = Shell.map_filename('./py_script.log').path
@@ -236,7 +236,7 @@ progress(progress=1, filename=filename)
 # your script does what you want it to do here...
 
 progress(progress=100, filename=filename)
-\end{verbatim}
+\end{minted}
 
 The statements do not need to be at the absolute beginning or end of the
 script, but the progress must:
