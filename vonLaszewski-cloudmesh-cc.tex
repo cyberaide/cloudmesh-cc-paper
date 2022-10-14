@@ -1,6 +1,12 @@
 \documentclass[sigplan,screen]{acmart}
 % \documentclass[manuscript,screen,review]{acmart}
 
+\usepackage{todonotes}
+\newcommand{\TODO}[1]{\todo[inline]{#1}}
+\newcommand{\NOTE}[1]{\textcolor{red}{[NOTE: #1]}}
+\newcommand{\FILE}[1]{\todo[inline,color=green!20]{File: #1}}
+
+
 \setcopyright{none}
 \settopmatter{printacmref=false}
 \renewcommand\footnotetextcopyrightpermission[1]{}
