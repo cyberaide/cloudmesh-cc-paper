@@ -28,42 +28,43 @@ curl -X 'GET' \
 There are different ways to upload a new workflow to cloudmesh-cc, by
 specifying one of the following:
 
+\bigbreak
 \begin{itemize}
 \item
   a directory that contains the scripts and yaml
 \end{itemize}
 
-\begin{verbatim}
-curl -X 'POST' \
-    'http://127.0.0.1:8000/workflow?directory=~/cm/cloudmesh-cc/tests/workflow-example' \
-    -H 'accept: application/json' \
-    -d ''
-\end{verbatim}
+\begin{minted}[breaklines]{bash}
+curl -X 'POST' 'http://127.0.0.1:8000/workflow?\
+directory=~/cm/cloudmesh-cc/tests/workflow-example' -H 'accept: application/json' -d ''
+\end{minted}
+\bigbreak
 
+\bigbreak
 \begin{itemize}
 \item
   an archive file in tgz, xz, tar.gz, or tar format that contains the
   scripts and yaml
 \end{itemize}
 
-\begin{verbatim}
-curl -X 'POST' \
-    'http://127.0.0.1:8000/workflow?archive=ThePathToYourArchiveFile' \
-    -H 'accept: application/json' \
-    -d ''
-\end{verbatim}
+\begin{minted}[breaklines]{bash}
+curl -X 'POST' 'http://127.0.0.1:8000/workflow?\ 
+archive=ThePathToYourArchiveFile' -H 'accept: application/json' -d ''
+\end{minted}
+\bigbreak
 
+\bigbreak
 \begin{itemize}
 \item
   or a yaml file that specifies what jobs to run.
 \end{itemize}
 
-\begin{verbatim}
-curl -X 'POST' \
-    'http://127.0.0.1:8000/workflow?yaml=~/cm/cloudmesh-cc/tests/workflow-example/workflow-example.yaml' \
-    -H 'accept: application/json' \
-    -d ''
-\end{verbatim}
+\begin{minted}[breaklines]{bash}
+curl -X 'POST' 'http://127.0.0.1:8000/workflow?\
+yaml=~/cm/cloudmesh-cc/tests/workflow-example\
+/workflow-example.yaml' -H 'accept: application/json' -d ''
+\end{minted}
+\bigbreak
 
 \subsection{Delete a Workflow}\label{delete-a-workflow}
 
@@ -73,11 +74,10 @@ computer.
 To use it, replace \texttt{workflow-example} with the workflow you wish
 to delete.
 
-\begin{verbatim}
-curl -X 'DELETE' \
-    'http://127.0.0.1:8000/workflow/workflow-example' \
-    -H 'accept: application/json'
-\end{verbatim}
+\begin{minted}[breaklines]{bash}
+curl -X 'DELETE' 'http://127.0.0.1:8000\
+/workflow/workflow-example' -H 'accept: application/json'
+\end{minted}
 
 \subsection{Retrieve a Workflow}\label{retrieve-a-workflow}
 
@@ -88,11 +88,10 @@ of the statuses, and more.
 To use it, replace \texttt{workflow-example} with the workflow you wish
 to retrieve.
 
-\begin{verbatim}
-curl -X 'GET' \
-    'http://127.0.0.1:8000/workflow/workflow-example' \
-    -H 'accept: application/json'
-\end{verbatim}
+\begin{minted}[breaklines]{bash}
+curl -X 'GET' 'http://127.0.0.1:8000/workflow\
+/workflow-example' -H 'accept: application/json'
+\end{minted}
 
 \subsection{Run a Workflow}\label{run-a-workflow}
 
@@ -102,11 +101,10 @@ To use it, replace \texttt{workflow-example} with the workflow you wish
 to run. Additionally, to hide the graph of the workflow as it is run,
 replace \texttt{show=True} with \texttt{show=False}.
 
-\begin{verbatim}
-curl -X 'GET' \
-    'http://127.0.0.1:8000/workflow/run/workflow-example?show=True' \
-    -H 'accept: application/json'
-\end{verbatim}
+\begin{minted}[breaklines]{bash}
+curl -X 'GET' 'http://127.0.0.1:8000/workflow\
+/run/workflow-example?show=True' -H 'accept: application/json'
+\end{minted}
 
 \subsection{Add a Job to a Workflow}\label{add-a-job-to-a-workflow}
 
@@ -118,8 +116,9 @@ label, kind, status, progress, and script. To use the command, replace
 \texttt{workflow-example} with the workflow you wish to change.
 Additionally, change the other parameters, as desired.
 
-\begin{verbatim}
-curl -X 'POST' \
-    'http://127.0.0.1:8000/workflow/job/workflow-example?job=myJob&user=aPerson&host=local&kind=local&status=ready&script=aJob.sh&progress=0&label=aLabel' \
-    -H 'accept: application/json'
-\end{verbatim}
+\begin{minted}[breaklines]{bash}
+curl -X 'POST' 'http://127.0.0.1:8000/workflow\
+/job/workflow-example?job=myJob&user=aPerson\
+&host=local&kind=local&status=ready&\
+script=aJob.sh&progress=0&label=aLabel' -H 'accept: application/json'
+\end{minted}

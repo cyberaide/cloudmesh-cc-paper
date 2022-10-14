@@ -12,19 +12,22 @@ recurrent neural network, and others. The programs can be found at
 To run the MNIST remote workflow on Rivanna, first ensure that your UVA
 computing ID is set with the following command:
 
-\begin{verbatim}
-cms set username=XXXXXX
-\end{verbatim}
+\bigbreak
+\begin{minted}[breaklines]{bash}
+$ cms set username=XXXXXX
+\end{minted}
+\bigbreak
 
 where the X's are substituted with your computing ID.
 
 Then, issue commands:
 
-\begin{verbatim}
-cd ~/cm/cloudmesh-cc
-pytest -v -x --capture=no examples\
-/example_run_mnist_workflow_exec.py
-\end{verbatim}
+\bigbreak
+\begin{minted}[breaklines]{bash}
+$ cd ~/cm/cloudmesh-cc
+$ pytest -v -x --capture=no examples/example_run_mnist_workflow_exec.py
+\end{minted}
+\bigbreak
 
 This program uses SLURM and a shell script to iterate through the
 available GPUs on Rivanna, which are V100, A100, K80, P100, and RTX2080.
@@ -43,5 +46,6 @@ On a successful run, the output will be similar to the following:
         k80 & 171.057 \\ 
         p100 & 202.055 \\
     \end{tabular}
+    \label{table:mnist-times}
   \end{table}
   

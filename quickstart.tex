@@ -68,17 +68,21 @@ quickstart. We will only focus on using the REST service.
 To start, the code is needed and we assume you are standing in the
 cloudmesh-cc directory. Use the following commands
 
-\begin{verbatim}
-git clone https://github.com/cloudmesh/cloudmesh-cc.git
-cd cloudmesh-cc
-pip install -e .
-\end{verbatim}
+\bigbreak
+\begin{minted}[breaklines]{bash}
+$ git clone https://github.com/cloudmesh/cloudmesh-cc.git
+$ cd cloudmesh-cc
+$ pip install -e .
+\end{minted}
+\bigbreak
 
 We also assume you start the service with
 
-\begin{verbatim}
-cms cc start --reload
-\end{verbatim}
+\bigbreak
+\begin{minted}[breaklines]{bash}
+$ cms cc start --reload
+\end{minted}
+\bigbreak
 
 \subsection{Creating a simple example}\label{creating-a-simple-example}
 
@@ -86,11 +90,14 @@ First let us create a simple workflow example that we already have
 included for you in our source code. We will use this workflow and copy
 it into a temporary directory:
 
-\begin{verbatim}
-mkdir -p /tmp/workflow-example
-cp tests/workflow-example/workflow-example.yaml /tmp/workflow-example
-cp tests/workflow-example/*.sh /tmp/workflow-example
-\end{verbatim}
+\bigbreak
+\begin{minted}[breaklines]{bash}
+$ mkdir -p /tmp/workflow-example
+$ cp tests/workflow-example/workflow-example.yaml /tmp\
+/workflow-example
+$ cp tests/workflow-example/*.sh /tmp/workflow-example
+\end{minted}
+\bigbreak
 
 We like you to inspect the example so you get an overview of how to
 define a workflow that is located in
@@ -142,9 +149,11 @@ will choose here a tar file as example.
 Before uploading a \texttt{tar} archive file, we must first create it
 using the previous example yaml and scripts that we copied.
 
-\begin{verbatim}
-tar -C /tmp/workflow-example -cf workflow-example.tar .
-\end{verbatim}
+\bigbreak
+\begin{minted}[breaklines]{bash}
+$ tar -C /tmp/workflow-example -cf workflow-example.tar .
+\end{minted}
+\bigbreak
 
 \subsubsection{\texorpdfstring{Option 1: Upload via
 \texttt{curl}}{Option 1: Upload via curl}}\label{option-1-upload-via-curl}
@@ -152,12 +161,12 @@ tar -C /tmp/workflow-example -cf workflow-example.tar .
 We can upload the archive file by using the \texttt{curl} terminal
 command as follows:
 
-\begin{verbatim}
-curl -X 'POST' \
-  'http://127.0.0.1:8000/workflow?archive=workflow-example.tar' \
-  -H 'accept: application/json' \
-  -d ''
-\end{verbatim}
+\bigbreak
+\begin{minted}[breaklines]{bash}
+$ curl -X 'POST' 'http://127.0.0.1:8000/workflow\
+?archive=workflow-example.tar' -H 'accept: application/json' -d ''
+\end{minted}
+\bigbreak
 
 \subsubsection{\texorpdfstring{Option 2: Upload via
 \texttt{/docs}}{Option 2: Upload via /docs}}\label{option-2-upload-via-docs}
@@ -183,13 +192,15 @@ As we use a REST service, we can also easily upload the workflow through
 a Python enabled REST call. We will use Python requests to demonstrate
 this upload feature.
 
-\begin{verbatim}
+\bigbreak
+\begin{minted}[breaklines]{python}
 import requests
 
 r = requests.post('http://127.0.0.1:8000/workflow?archive=workflow-example.tar')
 print(r)
 print(r.text)
-\end{verbatim}
+\end{minted}
+\bigbreak
 
 Printing \texttt{r} returns the response code from the API (a code of
 200 indicates success). Printing \texttt{r.text} returns the message
