@@ -2,47 +2,54 @@
 
 \section{Installation}\label{installation}
 
-Installation is relatively simple. We leverage the cloudmesh-installer
-to locally install the cloudmesh suite of repositories.
+To leverage cloudmesh-cc, use the cloudmesh-installer to
+install the Cloudmesh suite of repositories. Optionally, to utilized the graph visualization you must install also {\em graphviz}
+must be installed. On Windows, Git Bash is required, in addition.
+The overall instalation is very simple and is supported on a variety of operating systems.
+We leverage the cloudmesh-installer
+to locally install the cloudmesh suite of repositories by executing
+the following commands:
 
-\bigbreak
 \begin{minted}[breaklines]{bash}
 $ mkdir ~/cm
 $ cd ~/cm
 $ pip install cloudmesh-installer -U
 $ cloudmesh-installer get cc
 \end{minted}
-\bigbreak
 
-\subsection{Windows}\label{windows}
+To install graphviz you can use the following commands on the appropriate operating system:
 
+\begin{description}
+
+\item[Windows.]
 Git Bash and Graphviz must be installed. The user can use Chocolatey run
 as an administrator for convenience:
 
-\bigbreak
 \begin{minted}[breaklines]{bash}
 $ choco install git.install --params "/GitAndUnixToolsOnPath /Editor:Nano /PseudoConsoleSupport /NoAutoCrlf" -y
 $ choco install graphviz -y
 \end{minted}
-\bigbreak
 
-\subsection{macOS}\label{macos}
+\item[macOS.] Graphviz must be installed. The user can use Homebrew for convenience:
 
-Graphviz must be installed. The user can use Homebrew for convenience:
-
-\bigbreak
 \begin{minted}[breaklines]{bash}
 $ brew install graphviz
 \end{minted}
-\bigbreak
 
-\hypertarget{linux}{%
-\subsection{Linux}\label{linux}}
+\item[Linux.] Graphviz must be installed. The user can use apt for convenience:
 
-Graphviz must be installed. The user can use apt for convenience:
-
-\bigbreak
 \begin{minted}[breaklines]{bash}
 $ sudo apt install graphviz -y
 \end{minted}
-\bigbreak
+
+\end{description}
+
+To test the workflow program, prepare a cm directory in your home
+directory by executing the following commands:
+
+\begin{minted}[breaklines]{bash}
+$ cd ~/cm/cloudmesh-cc
+$ pytest -v -x --capture=no tests
+\end{minted}
+
+A variety of separate tests are available that test individual capabilities. 

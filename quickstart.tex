@@ -15,39 +15,35 @@ each task is executed sequentially. The status of the execution can be
 displayed as table or as graph. In Figure \ref{fig:workflow-process}, we showcase how the graph
 changes its appearance over time.
 
-\begin{figure*}[htb]
-
+\begin{figure}[htb]
+\resizebox{1.0\columnwidth}{!}{
 \begin{minipage}[b]{0.18\textwidth}
 Definition and start \\
 \includegraphics[height=9cm]{images/workflow-example-1.pdf}
-\end{minipage} 
-\ \
+\end{minipage} \ \
 \begin{minipage}[b]{0.18\textwidth}
 Running 1st task \\
 \includegraphics[height=9cm]{images/workflow-example-1.5.pdf} 
 \end{minipage} \ \
 \begin{minipage}[b]{0.18\textwidth}
-Complete 1st task  \\
+Complete 1st task \\
 \includegraphics[height=9cm]{images/workflow-example-2.pdf}
-\end{minipage} 
-\ \
+\end{minipage} \ \
 \begin{minipage}[b]{0.18\textwidth}
-Complete 2nd task\\
+Complete 2nd task \\
 \includegraphics[height=9cm]{images/workflow-example-3.pdf}
-
-\end{minipage} 
-\ \
+\end{minipage} \ \
 \begin{minipage}[b]{0.18\textwidth}
 Complete workflow \\
 \includegraphics[height=9cm]{images/workflow-example-5.pdf}
 \end{minipage} 
+}
+\caption{The gradual process of a simple workflow}\label{fig:workflow-process}
+\end{figure}
 
-\caption{caption missing}\label{fig:workflow-process}
-\end{figure*}
 
-
-\textbf{Figure 1:} Execution and display graph of an example workflow
-over time
+Figure \ref{fig:workflow-process} shows the execution and display graph of an example workflow
+over time.
 
 We can specify such workflows in a YAML file making it very easy to
 create and manage them. To get you started, we have developed a
@@ -70,21 +66,21 @@ quickstart. We will only focus on using the REST service.
 To start, the code is needed and we assume you are standing in the
 cloudmesh-cc directory. Use the following commands
 
-\bigbreak
+\smallskip
 \begin{minted}[breaklines]{bash}
 $ git clone https://github.com/cloudmesh/cloudmesh-cc.git
 $ cd cloudmesh-cc
 $ pip install -e .
 \end{minted}
-\bigbreak
+\smallskip
 
 We also assume you start the service with
 
-\bigbreak
+\smallskip
 \begin{minted}[breaklines]{bash}
 $ cms cc start --reload
 \end{minted}
-\bigbreak
+\smallskip
 
 \subsection{Creating a simple example}\label{creating-a-simple-example}
 
@@ -92,19 +88,20 @@ First let us create a simple workflow example that we already have
 included for you in our source code. We will use this workflow and copy
 it into a temporary directory:
 
-\bigbreak
+\smallskip
 \begin{minted}[breaklines]{bash}
 $ mkdir -p /tmp/workflow-example
 $ cp tests/workflow-example/workflow-example.yaml /tmp\
 /workflow-example
 $ cp tests/workflow-example/*.sh /tmp/workflow-example
 \end{minted}
-\bigbreak
+\smallskip
+
+\TODO{create refs, only one for the dir and than we can refer to the others as is, we nit github ref}
 
 We like you to inspect the example so you get an overview of how to
 define a workflow that is located in
-\href{https://github.com/cloudmesh/cloudmesh-cc/tree/main/tests/workflow-example}{GitHub}:
-and is located in the folder \emph{tests/workflow-example/}
+\href{https://github.com/cloudmesh/cloudmesh-cc/tree/main/tests/workflow-example}{GitHub} and is located in the folder \emph{tests/workflow-example/}
 
 \begin{itemize}
 \item
@@ -141,7 +138,7 @@ file}\label{a.-upload-and-run-a-workflow-embedded-in-an-archive-file}
 
 We can upload an archive file which contains all the workflow files,
 including the yaml specification file and the scripts. Providing an
-archive file such as a \texttt{.tar}, \texttt{.tar.gz}, or \texttt{.xz}.
+archive file such as a \mintinline{bash}|.tar|, \mintinline{bash}|.tar.gz|, or \mintinline{bash}|.xz|.
 may enable the workflow to be better suited towards portability and
 simplicity, where one can share an archive file with another user. We
 will choose here a tar file as example.
@@ -151,11 +148,11 @@ will choose here a tar file as example.
 Before uploading a \texttt{tar} archive file, we must first create it
 using the previous example yaml and scripts that we copied.
 
-\bigbreak
+\smallskip
 \begin{minted}[breaklines]{bash}
 $ tar -C /tmp/workflow-example -cf workflow-example.tar .
 \end{minted}
-\bigbreak
+\smallskip
 
 \subsubsection{\texorpdfstring{Option 1: Upload via
 \texttt{curl}}{Option 1: Upload via curl}}\label{option-1-upload-via-curl}
@@ -163,12 +160,11 @@ $ tar -C /tmp/workflow-example -cf workflow-example.tar .
 We can upload the archive file by using the \texttt{curl} terminal
 command as follows:
 
-\bigbreak
+\smallskip
 \begin{minted}[breaklines]{bash}
-$ curl -X 'POST' 'http://127.0.0.1:8000/workflow\
-?archive=workflow-example.tar' -H 'accept: application/json' -d ''
+$ curl -X 'POST' 'http://127.0.0.1:8000/ workflow?archive=workflow-example.tar'     -H 'accept: application/json' -d ''
 \end{minted}
-\bigbreak
+\smallskip
 
 \subsubsection{\texorpdfstring{Option 2: Upload via
 \texttt{/docs}}{Option 2: Upload via /docs}}\label{option-2-upload-via-docs}
@@ -179,13 +175,13 @@ to \texttt{http://127.0.0.1:8000/docs} and use the POST Upload method.
 
 \begin{figure}
 \centering
-\includegraphics[width=1.1\columnwidth]{images/upload_api.png}
+\includegraphics[width=0.7\columnwidth]{images/upload_api.png}
 \caption{Browser API GUI for Cloudmesh Compute Cluster}
 \end{figure}
 
-Please click \texttt{Try\ it\ out} and then enter
-\texttt{\textasciitilde{}/cm/cloudmesh-cc/workflow-example.tar} in the
-\texttt{archive} field and then click Execute.
+Please click \texttt{Try\ it\ out} and then enter \newline
+\mintinline{bash}|~/cm/cloudmesh-cc/workflow-example.tar| in the
+\mintinline{bash}|archive| field and then click Execute.
 
 \subsubsection{Option 3: Upload via the Python
 API}\label{option-3-upload-via-the-python-api}
@@ -194,15 +190,15 @@ As we use a REST service, we can also easily upload the workflow through
 a Python enabled REST call. We will use Python requests to demonstrate
 this upload feature.
 
-\bigbreak
+\smallskip
 \begin{minted}[breaklines]{python}
 import requests
 
-r = requests.post('http://127.0.0.1:8000/workflow?archive=workflow-example.tar')
+r = requests.post('http://127.0.0.1:8000/ workflow?archive=workflow-example.tar')
 print(r)
 print(r.text)
 \end{minted}
-\bigbreak
+\smallskip
 
 Printing \texttt{r} returns the response code from the API (a code of
 200 indicates success). Printing \texttt{r.text} returns the message
@@ -234,22 +230,28 @@ the command line, via the browser GUI, and via the Python API.
 A workflow can be uploaded easily with a curl command from the command
 line. On the command line execute:
 
-\begin{verbatim}
-curl -X 'POST' \
-  'http://127.0.0.1:8000/workflow?directory=~/cm/cloudmesh-cc/tests/workflow-example' \
-  -H 'accept: application/json' \
+\smallskip
+\begin{minted}[breaklines]{bash}
+$ curl -X 'POST' 
+  'http://127.0.0.1:8000/workflow?directory= ~/cm/cloudmesh-cc/tests/workflow-example' 
+  -H 'accept: application/json' 
   -d ''
-\end{verbatim}
+\end{minted}
+\smallskip
 
 \subsubsection{\texorpdfstring{Option 2: Upload via
 \texttt{/docs}}{Option 2: Upload via /docs}}\label{option-2-upload-via-docs-1}
 
 Also here one can upload the needed files with the OpenAPI specification
 interface on the service. Navigate to
-\texttt{http://127.0.0.1:8000/docs} and use the POST Upload method.
+\mintinline{bash}|http://127.0.0.1:8000/docs| and use the POST Upload method. 
+Click \mintinline{bash}|Try it out| and then enter
 
-Click \texttt{Try\ it\ out} and then enter
-\texttt{\textasciitilde{}/cm/cloudmesh-cc/tests/workflow-example} in the
+\begin{minted}[breaklines]{bash}
+/cm/cloudmesh-cc/tests/workflow-example
+\end{minted}
+
+in the
 directory field and then click Execute.
 
 \subsubsection{Option 3: Upload via the Python
@@ -258,16 +260,17 @@ API}\label{option-3-upload-via-the-python-api-1}
 Accessing the upload from the Python API is very easy. We will use
 python requests to demonstrate the upload of the workflow.
 
-\begin{verbatim}
+\smallskip
+\begin{minted}[breaklines]{python}
 import requests
-
-r = requests.post('http://127.0.0.1:8000/workflow?directory=~/cm/cloudmesh-cc/tests/workflow-example')
+r = requests.post('http://127.0.0.1:8000 /workflow?directory= ~/cm/cloudmesh-cc/tests/workflow-example')
 print(r)
 print(r.text)
-\end{verbatim}
+\end{minted}
+\smallskip
 
-Printing \texttt{r} returns the response code from the API (a code of
-200 indicates success). Printing \texttt{r.text} returns the message
+Printing \mintinline{bash}|r| returns the response code from the API (a code of
+200 indicates success). Printing \mintinline{bash}|r.text| returns the message
 from the API, such as a success or error message.
 
 \subsection{Parameters to the Upload a workflow with a REST
@@ -277,15 +280,15 @@ The upload REST URL can take different parameters, such as
 
 \begin{itemize}
 \item
-  \texttt{?directory=name}
+  \mintinline{bash}|?directory=name|
 \item
-  \texttt{?archive=name.tar.gz}
+  \mintinline{bash}|?archive=name.tar.gz|
 \item
-  \texttt{?archive=name.tgz}
+  \mintinline{bash}|?archive=name.tgz|
 \item
-  \texttt{?archive=name.xz}
+  \mintinline{bash}|?archive=name.xz|
 \item
-  \texttt{?yaml=name}
+  \mintinline{bash}|?yaml=name|
 \end{itemize}
 
 The semantic of the upload is specified through its parameter. Only one

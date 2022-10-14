@@ -1,93 +1,25 @@
+\PassOptionsToPackage{hyphens}{url}
+
 \documentclass[sigplan,screen]{acmart}
 % \documentclass[manuscript,screen,review]{acmart}
 
-\usepackage{todonotes}
-\newcommand{\TODO}[1]{\todo[inline]{#1}}
-\newcommand{\NOTE}[1]{\textcolor{red}{[NOTE: #1]}}
-\newcommand{\FILE}[1]{\todo[inline,color=green!20]{File: #1}}
-
-
-\setcopyright{none}
-\settopmatter{printacmref=false}
-\renewcommand\footnotetextcopyrightpermission[1]{}
-\usepackage{minted}
-
-
-%\setcopyright{acmcopyright}
-%\copyrightyear{2018}
-%\acmYear{2018}
-%\acmDOI{XXXXXXX.XXXXXXX}
-
-%\acmConference[Conference acronym 'XX]{Make sure to enter the correct
-%  conference title from your rights confirmation emai}{June 03--05,
-%  2018}{Woodstock, NY}
-
-%\acmBooktitle{Woodstock '18: ACM Symposium on Neural Gaze Detection,
-%  June 03--05, 2018, Woodstock, NY} 
-%\acmPrice{15.00}
-%\acmISBN{978-1-4503-XXXX-X/18/06}
-
-%%\acmSubmissionID{123-A56-BU3}
-
-%%\citestyle{acmauthoryear}
+\input{format.tex}
 
 
 \begin{document}
 
-\title{Cloudmesh-cc: Hybrid analytics computation management}
+\title{Hybrid Reusable Computational Analytics Workflow Management with Cloudmesh}
 
-\author{Gregor von Laszewski}
-\email{laszewski@gmail.com}
-\orcid{0000-0001-9558-179X}
-\authornote{Corresponding author}
-\affiliation{%
-  \institution{University of Virginia}
-  \streetaddress{Biocomplexity Institute\\
-Town Center Four\\
-994 Research Park Boulevard}
-  \city{Charlottesville}
-  \state{VA}
-  \postcode{22911}
-  \country{USA}
-}
-
-\author{J.P. Fleischer}
-\orcid{0000-0002-1102-1910}
-\affiliation{%
-  \institution{University of Virginia}
-  \streetaddress{Biocomplexity Institute\\
-Town Center Four\\
-994 Research Park Boulevard}
-  \city{Charlottesville}
-  \state{VA}
-  \postcode{22911}
-  \country{USA}
-}
-
-\author{Geoffrey C. Fox}
-\email{gcfexchange@gmail.com}
-\affiliation{%
-  \institution{University of Virginia}
-  \streetaddress{Biocomplexity Institute\\
-Town Center Four\\
-994 Research Park Boulevard}
-  \city{Charlottesville}
-  \state{VA}
-  \postcode{22911}
-  \country{USA}
-}
-
-\renewcommand{\shortauthors}{von Laszewski, et al.}
+% \input{authors}
 
 \begin{abstract}
 
-  TBD
+\input{abstract}
 
- \end{abstract}
+\end{abstract}
 
-  \input{keywords}
+\input{keywords}
   
-\keywords{datasets, neural networks, gaze detection, text tagging}
 
 %\received{20 February 2007}
 %\received[revised]{12 March 2009}
@@ -98,35 +30,33 @@ Town Center Four\\
 
 \maketitle
 
-\input{keywords.tex}
+%\input{cc.tex}
+%\input{cc-workflow}
+%\input{cc-design}
+%\input{requirements.tex}
+\input{related-research}
+%\input{cloudmask.tex}
+%\input{introduction.tex}
+%\input{mnist.tex}
+%\input{quickstart.tex}
+%\input{rest-gui.tex}
+%\input{rest-short.tex}
+%\input{service.tex}
+%\input{specifying-workflows.tex}
 
-\section{Introduction}
+%\input{conclusion}
 
-\input{cc.tex}
+\input{acknowledgements.tex}
 
-\input{cloudmask.tex}
-\input{introduction.tex}
-\input{mnist.tex}
-\input{quickstart.tex}
-\input{rest-gui.tex}
-\input{rest.tex}
-\input{service.tex}
-\input{specifying-workflows.tex}
-
-\begin{acks}
-
-  \input{acknowledgements.tex}
-
-\end{acks}
 
 \bibliographystyle{ACM-Reference-Format}
-\bibliography{references}
+\bibliography{references,references-cc}
 
 
 \usepackage{appendix}
 
-\input{contributing.tex}
 \input{installation.tex}
+\input{contributing.tex}
 
 
 

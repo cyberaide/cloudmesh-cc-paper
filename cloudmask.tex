@@ -21,9 +21,9 @@ me@mycomputer $ cms set username=XXXXXX
 Then, connect to the UVA Anywhere VPN and then download the satellite
 data into your
 \href{https://www.rc.virginia.edu/userinfo/storage/non-sensitive-data/\#scratch}{scratch}
-directory on Rivanna:
+directory on Rivanna \cite{www-rivanna}:
 
-\bigbreak
+\smallskip
 \begin{minted}[breaklines]{bash}
 me@mycomputer $ cms vpn connect
 me@mycomputer $ ssh rivanna
@@ -34,21 +34,21 @@ rivanna $ make data
 # downloading the data will take a while.
 rivanna $ exit
 \end{minted}
-\bigbreak
+\smallskip
 
 Next, clone the \texttt{mlcommons} repository on your local machine and
 run the workflow:
 
-\bigbreak
+\smallskip
 \begin{minted}[breaklines]{bash}
 me@mycomputer $ cd ~/cm
 me@mycomputer $ git clone https://github.com/laszewsk/mlcommons.git
 me@mycomputer $ cd mlcommons
 me@mycomputer $ pytest -v -x --capture=no benchmarks/cloudmask/target/rivanna/run_cloudmask_workflow.py
 \end{minted}
-\bigbreak
+\smallskip
 
-The workflow iterates through the five GPUs available on Rivanna---
+The workflow will likely take around 24 hours to run. The workflow iterates through the five GPUs available on Rivanna---
 A100, V100, P100, RTX2080, and K80--- and runs the program three times
 on each GPU. Each run trains the model with 10, 30, and 50 epochs for
 benchmarking.
@@ -56,21 +56,21 @@ benchmarking.
 Upon completing a run, the logs and benchmarks of the program can be
 found in the target folder:
 
-\bigbreak
+\smallskip
 \begin{minted}[breaklines]{bash}
 me@mycomputer $ ssh rivanna
 rivanna $ cd /scratch/$USER/mlcommons/benchmarks/cloudmask/target
 \end{minted}
-\bigbreak
+\smallskip
 
 Additionally, the generated \texttt{.h5} model file can be found in the
 home directory:
 
-\bigbreak
+\smallskip
 \begin{minted}[breaklines]{bash}
 rivanna $ cd ~/sciml_bench/outputs/slstr_cloud/
 \end{minted}
-\bigbreak
+\smallskip
 
 The program may take a while to run if the resources on Rivanna are
 being used by other jobs.

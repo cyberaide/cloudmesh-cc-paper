@@ -10,8 +10,9 @@ the portrayal of the graph.
 \subsection{Workflow YAML format}\label{workflow-yaml-format}
 
 A workflow yaml file with three Shell script jobs \texttt{a},
-\texttt{b}, and \texttt{c} is as follows:
+\texttt{b}, and \texttt{c} is demonstrated in Figure \ref{fig:yaml-file}.
 
+\begin{figure}
 \begin{minted}[breaklines]{yaml}
 workflow:
   nodes:
@@ -42,6 +43,9 @@ workflow:
   dependencies:
     - a,b,c
 \end{minted}
+\caption{Workflow YAML Configuration file}
+\label{fig:yaml-file}
+\end{figure}
 
 \subsection{Example Workflows}\label{example-workflows}
 
@@ -64,21 +68,27 @@ workflow}\label{defining-labels-for-the-workflow}
 These variables must be in curly braces when defining the labels inside
 the yaml workflow files.
 
-For example, a label could be defined as follows:
+For example, a label could be defined as a configuration similar 
+to Figure \ref{fig:label-job}.
 
-\begin{minted}[breaklines]{yaml}
-workflow:
-  nodes:
-    start:
-      label: 'start\nCreated={created.%Y/%m/%d, %H--%M--%S}\nWorkflow Started={t0.%Y/%m/%d, %H--%M--%S}\nNow={now.%Y/%m/%d, %H--%M--%S}\nElapsed={dt0.%M--%S}'
-\end{minted}
+\begin{figure}
+\smallskip
+    \begin{minted}[breaklines]{yaml}
+    workflow:
+      nodes:
+        start:
+          label: 'start\nCreated={created.%Y/%m/%d, %H--%M--%S}\nWorkflow Started={t0.%Y/%m/%d, %H--%M--%S}\nNow={now.%Y/%m/%d, %H--%M--%S}\nElapsed={dt0.%M--%S}'
+    \end{minted}
+    \caption{Example of job label in YAML configuration file}
+    \label{fig:label-job}
+\end{figure}
 
 This creates a node on the graph that looks similar to the following
 example:
 
 \begin{figure}
 \centering
-\includegraphics{images/labelmaker-example.png}
+\includegraphics[width=0.7\columnwidth]{images/labelmaker-example.png}
 \caption{An example node with labels}
 \end{figure}
 
@@ -93,42 +103,32 @@ corresponding letters remain consistent (\texttt{\%Y} \texttt{\%m}
 \texttt{\%d} \texttt{\%H} \texttt{\%M} \texttt{\%S} respectively). Also,
 the format of the time must come immediately following the period.
 
-\begin{itemize}
-\item
-  \texttt{name} name of job
-\item
-  \texttt{progress} progress of job from 0-100
-\item
-  time labels:
+\begin{table}[htb]
+\caption{List of possible labels for nodes on the graph}
+\label{fig:labels-list}
 
-  \begin{itemize}
-  \item
-    \texttt{now.} current time
-  \item
-    \texttt{now.\%Y/\%m/\%d,\ \%H-\/-\%M-\/-\%S} now in particular
-    format (this can be used for other times as well)
-  \item
-    \texttt{created.} time when workflow was created
-  \item
-    \texttt{t0.} workflow start time
-  \item
-    \texttt{t1.} workflow end time
-  \item
-    \texttt{dt0.} elapsed time since workflow began
-  \item
-    \texttt{dt1.} total time of workflow once complete
-  \item
-    \texttt{tstart.} job start time
-  \item
-    \texttt{tend.} job end time
-  \item
-    \texttt{modified.} job modified time
-  \end{itemize}
-\item
-  \texttt{os.} operating system environment variable (like os.HOME)
-\item
-  \texttt{cm.} cloudmesh variable that is read from \texttt{cms\ set}
-\end{itemize}
+{\footnotesize
+\begin{tabular}{p{3.5cm}p{4cm}}
+Name & Description \\
+\hline
+progress &  progress of job from 0-100 \\
+now & current time \\
+now.\verb|%Y%m%d,%H--%M--%S| & now in particular format (this can be used for other times as well) \\
+created & time when workflow was created \\
+t0.\verb|%Y%m%d,%H--%M--%S| &  workflow start time \\
+t1.\verb|%Y%m%d,%H--%M--%S| & workflow end time \\
+dt0.\verb|%Y%m%d,%H--%M--%S| & elapsed time since workflow began \\
+dt1.\verb|%Y%m%d,%H--%M--%S| & total time of workflow once complete \\
+tstart.\verb|%Y%m%d,%H--%M--%S| & job start time \\
+tend.\verb|%Y%m%d,%H--%M--%S| & job end time \\
+modified.\verb|%Y%m%d,%H--%M--%S| & job modified time \\
+os. & operating system environment variable (like os.HOME) \\
+cm. & cloudmesh variable that is read from \verb|cms set|} \\
+\end{tabular}
+}
+
+
+\end{table}
 
 \subsection{Defining format for timestamp
 labels}\label{defining-format-for-timestamp-labels}
@@ -153,24 +153,26 @@ they are taken from the graphviz documentation:
 
 \url{https://graphviz.org/docs/attr-types/style/}
 
-The following is an example of a node in YAML format that uses a box
-shape and an empty style. The empty style defaults to \texttt{filled},
-which allows the node to change color when the job status is changed.
+Figure \ref{fig:shape-style-yaml} is an example of a node in YAML format that uses a box shape and an empty style. The empty style defaults to \texttt{filled}, which allows the node to change color when the job status is changed.
 
-\begin{minted}[breaklines]{yaml}
-workflow:
-  nodes:
-    start:
-      label: 'start\nCreated={created.%Y/%m/%d, %H--%M--%S}\nWorkflow Started={t0.}\nElapsed={dt0.}'
-      kind: local
-      user: grey
-      host: local
-      status: ready
-      exec: 'echo hello'
-      name: start
-      shape: box
-      style: ''
-\end{minted}
+\begin{figure}
+    \begin{minted}[breaklines]{yaml}
+    workflow:
+      nodes:
+        start:
+          label: 'start\nCreated={created.%Y/%m/%d, %H--%M--%S}\nWorkflow Started={t0.}\nElapsed={dt0.}'
+          kind: local
+          user: grey
+          host: local
+          status: ready
+          exec: 'echo hello'
+          name: start
+          shape: box
+          style: ''
+    \end{minted}
+    \caption{Example of YAML config file that uses shape and style}
+    \label{fig:shape-style-yaml}
+\end{figure}
 
 \subsection{Defining dependencies in the
 workflow}\label{defining-dependencies-in-the-workflow}
@@ -178,6 +180,7 @@ workflow}\label{defining-dependencies-in-the-workflow}
 Dependencies are specified in the order which jobs should be run, from
 left to right. They are listed under the workflow in the yaml file.
 
+\begin{figure}
 \begin{minted}[breaklines]{yaml}
 workflow:
   nodes:
@@ -190,6 +193,10 @@ workflow:
   dependencies:
     - a,b,c
 \end{minted}
+    \centering
+    \caption{YAML configuration file for workflow with dependencies}
+    \label{fig:dependency-workflow}
+\end{figure}
 
 \subsection{Reporting Progress}\label{reporting-progress}
 
@@ -206,15 +213,15 @@ workflows, they must adhere to the guidelines as follows.
 
 For shell and Slurm scripts \texttt{.sh}, the script must contain:
 
-\begin{verbatim}
+\begin{minted}[breaklines]{bash}
 echo "# cloudmesh status=running progress=1 pid=$$"
-\end{verbatim}
+\end{minted}
 
 at the beginning of the script, and
 
-\begin{verbatim}
+\begin{minted}[breaklines]{bash}
 echo "# cloudmesh status=done progress=100 pid=$$"
-\end{verbatim}
+\end{minted}
 
 at the end of the script.
 
@@ -225,18 +232,17 @@ For Python scripts \texttt{.py} and Jupyter notebooks \texttt{.ipynb},
 the script must contain an import module from cloudmesh.common and calls
 to the progress function.
 
-py\_script.py
 
+\smallskip
 \begin{minted}[breaklines]{python}
 from cloudmesh.common.StopWatch import progress
 from cloudmesh.common.Shell import Shell
 filename = Shell.map_filename('./py_script.log').path
 progress(progress=1, filename=filename)
-
-# your script does what you want it to do here...
-
+# execute your analysis here ...
 progress(progress=100, filename=filename)
 \end{minted}
+\smallskip
 
 The statements do not need to be at the absolute beginning or end of the
 script, but the progress must:

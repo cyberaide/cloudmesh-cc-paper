@@ -13,28 +13,32 @@ interaction is possible in asynchronous mode.
 
 To start the service use the command:
 
-\begin{verbatim}
-cms cc start
-\end{verbatim}
+\begin{minted}[breaklines]{bash}
+$ cms cc start
+\end{minted}
+\smallskip
 
 For debugging purposes with outoreload on code changes, you can use the
 command:
 
-\begin{verbatim}
-cms cc start --reload
-\end{verbatim}
+\begin{minted}[breaklines]{bash}
+$ cms cc start --reload
+\end{minted}
+\smallskip
 
 To stop the service use the command:
 
-\begin{verbatim}
-cms cc stop
-\end{verbatim}
+\begin{minted}[breaklines]{bash}
+$ cms cc stop
+\end{minted}
+\smallskip
 
 To view the interface to the service use the command:
 
-\begin{verbatim}
-cms cc view
-\end{verbatim}
+\begin{minted}[breaklines]{bash}
+$ cms cc view
+\end{minted}
+\smallskip
 
 \subsection{Example Workflow}\label{example-workflow}
 
@@ -48,19 +52,17 @@ listed in the sidebar under workflows. Other workflows can be uploaded
 and multiple workflows can be managed. Management buttons for the
 workflow are included in this view.
 
-\begin{figure}
-\centering
-\includegraphics[width=1.05\columnwidth]{images/service-table.png}
-\caption{Cloudmesh cc workflow Table view}
-\end{figure}
 
 \subsection{Graph View}\label{graph-view}
 
 One can switch back and forth between a graph and a table view while
 using the included buttons, it will take a moment to update them.
 
-\begin{figure}
+\begin{figure}[htb]
 \centering
+\includegraphics[width=1.05\columnwidth]{images/service-table.png}
+\caption{Cloudmesh cc workflow Table view}
+
 \includegraphics[width=1.05\columnwidth]{images/service-graph.png}
 \caption{Cloudmesh cc workflow graph view}
 \end{figure}

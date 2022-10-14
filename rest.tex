@@ -9,28 +9,26 @@ with programming languages other than Python.
 To use this feature, ensure that the FastAPI server is online with the
 following commands:
 
-\begin{verbatim}
-cd ~/cm/cloudmesh-cc
-cms cc start
-\end{verbatim}
+\begin{minted}[breaklines]{bash}
+$ cd ~/cm/cloudmesh-cc
+$ cms cc start
+\end{minted}
 
 \subsection{List Workflows Available on Local
 Computer}\label{list-workflows-available-on-local-computer}
 
 The following command returns a dict that lists each available workflow.
 
-\begin{verbatim}
-curl -X 'GET' \
-    'http://127.0.0.1:8000/workflows' \
-    -H 'accept: application/json'
-\end{verbatim}
+\begin{minted}[breaklines]{bash}
+curl -X 'GET' 'http://127.0.0.1:8000/workflows' -H 'accept: application/json'
+\end{minted}
 
 \subsection{Upload a Workflow}\label{upload-a-workflow}
 
 There are different ways to upload a new workflow to cloudmesh-cc, by
 specifying one of the following:
 
-\bigbreak
+\smallskip
 \begin{itemize}
 \item
   a directory that contains the scripts and yaml
@@ -40,9 +38,9 @@ specifying one of the following:
 curl -X 'POST' 'http://127.0.0.1:8000/workflow?\
 directory=~/cm/cloudmesh-cc/tests/workflow-example' -H 'accept: application/json' -d ''
 \end{minted}
-\bigbreak
+\smallskip
 
-\bigbreak
+\smallskip
 \begin{itemize}
 \item
   an archive file in tgz, xz, tar.gz, or tar format that contains the
@@ -53,9 +51,9 @@ directory=~/cm/cloudmesh-cc/tests/workflow-example' -H 'accept: application/json
 curl -X 'POST' 'http://127.0.0.1:8000/workflow?\ 
 archive=ThePathToYourArchiveFile' -H 'accept: application/json' -d ''
 \end{minted}
-\bigbreak
+\smallskip
 
-\bigbreak
+\smallskip
 \begin{itemize}
 \item
   or a yaml file that specifies what jobs to run.
@@ -66,7 +64,7 @@ curl -X 'POST' 'http://127.0.0.1:8000/workflow?\
 yaml=~/cm/cloudmesh-cc/tests/workflow-example\
 /workflow-example.yaml' -H 'accept: application/json' -d ''
 \end{minted}
-\bigbreak
+\smallskip
 
 \subsection{Delete a Workflow}\label{delete-a-workflow}
 
