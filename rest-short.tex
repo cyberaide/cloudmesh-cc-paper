@@ -53,7 +53,8 @@ The most convenient way is to specify a directory that contains the
 yaml configuration file and scripts with the following command:
 
 \begin{minted}[breaklines]{bash}
-$ curl -X 'POST' 'http://127.0.0.1:8000/workflow?directory=~/cm/cloudmesh-cc/tests/workflow-example' -H 'accept: application/json' -d ''
+$ curl -X 'POST' 'http://127.0.0.1:8000/workflow?directory=~/cm/
+cloudmesh-cc/tests/workflow-example' -H 'accept: application/json' -d ''
 \end{minted}
 \smallskip
 
@@ -65,7 +66,8 @@ via the Python interface, or other interfaces.
 The following command runs a workflow.
 
 \begin{minted}[breaklines]{bash}
-$ curl -X 'GET' 'http://127.0.0.1:8000/workflow/run/workflow-example?show=True' -H 'accept: application/json'
+$ curl -X 'GET' 'http://127.0.0.1:8000/workflow/run/workflow-example
+?show=True' -H 'accept: application/json'
 \end{minted}
 
 Additionally, to hide the graph of the workflow as it is run,
