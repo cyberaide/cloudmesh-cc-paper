@@ -2,20 +2,41 @@
 
 \section{Specifying Workflows}\label{specifying-workflows}
 
-Users of cloudmesh cc must follow a certain configuration style to best
-specify how a workflow should be run. Customization options include
-specifying the job types, the order of how the jobs should be run, and
-the portrayal of the graph.
+The workflow definition for cloudmesh is rather simple and intuitive.
+An example is provided in Figure~\ref{fig:workflow-example}.  Here a
+DAG with three nodes ar specified ($start \rightarrow a \rightarrow b \rightarrow c \rightarrow end $).
 
-\subsection{Workflow YAML format}\label{workflow-yaml-format}
+\paragraph{Dependencies.}
+Each dependency is specified in the {\em dependency} section while
+providing sequences of names in a list such as \verb|- start,a| or in our
+case where 3 more nodes are defined an additional node is appended
+with \verb|,b,c,end|.
 
-A workflow yaml file with three Shell script jobs \texttt{a},
-\texttt{b}, and \texttt{c} is demonstrated in Figure \ref{fig:yaml-file}.
+In case one wants to execute tnodes in parallel we can simply define them through a list such as
+
+\begin{verbatim}
+dependencies:
+- start,a,end
+- start,b,end
+- start,c,end
+\end{verbatim}
+
+\paragraph{Nodes.}
+Nodes can be customized in various ways within the workflow
+configuration YAML file, including their job types (python, sh, jupyter,
+or slurm), their virtual Python environment (by specifying
+\texttt{venv}), their appearance on the graph, and other
+characteristics.
+This is controoled throgh a number of attributes used by the nodes in the DAG
+The attributes summarized in Table~\ref{tab:nodes}.
+
 
 \begin{figure}
 \begin{minted}[breaklines]{yaml}
 workflow:
   nodes:
+    start:
+       name: start
     a:
        name: a
        user: gregor
@@ -40,36 +61,76 @@ workflow:
       status: ready
       label: '{name}\nprogress={progress}'
       script: test-c.sh
+    end:
+       name: end
   dependencies:
-    - a,b,c
+    - sart,a,b,c,end
 \end{minted}
-\caption{Workflow YAML Configuration file}
+\caption{Workflow YAML Configuration file}\label{fig:workflow-example}
 \label{fig:yaml-file}
 \end{figure}
 
-\subsection{Example Workflows}\label{example-workflows}
+\begin{table}[htb]
+\caption{Node attributes}
+\resizebox{.5\textwidth}{!}{
+\begin{tabular}{|l|l|p{6cm}|}
+\hline
+{\bf Attribute} & {\bf Required} & {\bf Description} \\
+\hline
+\hline
+name & yes & A unique name of the job, must be the same as defined in the : line \\
+\hline
+user & & The userame for the host \\
+\hline
+host & & The hostname \\
+\hline
+kind & & The kind of the job, which can be localhost, ssh, ... TBD  \\
+\hline
+status & & The status of the job in integer value between 0 and 100 \\
+\hline
+label & & A custom designed label \\
+\hine
+script & & The script name to be executed \\
+\hline
+\end{tabular}
+}
+\end{table}
 
-Sample yaml files can be found at the following link:
+\paragraph{Node label.}
+One particular usefule attribute is that of a label. If no label is
+used, the name of the node is used as label. However if a label is
+specified one can also use attribte names, and timers to create labels
+with implicit state information. This is don by introducing variables
+through curly braces when defining the labels inside the label defined
+in the nodes within the yaml workflow file.
 
-\url{https://github.com/cloudmesh/cloudmesh-cc/blob/main/tests/workflow-example/workflow-example.yaml}
+For example, a label could be defined as showcased in
+Figure \ref{fig:label-job}. The appropriate values will be dynamically
+replaced during the execution of the workflow.
+This creates a node on the graph that looks similar to the node
+showcased in Figure~\ref{fig:label-node}.
 
-\subsection{Defining nodes in the
-workflow}\label{defining-nodes-in-the-workflow}
+Initially, the created and elapsed labels are \texttt{N/A} if the
+workflow has not yet started, but they are replaced during runtime. This
+can be observed by running a workflow in graph view in the web
+interface. Colons must be replaced with \texttt{-\/-} and the years, months, days,
+hours, minutes, and seconds can be arranged as desired, as long as the
+corresponding letters remain consistent (\texttt{\%Y} \texttt{\%m}
+\texttt{\%d} \texttt{\%H} \texttt{\%M} \texttt{\%S} respectively). Also,
+the format of the time must come immediately following the period (see
+Table \ref{fig:labels-list} for a summary of options for defining time
+based attributed to be replaced in the label).
 
-Nodes can be customized in various ways within the workflow
-configuration YAML file, including their job types (python, sh, jupyter,
-or slurm), their virtual Python environment (by specifying
-\texttt{venv}), their appearance on the graph, and other
-characteristics.
+Various formats can be used for the timestamps, such as the American
+datetime format \texttt{\%m/\%d/\%Y,\ \%H-\/-\%M-\/-\%S} or the
+international datetime format \texttt{\%Y/\%m/\%d,\ \%H-\/-\%M-\/-\%S}.
+As long as the letters stay consistent (\texttt{\%Y} \texttt{\%m}
+\texttt{\%d} \texttt{\%H} \texttt{\%M} \texttt{\%S} for year, month,
+day, hour, minute, and second, respectively), any format can be created.
 
-\subsubsection{Defining labels for the
-workflow}\label{defining-labels-for-the-workflow}
+If no format is specified following the period after the variable, the
+datetime defaults to American format.
 
-These variables must be in curly braces when defining the labels inside
-the yaml workflow files.
-
-For example, a label could be defined as a configuration similar 
-to Figure \ref{fig:label-job}.
 
 \begin{figure}
 \smallskip
@@ -81,27 +142,11 @@ to Figure \ref{fig:label-job}.
     \end{minted}
     \caption{Example of job label in YAML configuration file}
     \label{fig:label-job}
-\end{figure}
 
-This creates a node on the graph that looks similar to the following
-example:
-
-\begin{figure}
 \centering
 \includegraphics[width=0.7\columnwidth]{images/labelmaker-example.png}
-\caption{An example node with labels}
+\caption{An example node with labels}\label{fig:label-node}
 \end{figure}
-
-Initially, the created and elapsed labels are \texttt{N/A} if the
-workflow has not yet started, but they are replaced during runtime. This
-can be observed by running a workflow in graph view in the web
-interface.
-
-Colons must be replaced with \texttt{-\/-} and the years, months, days,
-hours, minutes, and seconds can be arranged as desired, as long as the
-corresponding letters remain consistent (\texttt{\%Y} \texttt{\%m}
-\texttt{\%d} \texttt{\%H} \texttt{\%M} \texttt{\%S} respectively). Also,
-the format of the time must come immediately following the period.
 
 \begin{table}[htb]
 \caption{List of possible labels for nodes on the graph}
@@ -127,31 +172,16 @@ cm. & cloudmesh variable that is read from \verb|cms set|} \\
 \end{tabular}
 }
 
-
 \end{table}
 
-\subsection{Defining format for timestamp
-labels}\label{defining-format-for-timestamp-labels}
-
-Various formats can be used for the timestamps, such as the American
-datetime format \texttt{\%m/\%d/\%Y,\ \%H-\/-\%M-\/-\%S} or the
-international datetime format \texttt{\%Y/\%m/\%d,\ \%H-\/-\%M-\/-\%S}.
-As long as the letters stay consistent (\texttt{\%Y} \texttt{\%m}
-\texttt{\%d} \texttt{\%H} \texttt{\%M} \texttt{\%S} for year, month,
-day, hour, minute, and second, respectively), any format can be created.
-
-If no format is specified following the period after the variable, the
-datetime defaults to American format.
 
 \subsection{Defining graphviz shapes and
 styles}\label{defining-graphviz-shapes-and-styles}
 
-Any shape and style for the nodes in the graph can be chosen, as long as
-they are taken from the graphviz documentation:
+\paragraph{Shapes and Styles}
 
-\url{https://graphviz.org/doc/info/shapes.html}
-
-\url{https://graphviz.org/docs/attr-types/style/}
+As we use graphviz for rendering we have also added the ability to change the shape and style 
+for each nodes in the graph. The available \href{https://graphviz.org/doc/info/shapes.html}{shapes} and \href{https://graphviz.org/docs/attr-types/style/}){styles} are listed in the Graphviz documentation \cite{??}.
 
 Figure \ref{fig:shape-style-yaml} is an example of a node in YAML format that uses a box shape and an empty style. The empty style defaults to \texttt{filled}, which allows the node to change color when the job status is changed.
 
@@ -174,29 +204,7 @@ Figure \ref{fig:shape-style-yaml} is an example of a node in YAML format that us
     \label{fig:shape-style-yaml}
 \end{figure}
 
-\subsection{Defining dependencies in the
-workflow}\label{defining-dependencies-in-the-workflow}
 
-Dependencies are specified in the order which jobs should be run, from
-left to right. They are listed under the workflow in the yaml file.
-
-\begin{figure}
-\begin{minted}[breaklines]{yaml}
-workflow:
-  nodes:
-    a:
-       name: a
-    b:
-       name: b
-    c:
-       name: c
-  dependencies:
-    - a,b,c
-\end{minted}
-    \centering
-    \caption{YAML configuration file for workflow with dependencies}
-    \label{fig:dependency-workflow}
-\end{figure}
 
 \subsection{Reporting Progress}\label{reporting-progress}
 
