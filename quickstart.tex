@@ -102,15 +102,7 @@ class Workflow(...):
 \caption{Pseudo code for the Job class with selected methods}
 \label{fig:code-workflow-rest}
 \begin{minted}[breaklines]{bash}
-
 class RESTWorkflow
-
-    Bases: object
-
-    Class which interfaces with cc FastAPI server using REST.
-
-    Initialize the service.
-
     def add_job(workflow_name, **kwargs):
         """Add a job to the workflow."""
     def delete_workflow(workflow_name, job_name=None):
