@@ -220,26 +220,6 @@ If the user wants to use instead just python requests he can do so as
 follows, while we just showcase the program in
 Figure~\ref{fig:code-workflow-requests} for uploading.
 
-
-\subsection{Webservice GUI}
-
-As the service is using also an OpenAPI 2.0 specification the workflow
-can also be uploaded implicitly through the specification
-GUI. Navigate to \texttt{http://127.0.0.1:8000/docs} and use the POST
-Upload method.  Then click \texttt{Try\ it\ out} and enter the
-location of the tar file, followed by clicking Execute.
-
-Obviously , any REST service 
-or REST API can be used allowing to interface to it from 
-different programming languages or frameworks.
-
-
-\subsection{Run the workflow}\label{run-the-workflow}
-
-To run, navigate to homepage at \texttt{http://127.0.0.1:8000/} and
-click the workflow-example on the left side. Then click Run.
-
-
 \begin{figure}[t]
 \begin{minted}[breaklines]{bash}
 class RESTWorkflow
@@ -281,5 +261,50 @@ $ curl -X 'POST' 'http://127.0.0.1:8000/ workflow?archive=workflow-example.tar' 
 \label{fig:code-workflow-curl}
 
 \end{figure}
+
+
+\subsection{Webservice GUI}
+
+As the service is using also an OpenAPI 2.0 specification the workflow
+can also be uploaded implicitly through the specification
+GUI. Navigate to \texttt{http://127.0.0.1:8000/docs} and use the POST
+Upload method.  Then click \texttt{Try\ it\ out} and enter the
+location of the tar file, followed by clicking Execute.
+
+Obviously, any REST service or REST API can be used allowing to
+interface to it from different programming languages or frameworks.
+
+The web server provides a more customizable, easy-to-use interface for
+the Workflow class which can be started from the commandline with 
+
+\begin{minted}[breaklines]{bash}
+$ cd ~/cm/cloudmesh-cc
+$ cms cc start
+\end{minted}
+
+Then, in a web browser, open the link \verb|http://127.0.0.1:8000/.
+
+The browser provides an interface to view preexisting workflows in both
+a DataTable format and as a graph format. Both views will update
+automatically, in a live fashion, as the workflows are run, reporting
+live job status and progress.
+
+For a quick and easy example of leveraging this GUI interface, click on
+the Example tab in the left-hand sidebar. Then, a workflow-example will
+appear underneath Workflows. Click on the workflow-example and run the
+workflow by clicking the green Run button in the top-right. As the
+workflow runs, the user is able to click on the Graph button and back to
+the Table button, as desired, to view the workflow's progression.
+
+
+
+
+
+\subsection{Run the workflow}\label{run-the-workflow}
+
+To run, navigate to homepage at \texttt{http://127.0.0.1:8000/} and
+click the workflow-example on the left side. Then click Run.
+
+
 
 
