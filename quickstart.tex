@@ -62,190 +62,81 @@ class Job:
 \label{fig:code-workflow}
 \begin{minted}[breaklines]{bash}
 class Workflow(...):
-
     def add_dependencies(dependency)
-        Add a job dependency to the workflow (and the graph).
-
+        """Add a job dependency to the workflow (and the graph)."""
     add_dependency(source, destination)
-        Add a job dependency to the workflow (and the graph).
+        """Add a job dependency to the workflow (and the graph)."""
+    def add_job(filename=None, name=None, user=None,
+                host=None, label=None,
+                label_format=None, kind='local',
+                status='ready', progress=0,
+                script=None, exec=None, pid=None,
+                venv=None, **kwargs)
 
-    add_job(filename=None, name=None, user=None, host=None, label=None, label_format=None, kind='local', status='ready', progress=0, script=None, exec=None, pid=None, venv=None, **kwargs)
-
-        Add a job to the workflow.
-
-        Parameters
-
-                name (str) – name of job
-
-                user (str) – username for job
-
-                host (str) – where the job will be run
-
-                label (str) – what the node will say on the graph
-
-                label_format – how the label will be formatted in the graph
-
-                kind (str) – the type of job, such as local, ssh, slurm
-
-                status (str) – how the job is doing, like ready, failed, done
-
-                progress (int) – a number from 0 to 100 that reports job completeness
-
-                script (str) – the script that the job will run
-
-                exec (str) – how the job will be executed
-
-                pid (int or str) – process id of the job
-
-                kwargs (kwargs) – any other miscellaneous specifications for the job
-
-    analyze_states()
-        Return the number of jobs in the various states.
-
-    create_topological_order()
-        Update the graph while each node bget a number determined from get_sequential_order.
-
-    property dependencies
-        Retrieve the dependencies of the workflow.
-
-    property dict_of_workflow
-        Return a dict of the nodes and dependencies of the workflow.
-
-    display(filename=None, name='workflow', first=True)
-        Show the graph of the workflow.
-
-    get_predecessors(name)
-        Return the predecessors.
-
-        Figure out all the dependencies of the name node then test if each node in front (parent) has progress of 100 if the parent has progress 100, remove those nodes.
-
-    job(name)
-
-        Return the details of a job within the workflow.
-
-    property jobs
-
-        Retrieve the jobs of the workflow.
-
-        Returns
-
-            the jobs that belong to the workflow
-        Return type
-
-            dotdict
-
-    json(filepath=None)
-
-        Return the workflow as json string.
-
-    load(filename, clear=True)
-
-        Load the workflow.
-
-        Load a workflow graph from file. However, the file is still stored in the filename that was used when the Workflow was created. This allows to load in a saved workflow in another file, but continue working on it in the file used in init.
-
-    predecessor(name)
-        Retrieve the jobs that must be run before the specified job.
-
-        Parameters
-
-            name (str) – name of a job
-        Returns
-
-            list of preceding jobs
-        Return type
-
-            list
-
-    remove_job(name, state=False)
-        Remove a particular job from the workflow.
-
-    remove_workflow()
-        Delete workflow from the local file system.
-
-    run_parallel(directory='~/experiment', order=None, dryrun=False, show=True, period=0.5, filename=None)
-
-        Run a workflow in a parallel fashion.
-
-        Parameters
-
-                directory (str) – where the workflow should be run
-
-                order – how the jobs should be run chronologically
-
-                dryrun (bool) – if true then the workflow isn’t really run. for testing
-
-                show (bool) – whether to show graph as workflow is run
-
-                period (float) – how long to wait after showing the graph
-
-                filename (str) – where to save the graph
-
-    run_topo(order=None, dryrun=False, show=True, filename=None)
-
-        Run the workflow in a topological fashion.
-
-        Parameters
-
-                order – how the jobs should be run chronologically
-
-                dryrun (bool) – if true then the workflow isn’t really run. for testing
-
-                show (bool) – whether to show the graph as workflow is run
-
-                filename (str) – where the graph should be saved
-
-        Returns
-
-            nothing
-        Return type
-
-            None
-
-    save(filename=None)
-        Save the workflow.
-
-    save_with_state(filename, stdout=False)
+        """Add a job to the workflow where the parameters are
+          name (str) – name of job
+          user (str) – username for job
+          host (str) – where the job will be run
+          label (str) – what the node will say on the graph
+          label_format – how the label will be formatted in the graph
+          kind (str) – the type of job, such as local, ssh, slurm
+          status (str) – how the job is doing, like ready, failed, done
+          progress (int) – a number from 0 to 100 that reports job completeness
+          script (str) – the script that the job will run
+          exec (str) – how the job will be executed
+          pid (int or str) – process id of the job
+          kwargs (kwargs) – any other miscellaneous specifications for the job
+       """
+    def analyze_states()
+        """Return the number of jobs in the various states."""
+    def create_topological_order()
+        """Update the graph while each node bget a number determined from get_sequential_order."""
+    def property dependencies
+        """Retrieve the dependencies of the workflow."""
+    def property dict_of_workflow
+        """Return a dict of the nodes and dependencies of the workflow."""
+    def display(filename=None, name='workflow', first=True)
+        """Show the graph of the workflow."""
+    def get_predecessors(name)
+        """Return the predecessors of jobs where the predecessor status is not 100"""
+    def job(name):
+        """Return the details of a job within the workflow."""
+    property jobs:
+        """Retrieve the jobs of the workflow."""
+    def load(filename, clear=True)
+        """Load the workflow."""
+    def predecessor(name)
+        """Retrieve the jobs that must be run before the specified job."""
+    def remove_job(name, state=False)
+        """Remove a particular job from the workflow."""
+    def remove_workflow()
+        """Delete workflow from the local file system."""
+    def run_parallel( ... )
+        """Run a workflow in a parallel fashion."""
+    def run_topo(order=None, dryrun=False, show=True, filename=None)
+        """Run the workflow in a topological order."""
+    def save(filename=None):
+        """Save the workflow."""
+    def save_with_state(filename, stdout=False):
         Save the workflow with state.
-
-    sequential_order()
-        Return a list of the topological order of the workflow.
-
-    set_progress(name, percent)
-
-        Manually update a job’s progress.
-
-    status()
-
-        Return details of the workflow in dict format.
-
+    def sequential_order():
+        """Return a list of the topological order of the workflow."""
+    def set_progress(name, percent)
+        """Manually update a job’s progress."""
+    def status():
+        """Return details of the workflow in dict format."""
+    def json():
+        """Return the workflow as json string."""
     property table
-
-        Return a table of the workflow.
-
-    table2(with_label=False)
-
-        Return a table of the workflow.
-
-    update_progress(name)
-
-        Manually update the progress of a job according to its log file.
-
-    update_status(name, status)
-
-        Manually update a job’s status.
-
-
+        """Return a table of the workflow."""
     property yaml
-
-        Return a yaml dump of the nodes and dependencies of the workflow.
-
-
-cloudmesh.cc.workflowrest module
-
-Cloudmesh cc REST workflow.
-
-
+        """Retunr the yaml file of the workflow with status."""
+    property json
+        """Retunr the json file of the workflow with status."""
+    def update_progress(name):
+        """Manually update the progress of a job according to its log file."""
+    def update_status(name, status):
+        """Manually update a job’s status."""
 
 \end{minted}
 \end{figure}
