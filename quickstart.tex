@@ -118,7 +118,7 @@ class Workflow(...):
     def save(filename=None):
         """Save the workflow."""
     def save_with_state(filename, stdout=False):
-        Save the workflow with state.
+        """Save the workflow with state."""
     def sequential_order():
         """Return a list of the topological order of the workflow."""
     def set_progress(name, percent)
@@ -130,9 +130,9 @@ class Workflow(...):
     property table
         """Return a table of the workflow."""
     property yaml
-        """Retunr the yaml file of the workflow with status."""
+        """Return the yaml file of the workflow with status."""
     property json
-        """Retunr the json file of the workflow with status."""
+        """Return the json file of the workflow with status."""
     def update_progress(name):
         """Manually update the progress of a job according to its log file."""
     def update_status(name, status):
@@ -143,7 +143,7 @@ class Workflow(...):
 
 
 \begin{figure}[htb]
-\caption{Pseudo code for the Job class with selected methhods}
+\caption{Pseudo code for the Job class with selected methods}
 \label{fig:code-workflow-rest}
 \begin{minted}[breaklines]{bash}
 
@@ -171,12 +171,12 @@ class RESTWorkflow
 \end{figure}
 
 \begin{figure}[htb]
-\caption{Pseudo code for the Job class with selected methhods}
+\caption{Pseudo code for the Job class with selected methods}
 \label{fig:code-workflow-example}
 \begin{minted}[breaklines]{bash}
     w = Workflow(filename="workflow.yaml")
     w.load(filename="abc.yaml") <- loads in the graph, but will save it still to workflow.yaml
-    w.add(filename="add.yaml") <-adds a new workflow into the existing one.
+    w.add(filename="add.yaml") <- adds a new workflow into the existing one.
     w.add_job(name="a",
                 command="hostname",
                 user=None, # bug if kind is local and user is None, we do not need user, but can take local user
