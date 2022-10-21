@@ -178,23 +178,38 @@ datetime defaults to American format.
 \label{fig:labels-list}
 
 {\footnotesize
-\begin{tabular}{p{3.5cm}p{4cm}}
-Name & Description \\
-\hline
-progress &  progress of job from 0-100 \\
-now & current time \\
-now.\verb|%Y%m%d,%H--%M--%S| &
+  \begin{tabular}{|p{3.5cm}|p{4cm}|}
+    \hline
+    {\bf Name} & {\bf Description} \\
+    \hline
+    \hline
+    progress &  progress of job from 0-100 \\
+    \hline
+    now & current time \\
+    \hline
+    now.\verb|%Y%m%d,%H--%M--%S| &
    now in particular format (this can be used for other times as well) \\
-created & time when workflow was created \\
-t0.\verb|%Y%m%d,%H--%M--%S| &  workflow start time \\
-t1.\verb|%Y%m%d,%H--%M--%S| & workflow end time \\
-dt0.\verb|%Y%m%d,%H--%M--%S| & elapsed time since workflow began \\
-dt1.\verb|%Y%m%d,%H--%M--%S| & total time of workflow once complete \\
-tstart.\verb|%Y%m%d,%H--%M--%S| & job start time \\
-tend.\verb|%Y%m%d,%H--%M--%S| & job end time \\
-modified.\verb|%Y%m%d,%H--%M--%S| & job modified time \\
-os. & operating system environment variable (like os.HOME) \\
-cm. & cloudmesh variable that is read from \verb|cms set| \\
+    \hline
+    created & time when workflow was created \\
+    \hline
+    t0.\verb|%Y%m%d,%H--%M--%S| &  workflow start time \\
+    \hline
+    t1.\verb|%Y%m%d,%H--%M--%S| & workflow end time \\
+    \hline
+    dt0.\verb|%Y%m%d,%H--%M--%S| & elapsed time since workflow began \\
+    \hline
+    dt1.\verb|%Y%m%d,%H--%M--%S| & total time of workflow once complete \\
+    \hline
+    tstart.\verb|%Y%m%d,%H--%M--%S| & job start time \\
+    \hline
+    tend.\verb|%Y%m%d,%H--%M--%S| & job end time \\
+    \hline
+    modified.\verb|%Y%m%d,%H--%M--%S| & job modified time \\
+    \hline
+    os. & operating system environment variable (like os.HOME) \\
+    \hline
+    cm. & cloudmesh variable that is read from \verb|cms set| \\
+    \hline
 \end{tabular}
 }
 \end{table}
