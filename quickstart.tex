@@ -1,6 +1,6 @@
 \FILE{quickstart.tex}
 
-\section{Quickstart}\label{quickstart}
+\section{Cloudmesh-cc Interfaces}
 
 The Cloudmesh Compute Cluster service allows you to execute analytical,
 computational workflows which run programs on remote compute resources.
@@ -10,40 +10,6 @@ cyclic graph. Currently, we have predefined task types that can execute
 shell scripts, Python programs, and Python notebooks, all of which can
 be executed on local or remote compute resources.
 
-In Figure 1 we depict a simple example workflow to be executed where
-each task is executed sequentially. The status of the execution can be
-displayed as table or as graph. In Figure \ref{fig:workflow-process}, we showcase how the graph
-changes its appearance over time.
-
-\begin{figure}[htb]
-\resizebox{1.0\columnwidth}{!}{
-\begin{minipage}[b]{0.18\textwidth}
-Definition and start \\
-\includegraphics[height=9cm]{images/workflow-example-1.pdf}
-\end{minipage} \ \
-\begin{minipage}[b]{0.18\textwidth}
-Running 1st task \\
-\includegraphics[height=9cm]{images/workflow-example-1.5.pdf} 
-\end{minipage} \ \
-\begin{minipage}[b]{0.18\textwidth}
-Complete 1st task \\
-\includegraphics[height=9cm]{images/workflow-example-2.pdf}
-\end{minipage} \ \
-\begin{minipage}[b]{0.18\textwidth}
-Complete 2nd task \\
-\includegraphics[height=9cm]{images/workflow-example-3.pdf}
-\end{minipage} \ \
-\begin{minipage}[b]{0.18\textwidth}
-Complete workflow \\
-\includegraphics[height=9cm]{images/workflow-example-5.pdf}
-\end{minipage} 
-}
-\caption{The gradual process of a simple workflow}\label{fig:workflow-process}
-\end{figure}
-
-
-Figure \ref{fig:workflow-process} shows the execution and display graph of an example workflow
-over time.
 
 We can specify such workflows in a YAML file making it very easy to
 create and manage them. To get you started, we have developed a

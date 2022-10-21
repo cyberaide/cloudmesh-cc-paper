@@ -2,17 +2,38 @@
 
 \section{Related Research}
 
-\section{HPC Batch Queueing Systems}
+Many different workflow systems have been developed in the past.  It
+is out of scope of this document to present a complete overview of all
+the different stystems. Instead we compare some selected features of
+the systems and identify features that are important for us. The
+following features are important.
 
-\subsection{Scientific and Grid Computing Workflows}
+\begin{description}
 
-\subsection{Cloud Workflows}
+\item[Batch.] Long running jobs on HPC systems are coordinated through Batch services.
 
-\subsection{REST interfaces}
+\item[Resource Reservation.] In some cases access to batch queuses on HPC systems take a long time in case of many different tasks it is sometimes useful to researce a number of batch nodes and run many short running programs on them if the need arises. THis haowever can often be replacesd just with properly coordinated workflows using a batch system. In fact frameworks using such reservation internally implement them using the batch system.
+
+\item[Computational Grids.] Grids provide a service level access to distributed HPC computing resources. However Grids popular a decade ago are no longer the predominantly deployed and focus has shifted to CLoud computing. 
+
+\item[Cloud.] Computing resourcesa are these days also available in the cloud as HPC, batch, and compute services, including specialized SaaS offerings that allow to integrate analytics finctions into workflows.
+
+\item[REST.] The predominant specification for cloud services uses the REST framework relying on a stateles model. This contrasts the WSRF model that uses statefull services.
+
+\item[Specification.] Some work has focused on the spcification of the workflows rather.
+
+\item[GUI.] Some foremworks provide extensive GUIs.
+
+\end{description}
+
+In Table \ref{tab:workflow-table} we provide a number of examples for the various
+features we found in workflow systems.
+
 
 \begin{table*}[htb]
 
-\caption{TBD}
+\caption{Example of workflow frameworks with selected features.}
+\label{tab:workflow-table}
 
 \resizebox{1.0\textwidth}{!}{
 {\footnotesize

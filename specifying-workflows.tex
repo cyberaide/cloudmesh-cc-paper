@@ -4,31 +4,39 @@
 
 The workflow definition for cloudmesh is rather simple and intuitive.
 An example is provided in Figure~\ref{fig:workflow-example}.  Here a
-DAG with three nodes ar specified ($start \rightarrow a \rightarrow b \rightarrow c \rightarrow end $). The workflow executes three scripts (test-[a,b,c].sh). It contains a specific start and end noode.
+DAG with three nodes ar specified ($start \rightarrow fetch-data \rightarrow
+compute \rightarrow analyze \rightarrow end $). The workflow executes three
+scripts (test-[fetch-data,compute,analyze].sh). It contains a specific start and end noode.
 
-\paragraph{Dependencies.}
+\subsection{Dependencies}
+
 Each dependency is specified in the {\em dependency} section while
-providing sequences of names in a list such as \verb|- start,a| or in our
-case where 3 more nodes are defined an additional node is appended
-with \verb|,b,c,end|.
+providing sequences of names in a list such as \verb|-
+start,fetch-data| or in our case where 3 more nodes are defined an
+additional node is appended with \verb|,compute,analyze,end|.
 
-In case one wants to execute tnodes in parallel we can simply define them through a list such as
+In case one wants to execute nodes in parallel we can simply define
+them through a list such as 
 
-\begin{verbatim}
-dependencies:
-- start,a,end
-- start,b,end
-- start,c,end
-\end{verbatim}
+\begin{minted}[breaklines]{yaml}
+  dependencies:
+    - start,a,end
+    - start,b,end
+    - start,c,end
+\end{minted}
 
-\paragraph{Nodes.}
+if the names of the nodes were $a$, $b$, and $c$. 
+
+
+\subsection{Nodes}
+
 Nodes can be customized in various ways within the workflow
 configuration YAML file, including their job types (python, sh, jupyter,
 or slurm), their virtual Python environment (by specifying
 \texttt{venv}), their appearance on the graph, and other
-characteristics.
-This is controoled throgh a number of attributes used by the nodes in the DAG
-The attributes summarized in Table~\ref{tab:nodes}.
+characteristics.  This is controoled throgh a number of attributes
+used by the nodes in the DAG The attributes summarized in
+Table~\ref{tab:node-attributes}.
 
 \begin{figure}
 \begin{minted}[breaklines]{yaml}
@@ -36,66 +44,67 @@ workflow:
   nodes:
     start:
        name: start
-    a:
-       name: a
+    fetch-data:
+       name: fetch-data
        user: gregor
        host: localhost
        kind: local
        status: ready
        label: '{name}\nprogress={progress}'
-       script: test-a.sh
-    b:
-       name: b
+       script: test-fetch-data.sh
+    compute:
+       name: compute
        user: gregor
        host: localhost
        kind: local
        status: ready
        label: '{name}\nprogress={progress}'
-       script: test-b.sh
-    c:
-      name: c
+       script: test-compute.sh
+    analyze:
+      name: analyze
       user: gregor
       host: localhost
       kind: local
       status: ready
       label: '{name}\nprogress={progress}'
-      script: test-c.sh
+      script: test-analyze.sh
     end:
        name: end
   dependencies:
-    - sart,a,b,c,end
+    - sart,fetch-data,compute,anlayze,end
 \end{minted}
 \caption{Workflow YAML Configuration file}\label{fig:workflow-example}
 \label{fig:yaml-file}
 \end{figure}
 
 \begin{table}[htb]
-\caption{Node attributes}
-\resizebox{.5\textwidth}{!}{
-\begin{tabular}{|l|l|p{6cm}|}
+\caption{Node attributes}\label{tab:node-attributes}
+\resizebox{1.0\columnwidth}{!}{
+\begin{tabular}{|l|p{6cm}|}
 \hline
-{\bf Attribute} & {\bf Required} & {\bf Description} \\
+{\bf Attribute} & {\bf Description} \\
 \hline
 \hline
-name & yes & A unique name of the job, must be the same as defined in the : line \\
+name &  A unique name of the job, must be the same as defined in the : line \\
 \hline
-user & & The userame for the host \\
+user &  The userame for the host \\
 \hline
-host & & The hostname \\
+host &  The hostname \\
 \hline
-kind & & The kind of the job, which can be localhost, ssh, ... TBD  \\
+kind &  The kind of the job, which can be localhost, ssh, ... TBD  \\
 \hline
-status & & The status of the job in integer value between 0 and 100 \\
+status &  The status of the job in integer value between 0 and 100 \\
 \hline
-label & & A custom designed label \\
+label &  A custom designed label \\
 \hine
-script & & The script name to be executed \\
+script &  The script name to be executed \\
 \hline
 \end{tabular}
 }
 \end{table}
 
-\paragraph{Node label.}
+\subsection{Node labels}
+
 One particular usefule attribute is that of a label. If no label is
 used, the name of the node is used as label. However if a label is
 specified one can also use attribte names, and timers to create labels
@@ -174,7 +183,8 @@ Name & Description \\
 \hline
 progress &  progress of job from 0-100 \\
 now & current time \\
-now.\verb|%Y%m%d,%H--%M--%S| & now in particular format (this can be used for other times as well) \\
+now.\verb|%Y%m%d,%H--%M--%S| &
+   now in particular format (this can be used for other times as well) \\
 created & time when workflow was created \\
 t0.\verb|%Y%m%d,%H--%M--%S| &  workflow start time \\
 t1.\verb|%Y%m%d,%H--%M--%S| & workflow end time \\
@@ -191,15 +201,19 @@ cm. & cloudmesh variable that is read from \verb|cms set|} \\
 \end{table}
 
 
-\subsection{Defining graphviz shapes and
-styles}\label{defining-graphviz-shapes-and-styles}
 
-\paragraph{Shapes and Styles}
+\subsection{Shapes and Styles}
 
-As we use graphviz for rendering we have also added the ability to change the shape and style 
-for each nodes in the graph. The available \href{https://graphviz.org/doc/info/shapes.html}{shapes} and \href{https://graphviz.org/docs/attr-types/style/}){styles} are listed in the Graphviz documentation \cite{??}.
+As we use graphviz for rendering we have also added the ability to
+change the shape and style for each nodes in the graph. The
+available \href{https://graphviz.org/doc/info/shapes.html}{shapes}
+and \href{https://graphviz.org/docs/attr-types/style/}{styles} are
+listed in the Graphviz documentation \cite{www-graphviz}.
 
-Figure \ref{fig:shape-style-yaml} is an example of a node in YAML format that uses a box shape and an empty style. The empty style defaults to \mintinline{bash}|filled|, which allows the node to change color when the job status is changed.
+Figure \ref{fig:shape-style-yaml} is an example of a node in YAML
+format that uses a box shape and an empty style. The empty style
+defaults to \mintinline{bash}|filled|, which allows the node to change
+color when the job status is changed.
 
 \begin{figure}
     \begin{minted}[breaklines]{yaml}
@@ -225,17 +239,18 @@ Figure \ref{fig:shape-style-yaml} is an example of a node in YAML format that us
 \subsection{Reporting Progress}\label{reporting-progress}
 
 When running scripts/jobs inside a workflow, the scripts must leverage
-some format of cloudmesh.progress to run successfully. Otherwise, the
-Workflow class cannot tell if the scripts are done, breaking the
-progress functionality.
+some format of {\em cloudmesh.progress} to notify the user and the
+backend client monitoring system. If progress is not reported, the
+Workflow class cannot tell if the scripts are done.
 
 The examples that are provided with cloudmesh-cc are already augmented
-with cloudmesh.progress. Thus, if a user is running self-made jobs and
-workflows, they must adhere to the guidelines as follows.
+with {\em cloudmesh.progress}. Thus, if a user is running jobs through
+cloudmesh cc workflows, they must integrate progress strings into the
+log files that are monitored. This is available for shell and batch
+scripts, Python and Jupyter.
 
-\subsection{Shell and Slurm Scripts}\label{shell-and-slurm-scripts}
-
-For shell and Slurm scripts \mintinline{bash}|.sh|, the script must contain:
+For shell and Slurm scripts \mintinline{bash}|.sh|, the script must
+contain progress update lines as follows:
 
 \begin{minted}[breaklines]{bash}
 echo "# cloudmesh status=running progress=1 pid=$$"
@@ -249,13 +264,11 @@ echo "# cloudmesh status=done progress=100 pid=$$"
 
 at the end of the script.
 
-\subsection{Python Scripts and Jupyter
-Notebooks}\label{python-scripts-and-jupyter-notebooks}
 
-For Python scripts \mintinline{bash}|.py| and Jupyter notebooks \mintinline{bash}|.ipynb|,
-the script must contain an import module from cloudmesh.common and calls
-to the progress function.
-
+For Python scripts \mintinline{bash}|.py| and Jupyter
+notebooks \mintinline{bash}|.ipynb|, the script it is easiiests to use
+our build in progress method. and import it from the cloudmesh.common
+module. The following example demonstrates its use:
 
 \smallskip
 \begin{minted}[breaklines]{python}
@@ -268,15 +281,55 @@ progress(progress=100, filename=filename)
 \end{minted}
 \smallskip
 
-The statements do not need to be at the absolute beginning or end of the
-script, but the progress must:
+When recording progress, the progress should be ascending between 1
+and 100. The last value must report 100 or the node will not be
+completed and the Workflow gets stuck.  The output of the progress
+will be written into a \verb|{workflowname}.log| file that will be
+probed continiously by the client to report the progress to the user.
 
-\begin{itemize}
-\item
-  be written to a filename with the same name as the script, ending in
-  \mintinline{bash}|.log|
-\item
-  begin at progress=1
-\item
-  and end at progress=100
-\end{itemize}
+\subsection{Generating Progress Image as Graph}
+
+The framework has a build in capability to export the progress of the workflowin a DAQ. 
+
+Figure \ref{fig:workflow-process} shows
+the execution and display graph of the workflow
+over time.
+
+
+In Figure \ref{fig:workflow-process} we depict a simple example
+workflow to be executed where each task is executed sequentially. The
+status of the execution can be displayed as table or as graph. In
+Figure \ref{fig:workflow-process}, we showcase how the graph changes
+its appearance over time while using no lable in the start and end node and the label in the nodes for fetch-data, compute, and analyze:
+
+\begin{minted}[breaklines]{bash}
+label: "{name}\nprogress={progress}"
+\end{minted}
+
+\begin{figure}[htb]
+\resizebox{1.0\columnwidth}{!}{
+\begin{minipage}[b]{0.18\textwidth}
+Definition and start \\
+\includegraphics[height=9cm]{images/workflow-example-1.pdf}
+\end{minipage} \ \
+\begin{minipage}[b]{0.18\textwidth}
+Running 1st task \\
+\includegraphics[height=9cm]{images/workflow-example-1.5.pdf} 
+\end{minipage} \ \
+\begin{minipage}[b]{0.18\textwidth}
+Complete 1st task \\
+\includegraphics[height=9cm]{images/workflow-example-2.pdf}
+\end{minipage} \ \
+\begin{minipage}[b]{0.18\textwidth}
+Complete 2nd task \\
+\includegraphics[height=9cm]{images/workflow-example-3.pdf}
+\end{minipage} \ \
+\begin{minipage}[b]{0.18\textwidth}
+Complete workflow \\
+\includegraphics[height=9cm]{images/workflow-example-5.pdf}
+\end{minipage} 
+}
+\caption{The gradual process of a simple workflow}\label{fig:workflow-process}
+\end{figure}
+
+
