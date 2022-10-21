@@ -187,12 +187,12 @@ easily interact with the REST service we have also added a couple of
 conveneinet commannds one can issue from a terminal. They are listed
 in Figure~\ref{fig:code-workflow-service-commandline}. It is clear for
 these methods that starting stopping and getting the status of the
-stevice is very easy, In contrast to the commandline mode this service
-mode has an additional keyword {\em service} to intaract with the rest service.
+service is very easy, In contrast to the commandline mode this service
+mode has an additional keyword {\em service} to interact with the rest service.
 
 Certainly one can also directly interact with the REST service API for
-this service.  For ease of use we have exposed the interface thwough
-an OpenAPI specification that is availeable to the user as shown in
+this service. For ease of use we have exposed the interface through
+an OpenAPI specification that is available to the user as shown in
 Figure~\ref{fig:openapi}.
 
 
@@ -207,16 +207,16 @@ demonstrate this upload feature. To showcase the various ways to
 access the service we focus on uploading a tar file that contains the workflow as well as the scripts or programs used in the workflow. The tar file is called {\em workflow.tar}
 
 To also allow programming against the REST service in Python a Python
-API similar to that pf the commanindline mode is
-avalable. Figure~\ref{fig:code-workflow-rest-commandline} showcases
+API similar to that pf the commandline mode is
+available. Figure~\ref{fig:code-workflow-rest-commandline} showcases
 this API.
 
-To implify interaction with the Rest service we create a special
+To simplify interaction with the Rest service we create a special
 RESTWorkflow class that is similar to the command module API but uses
-instead the REST interface to the service rather then directly
+instead the REST interface to the service rather than directly
 communication with the command client API.
 
-If the user wants to use instead just python requests he can do so as
+If the user wants to use instead just Python requests he can do so as
 follows, while we just showcase the program in
 Figure~\ref{fig:code-workflow-requests} for uploading.
 
@@ -268,7 +268,7 @@ $ curl -X 'POST' 'http://127.0.0.1:8000/ workflow?archive=workflow-example.tar' 
 As the service is using also an OpenAPI 2.0 specification the workflow
 can also be uploaded implicitly through the specification
 GUI. Navigate to \texttt{http://127.0.0.1:8000/docs} and use the POST
-Upload method.  Then click \texttt{Try\ it\ out} and enter the
+Upload method. Then click \texttt{Try\ it\ out} and enter the
 location of the tar file, followed by clicking Execute.
 
 Obviously, any REST service or REST API can be used allowing to
