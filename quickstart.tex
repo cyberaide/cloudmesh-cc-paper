@@ -395,140 +395,45 @@ class Workflow(...):
 
         Save the workflow.
 
-        Parameters
-
-            filename (str) – where to save the workflow
-        Returns
-
-            nothing
-        Return type
-
-            None
-
     save_with_state(filename, stdout=False)
 
         Save the workflow with state.
-
-        Parameters
-
-                filename (str) – which file to save the workflow
-
-                stdout (bool) – if True then return the output
-
-        Returns
-
-            if stdout is True then returns the string of yaml dump
-        Return type
-
-            None or str
 
     sequential_order()
 
         Return a list of the topological order of the workflow.
 
-        Returns
-
-            list depicting the workflow
-        Return type
-
-            list
-
     set_progress(name, percent)
 
         Manually update a job’s progress.
-
-        Parameters
-
-                name (str) – name of the job
-
-                percent (int) – value from 0 to 100 for the progress
-
-        Returns
-
-            nothing
-        Return type
-
-            None
 
     status()
 
         Return details of the workflow in dict format.
 
-        Returns
-
-            details of workflow in dict format
-        Return type
-
-            dict
-
     property table
 
         Return a table of the workflow.
-
-        Returns
-
-            a table of the workflow
-        Return type
-
-            None or PrettyTable or str or dict
 
     table2(with_label=False)
 
         Return a table of the workflow.
 
-        Parameters
-
-            with_label (bool) – whether to include label in table
-        Returns
-
-            a table of the workflow
-        Return type
-
-            None or PrettyTable or str or dict
-
     update_progress(name)
 
         Manually update the progress of a job according to its log file.
-
-        Parameters
-
-            name (str) – name of job
-        Returns
-
-            nothing
-        Return type
-
-            None
 
     update_status(name, status)
 
         Manually update a job’s status.
 
-        Parameters
 
-                name (str) – the job whose status will be updated
-
-                status (str) – the new status to be set for the job
-
-        Returns
-
-            nothing
-        Return type
-
-            None
-
-    property yaml
+    property yaml
 
         Return a yaml dump of the nodes and dependencies of the workflow.
 
-        Returns
 
-            yaml dump of workflow as string
-        Return type
-
-            str
-
-cloudmesh.cc.workflowrest module
+cloudmesh.cc.workflowrest module
 
 Cloudmesh cc REST workflow.
 
