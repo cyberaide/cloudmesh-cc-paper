@@ -27,6 +27,10 @@ scripts are all managed locally and a synchronization step is invoked
 prior to one running the job to assure that the latest script and
 code to be executed on the compute resource is available.
 
+The most important part of using the Workflow Python API is showcased
+in Figure~\ref{}, where we explain how easy it is to set up a workflow
+with the Python API.
+
 \begin{figure}[htb]
 \caption{Pseudo code for the Job class with selected methhods}
 \label{fig:code-job}
@@ -61,7 +65,7 @@ class Job:
 \caption{Pseudo code for the Job class with selected methhods}
 \label{fig:code-workflow}
 \begin{minted}[breaklines]{bash}
-class Workflow(...):
+class Workflow:
     ...
     def add_dependencies(dependency)
         """Add a job dependency to the workflow (and the graph)."""
@@ -125,33 +129,82 @@ class RESTWorkflow
 \label{fig:code-workflow-example}
 \begin{minted}[breaklines]{bash}
     w = Workflow(filename="workflow.yaml")
-    w.load(filename="abc.yaml") <- loads in the graph, but will save it still to workflow.yaml
-    w.add(filename="add.yaml") <- adds a new workflow into the existing one.
-    w.add_job(name="a",
+    # load a preexisting work=flow
+    # w.load(filename="source.yaml") 
+    # w.add(filename="source.yaml")
+    
+    # add jobs and dependencies explicitly
+    w.add_job(name="fetch-data",
                 command="hostname",
-                user=None, # bug if kind is local and user is None, we do not need user, but can take local user
-                host=None, # bug:  if host is none and kind is local use localhost
-                label="a",
+                host='supercomputer-a' # defined in .ssh
+                label="{name}\nprogress={progress}",
                 kind="local",
                 status="ready",
                 progress=0)
-    w.add_job(name="b", command="ls")
-    w.add_job(name="c", command="pwd")
-    w.add_job(name="d", command="uname -a")
-    w.add_dependencies(dependency="a,b,d")
-    w.add_dependencies(dependency="a,c,d")
+    w.add_job(name="compute", command="... TBD ...")
+    w.add_job(name="analyze", command="... TBD ...")
+    w.add_dependencies(dependency="start,fetch-data,compute,analyze")
     w.run()
 \end{minted}
 \end{figure}
 
 \subsection{Commandline Mode}
 
-The commandline mode is an implementation that does not use a
-backend service. It runs in the terminal until the workflow is
-completed. All states of the jobs are managed on the compute service on
-which the job is run and the status is replicated into the client on
-demand. This allows easy reporting of the status through a table and a
-graph display using client based rendering tools. 
+The commandline mode is an implementation that does not use a backend
+service. It runs in the terminal until the workflow is completed. All
+states of the jobs are managed on the compute service on which the job
+is run and the status is replicated into the client on demand. This
+allows easy reporting of the status through a table and a graph
+display using client based rendering tools. The various commands to
+interact with it on the commandline are shown in
+Figure~\ref{fig:code-workflow-commandline}.
+
+\begin{figure}[htb]
+\caption{Pseudo code for the Job class with selected methods}
+\label{fig:code-workflow-commandline}
+\begin{minted}[breaklines]{bash}
+      cms cc workflow add [--name=NAME] [--job=JOB] ARGS...
+      cms cc workflow add [--name=NAME] --filename=FILENAME
+      cms cc workflow delete [--name=NAME] [--job=JOB]
+      cms cc workflow list [--name=NAME] [--job=JOB]
+      cms cc workflow run [--name=NAME] [--job=JOB] [--filename=FILENAME]
+      cms cc workflow [--name=NAME] --dependencies=DEPENDENCIES
+      cms cc workflow status --name=NAME [--output=OUTPUT]
+      cms cc workflow graph --name=NAME
+\end{minted}
+\end{figure}
+
+
+\subsection{Service Mode}
+
+The Python API has ale been used to implement a REST service. To
+easily interact with the REST service we have also added a couple of
+conveneinet commannds one can issue from a terminal. They are listed
+in Figure~\ref{fig:code-workflow-service-commandline}. It is clear for
+these methods that starting stopping and getting the status of the
+stevice is very easy, In contrast to the commandline mode this service
+mode has an additional keyword {\em service} to intaract with the rest service.
+
+\begin{figure}[htb]
+\caption{Pseudo code for the Job class with selected methods}
+\label{fig:code-workflow-service-commandline}.
+\begin{minted}[breaklines]{bash}
+      cms cc start [-c] [--reload] [--host=HOST] [--port=PORT]
+      cms cc stop
+      cms cc status
+      cms cc workflow service add [--name=NAME] FILENAME
+      cms cc workflow service list [--name=NAME] [--job=JOB]
+      cms cc workflow service add [--name=NAME] [--job=JOB] ARGS...
+      cms cc workflow service run --name=NAME
+\end{minted}
+\end{figure}
+
+
+Certainly one can also directly interact with the REST service API for this service.
+For ease of use we have exposed the interface thwough an OpenAPI specification that is availeable to the user
+
+
+\section{REST}
 
 
 The Cloudmesh Compute Cluster service allows you to execute analytical,
