@@ -321,8 +321,38 @@ progression.
 
 \subsection{Run the workflow}\label{run-the-workflow}
 
-To run, navigate to homepage at \texttt{http://127.0.0.1:8000/} and
-click the workflow-example on the left side. Then click Run.
+To run a workflow yo can use the various interfaces to do so. As an
+example we will showcase here how to run is in the service mode bey
+either the GUI or a curl call.
+
+\paragraph{GUI.} To run, navigate to homepage at
+\texttt{http://127.0.0.1:8000/} and click the workflow-example on the
+left side. Then click Run.
+
+
+\paragraph{Curl.} to run a workflow with curl please use
+
+\begin{minted}[breaklines]{bash}
+$ curl -X 'GET' 'http://127.0.0.1:8000/workflow/run/workflow-example
+?show=True' -H 'accept: application/json'
+\end{minted}%$
+
+\paragraph{RESTWorkflow API}
+
+To run the workflow with the Python cloudmesh REST API, please use the code
+
+\begin{minted}[breaklines]{python} 
+TBD
+\end{minted}
+
+\paragrap{Python request API.} To run the workflow with the Python
+request API, please use the code
+
+\begin{minted}[breaklines]{python}
+TBD
+\end{minted}
+
+
 
 
 
