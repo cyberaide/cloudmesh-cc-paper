@@ -66,47 +66,14 @@ class Workflow(...):
         """Add a job dependency to the workflow (and the graph)."""
     add_dependency(source, destination)
         """Add a job dependency to the workflow (and the graph)."""
-    def add_job(filename=None, name=None, user=None,
-                host=None, label=None,
-                label_format=None, kind='local',
-                status='ready', progress=0,
-                script=None, exec=None, pid=None,
-                venv=None, **kwargs)
-
-        """Add a job to the workflow where the parameters are
-          name (str) – name of job
-          user (str) – username for job
-          host (str) – where the job will be run
-          label (str) – what the node will say on the graph
-          label_format – how the label will be formatted in the graph
-          kind (str) – the type of job, such as local, ssh, slurm
-          status (str) – how the job is doing, like ready, failed, done
-          progress (int) – a number from 0 to 100 that reports job completeness
-          script (str) – the script that the job will run
-          exec (str) – how the job will be executed
-          pid (int or str) – process id of the job
-          kwargs (kwargs) – any other miscellaneous specifications for the job
-       """
-    def analyze_states()
-        """Return the number of jobs in the various states."""
-    def create_topological_order()
-        """Update the graph while each node bget a number determined from get_sequential_order."""
-    def property dependencies
-        """Retrieve the dependencies of the workflow."""
-    def property dict_of_workflow
-        """Return a dict of the nodes and dependencies of the workflow."""
+    def add_job( ... ):
+        """Add a job to the workflow with appropriate parameters."""
     def display(filename=None, name='workflow', first=True)
         """Show the graph of the workflow."""
-    def get_predecessors(name)
-        """Return the predecessors of jobs where the predecessor status is not 100"""
     def job(name):
         """Return the details of a job within the workflow."""
-    property jobs:
-        """Retrieve the jobs of the workflow."""
     def load(filename, clear=True)
         """Load the workflow."""
-    def predecessor(name)
-        """Retrieve the jobs that must be run before the specified job."""
     def remove_job(name, state=False)
         """Remove a particular job from the workflow."""
     def remove_workflow()
@@ -121,23 +88,12 @@ class Workflow(...):
         """Save the workflow with state."""
     def sequential_order():
         """Return a list of the topological order of the workflow."""
-    def set_progress(name, percent)
-        """Manually update a job’s progress."""
-    def status():
-        """Return details of the workflow in dict format."""
-    def json():
-        """Return the workflow as json string."""
     property table
         """Return a table of the workflow."""
-    property yaml
-        """Return the yaml file of the workflow with status."""
-    property json
-        """Return the json file of the workflow with status."""
     def update_progress(name):
         """Manually update the progress of a job according to its log file."""
     def update_status(name, status):
         """Manually update a job’s status."""
-
 \end{minted}
 \end{figure}
 
@@ -146,15 +102,7 @@ class Workflow(...):
 \caption{Pseudo code for the Job class with selected methods}
 \label{fig:code-workflow-rest}
 \begin{minted}[breaklines]{bash}
-
 class RESTWorkflow
-
-    Bases: object
-
-    Class which interfaces with cc FastAPI server using REST.
-
-    Initialize the service.
-
     def add_job(workflow_name, **kwargs):
         """Add a job to the workflow."""
     def delete_workflow(workflow_name, job_name=None):

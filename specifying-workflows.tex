@@ -249,8 +249,8 @@ cloudmesh cc workflows, they must integrate progress strings into the
 log files that are monitored. This is available for shell and batch
 scripts, Python and Jupyter.
 
-For shell and Slurm scripts \mintinline{bash}|.sh|, the script must
-contain progress update lines as follows:
+For shell and Slurm scripts, the script must contain progress update
+lines as follows:
 
 \begin{minted}[breaklines]{bash}
 echo "# cloudmesh status=running progress=1 pid=$$"
@@ -264,11 +264,9 @@ echo "# cloudmesh status=done progress=100 pid=$$"
 
 at the end of the script.
 
-
-For Python scripts \mintinline{bash}|.py| and Jupyter
-notebooks \mintinline{bash}|.ipynb|, the script it is easiiests to use
-our build in progress method. and import it from the cloudmesh.common
-module. The following example demonstrates its use:
+For Python scripts and Jupyter notebooks, the script it is easiiests
+to use our build in progress method. and import it from the
+cloudmesh.common module. The following example demonstrates its use:
 
 \smallskip
 \begin{minted}[breaklines]{python}
@@ -289,7 +287,8 @@ probed continiously by the client to report the progress to the user.
 
 \subsection{Generating Progress Image as Graph}
 
-The framework has a build in capability to export the progress of the workflowin a DAQ. 
+The framework has a build in capability to export the progress of the
+workflowin a DAQ.
 
 Figure \ref{fig:workflow-process} shows
 the execution and display graph of the workflow
@@ -300,7 +299,8 @@ In Figure \ref{fig:workflow-process} we depict a simple example
 workflow to be executed where each task is executed sequentially. The
 status of the execution can be displayed as table or as graph. In
 Figure \ref{fig:workflow-process}, we showcase how the graph changes
-its appearance over time while using no lable in the start and end node and the label in the nodes for fetch-data, compute, and analyze:
+its appearance over time while using no lable in the start and end
+node and the label in the nodes for fetch-data, compute, and analyze:
 
 \begin{minted}[breaklines]{bash}
 label: "{name}\nprogress={progress}"
