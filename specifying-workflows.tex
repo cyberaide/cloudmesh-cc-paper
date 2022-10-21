@@ -11,8 +11,8 @@ scripts (test-[fetch-data,compute,analyze].sh). It contains a specific start and
 \subsection{Dependencies}
 
 Each dependency is specified in the {\em dependency} section while
-providing sequences of names in a list such as \verb|-
-start,fetch-data| or in our case where 3 more nodes are defined an
+providing sequences of names in a list such as
+\verb|-start,fetch-data| or in our case where 3 more nodes are defined an
 additional node is appended with \verb|,compute,analyze,end|.
 
 In case one wants to execute nodes in parallel we can simply define
@@ -96,7 +96,7 @@ kind &  The kind of the job, which can be localhost, ssh, ... TBD  \\
 status &  The status of the job in integer value between 0 and 100 \\
 \hline
 label &  A custom designed label \\
-\hine
+\hline
 script &  The script name to be executed \\
 \hline
 \end{tabular}
@@ -194,10 +194,9 @@ tstart.\verb|%Y%m%d,%H--%M--%S| & job start time \\
 tend.\verb|%Y%m%d,%H--%M--%S| & job end time \\
 modified.\verb|%Y%m%d,%H--%M--%S| & job modified time \\
 os. & operating system environment variable (like os.HOME) \\
-cm. & cloudmesh variable that is read from \verb|cms set|} \\
+cm. & cloudmesh variable that is read from \verb|cms set| \\
 \end{tabular}
 }
-
 \end{table}
 
 
