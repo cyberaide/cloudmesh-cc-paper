@@ -72,7 +72,6 @@ class Workflow(...):
                 status='ready', progress=0,
                 script=None, exec=None, pid=None,
                 venv=None, **kwargs)
-
         """Add a job to the workflow where the parameters are
           name (str) – name of job
           user (str) – username for job
@@ -137,7 +136,6 @@ class Workflow(...):
         """Manually update the progress of a job according to its log file."""
     def update_status(name, status):
         """Manually update a job’s status."""
-
 \end{minted}
 \end{figure}
 
