@@ -34,24 +34,24 @@ code to be executed on the compute resource is available.
 class Job:
    ...
    def clear():
-      """clear job progress"""
+      """Clear job progress."""
    def create(filename=None, script=None, exec=None):
       """Create a template for the script with progress."""
    def get_log(refresh=True):
       """Get the log of the job."""
-   def get_pid(refresh=False)
-      """Get the pid that the job is running within determined  by the compute resource it is running on""".
+   def get_pid(refresh=False):
+      """Get the pid that the job is running within determined by the compute resource it is running on."""
    def get_progress(refresh=False):
        """Get the progress of the job from the compute resource."""
    def get_status(refresh=False):
        """Get the status of the job."""
-   def kill()
+   def kill():
        """Kill the job."""
    def run():
        """Run the job."""
    def sync():
        """Synchronise the current directory with the remote. Copies the shell script to the experiment directory and ensures that the file is copied with the sync command
-   def watch(period=10)
+   def watch(period=10):
        """Watch the job and check for changes in the given period."""
 
 \end{minted}
