@@ -28,19 +28,19 @@ prior to one running the job as to assuer that the lates script and
 code to be executed on the compute resource is available.
 
 \begin{figure}[htb]
-\caption{Pseudo code for the Job class with selected methhods}
+\caption{Pseudo code for the Job class with selected methods}
 \label{fig:code-job}
 \begin{minted}[breaklines]{bash}
 class Job:
    ...
    def clear():
-      """clear job progress"""
+      """Clear job progress."""
    def create(filename=None, script=None, exec=None):
       """Create a template for the script with progress."""
    def get_log(refresh=True):
       """Get the log of the job."""
    def get_pid(refresh=False)
-      """Get the pid that the job is running within determined  by the compute resource it is running on""".
+      """Get the pid that the job is running within determined by the compute resource it is running on."""
    def get_progress(refresh=False):
        """Get the progress of the job from the compute resource."""
    def get_status(refresh=False):
@@ -50,7 +50,7 @@ class Job:
    def run():
        """Run the job."""
    def sync():
-       """Synchronise the current directory with the remote. Copies the shell script to the experiment directory and ensures that the file is copied with the sync command
+       """Synchronise the current directory with the remote. Copies the shell script to the experiment directory and ensures that the file is copied with the sync command."""
    def watch(period=10)
        """Watch the job and check for changes in the given period."""
 
@@ -63,13 +63,13 @@ class Job:
 \begin{minted}[breaklines]{bash}
 class Workflow(...):
 
-    def add_dependencies(dependency)
+    def add_dependencies(dependency):
         Add a job dependency to the workflow (and the graph).
 
-    add_dependency(source, destination)
+    def add_dependency(source, destination):
         Add a job dependency to the workflow (and the graph).
 
-    add_job(filename=None, name=None, user=None, host=None, label=None, label_format=None, kind='local', status='ready', progress=0, script=None, exec=None, pid=None, venv=None, **kwargs)
+    def add_job(filename=None, name=None, user=None, host=None, label=None, label_format=None, kind='local', status='ready', progress=0, script=None, exec=None, pid=None, venv=None, **kwargs):
 
         Add a job to the workflow.
 
@@ -99,13 +99,13 @@ class Workflow(...):
 
                 kwargs (kwargs) – any other miscellaneous specifications for the job
 
-    analyze_states()
+    def analyze_states():
         Return the number of jobs in the various states.
 
-    create_topological_order()
+    def create_topological_order():
         Update the graph while each node bget a number determined from get_sequential_order.
 
-    property dependencies
+    def property dependencies
         Retrieve the dependencies of the workflow.
 
     property dict_of_workflow
@@ -252,7 +252,7 @@ Cloudmesh cc REST workflow.
 
 
 \begin{figure}[htb]
-\caption{Pseudo code for the Job class with selected methhods}
+\caption{Pseudo code for the Job class with selected methods}
 \label{fig:code-workflow-rest}
 \begin{minted}[breaklines]{bash}
 
@@ -264,57 +264,28 @@ class RESTWorkflow
 
     Initialize the service.
 
-    add_job(workflow_name, **kwargs)
-
-        Add a job to the workflow.
-
-        Adds a job to a workflow that is specified in the provided workflow_name string.
-
-        Returns
-
-            all jobs within workflow
-        Return type
-
-            dict
-
-    delete_workflow(workflow_name, job_name=None)
-
-        Delete a workflow by using REST.
-
-        Parameters
-
-                workflow_name (str) – name of workflow to delete
-
-                job_name (str) – name of job to delete inside specified workflow
-
-        Returns
-
-            success or failure message
-        Return type
-
-            dict
-
+    def add_job(workflow_name, **kwargs)
+        """Add a job to the workflow."""
+    def delete_workflow(workflow_name, job_name=None)
+        """Delete a workflow by using REST."""
     def get_workflow(workflow_name, job_name=None):
-        Retrieve a workflow by using REST.
-
+        """Retrieve a workflow by using REST."""
     def list_workflows():
         """Return a list of workflows that is found within the server."""
-
     def run_workflow(workflow_name, run_type='topo', show=True):
         """Run a workflow by using REST."""
-
     def upload_workflow(directory=None, archive=None, yaml=None):
         """Upload a workflow by using REST."""
 \end{minted}
 \end{figure}
 
 \begin{figure}[htb]
-\caption{Pseudo code for the Job class with selected methhods}
+\caption{Pseudo code for the Job class with selected methods}
 \label{fig:code-workflow-example}
 \begin{minted}[breaklines]{bash}
     w = Workflow(filename="workflow.yaml")
-    w.load(filename="abc.yaml") <- loads in the graph, but will save it still to workflow.yaml
-    w.add(filename="add.yaml") <-adds a new workflow into the existing one.
+    w.load(filename="abc.yaml") <- loads in the graph, but will still save it to workflow.yaml
+    w.add(filename="add.yaml") <- adds a new workflow into the existing one.
     w.add_job(name="a",
                 command="hostname",
                 user=None, # bug if kind is local and user is None, we do not need user, but can take local user
@@ -338,7 +309,7 @@ The commandline mode is a an implementation that does not use a
 backend service. It runs in the terminal till the workflow is
 completed. All state of the jobs are managed on the compute service on
 which the job is run and the status is replicated into the client on
-demand. THis allows easy reporting of the statsu through a table and a
+demand. This allows easy reporting of the status through a table and a
 graph display using client based rendering tools. 
 
 
