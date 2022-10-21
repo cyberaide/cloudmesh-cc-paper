@@ -105,27 +105,6 @@ class Workflow:
 
 \begin{figure}[htb]
 \caption{Pseudo code for the Job class with selected methods}
-\label{fig:code-workflow-rest}
-\begin{minted}[breaklines]{bash}
-class RESTWorkflow
-    ...
-    def add_job(workflow_name, **kwargs):
-        """Add a job to the workflow."""
-    def delete_workflow(workflow_name, job_name=None):
-        """Delete a workflow by using REST."""
-    def get_workflow(workflow_name, job_name=None):
-        """Retrieve a workflow by using REST."""
-    def list_workflows():
-        """Return a list of workflows that is found within the server."""
-    def run_workflow( ... ):
-        """Run a workflow by using REST."""
-    def upload_workflow( ... ):
-        """Upload a workflow by using REST."""
-\end{minted}
-\end{figure}
-
-\begin{figure}[htb]
-\caption{Pseudo code for the Job class with selected methods}
 \label{fig:code-workflow-example}
 \begin{minted}[breaklines]{bash}
     w = Workflow(filename="workflow.yaml")
@@ -201,10 +180,42 @@ mode has an additional keyword {\em service} to intaract with the rest service.
 
 
 Certainly one can also directly interact with the REST service API for this service.
-For ease of use we have exposed the interface thwough an OpenAPI specification that is availeable to the user
+For ease of use we have exposed the interface thwough an OpenAPI specification that is availeable to the user as shown in Figure~\ref{fig:openapi}.
 
+\begin{figure}[htb]
+
+\centering
+\includegraphics[width=0.7\columnwidth]{images/upload_api.png}
+\caption{Browser API GUI for Cloudmesh Compute Cluster}
+\label{fig:openapi}
+\end{figure}
+
+To also allow programming against the REST service in Python a Python API similar to that pf the commanindline mode is avalable. Figure~\ref{fig:code-workflow-rest-commandline} showcases this API.
 
 \section{REST}
+
+
+\begin{figure}[htb]
+\caption{Pseudo code for the Job class with selected methods}
+\label{fig:code-workflow-rest-commandline}
+\begin{minted}[breaklines]{bash}
+class RESTWorkflow
+    ...
+    def add_job(workflow_name, **kwargs):
+        """Add a job to the workflow."""
+    def delete_workflow(workflow_name, job_name=None):
+        """Delete a workflow by using REST."""
+    def get_workflow(workflow_name, job_name=None):
+        """Retrieve a workflow by using REST."""
+    def list_workflows():
+        """Return a list of workflows that is found within the server."""
+    def run_workflow( ... ):
+        """Run a workflow by using REST."""
+    def upload_workflow( ... ):
+        """Upload a workflow by using REST."""
+\end{minted}
+\end{figure}
+
 
 
 The Cloudmesh Compute Cluster service allows you to execute analytical,
@@ -344,11 +355,6 @@ As the service is using also an OpenAPI 2.0 specification the workflow
 can also be uploaded implicitly through the specification GUI. Navigate
 to \texttt{http://127.0.0.1:8000/docs} and use the POST Upload method.
 
-\begin{figure}
-\centering
-\includegraphics[width=0.7\columnwidth]{images/upload_api.png}
-\caption{Browser API GUI for Cloudmesh Compute Cluster}
-\end{figure}
 
 Please click \texttt{Try\ it\ out} and then enter \newline
 \mintinline{bash}|~/cm/cloudmesh-cc/workflow-example.tar| in the
