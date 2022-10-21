@@ -155,45 +155,16 @@ class RESTWorkflow
 
     Initialize the service.
 
-    add_job(workflow_name, **kwargs)
-
-        Add a job to the workflow.
-
-        Adds a job to a workflow that is specified in the provided workflow_name string.
-
-        Returns
-
-            all jobs within workflow
-        Return type
-
-            dict
-
-    delete_workflow(workflow_name, job_name=None)
-
-        Delete a workflow by using REST.
-
-        Parameters
-
-                workflow_name (str) – name of workflow to delete
-
-                job_name (str) – name of job to delete inside specified workflow
-
-        Returns
-
-            success or failure message
-        Return type
-
-            dict
-
+    def add_job(workflow_name, **kwargs):
+        """Add a job to the workflow."""
+    def delete_workflow(workflow_name, job_name=None):
+        """Delete a workflow by using REST."""
     def get_workflow(workflow_name, job_name=None):
-        Retrieve a workflow by using REST.
-
+        """Retrieve a workflow by using REST."""
     def list_workflows():
         """Return a list of workflows that is found within the server."""
-
     def run_workflow(workflow_name, run_type='topo', show=True):
         """Run a workflow by using REST."""
-
     def upload_workflow(directory=None, archive=None, yaml=None):
         """Upload a workflow by using REST."""
 \end{minted}
