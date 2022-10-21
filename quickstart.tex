@@ -112,53 +112,16 @@ class Workflow(...):
         Return a dict of the nodes and dependencies of the workflow.
 
     display(filename=None, name='workflow', first=True)
-
         Show the graph of the workflow.
 
-        Parameters
-
-                filename (str) – location of the graph
-
-                name (str) – name of the workflow to be displayed
-
-                first (bool) – if True then this is first time graph is displayed
-
-        Returns
-
-            nothing
-        Return type
-
-            None
-
     get_predecessors(name)
-
         Return the predecessors.
 
         Figure out all the dependencies of the name node then test if each node in front (parent) has progress of 100 if the parent has progress 100, remove those nodes.
 
-        Parameters
-
-            name (str) – name of a job
-        Returns
-
-            list of preceding jobs
-        Return type
-
-            list
-
     job(name)
 
         Return the details of a job within the workflow.
-
-        Parameters
-
-            name (str) – name of job
-        Returns
-
-            details of a job within the workflow
-        Return type
-
-            dict
 
     property jobs
 
@@ -175,51 +138,13 @@ class Workflow(...):
 
         Return the workflow as json string.
 
-        Parameters
-
-            filepath (str) – where the file is located
-        Returns
-
-            a json string of the workflow
-        Return type
-
-            str
-
     load(filename, clear=True)
 
         Load the workflow.
 
         Load a workflow graph from file. However, the file is still stored in the filename that was used when the Workflow was created. This allows to load in a saved workflow in another file, but continue working on it in the file used in init.
 
-        Parameters
-
-                filename (str) – which file to load the workflow from
-
-                clear (bool) – whether to clear workflow. not implemented
-
-        Returns
-
-            nothing
-        Return type
-
-            None
-
-    load_with_state(filename)
-
-        Load the workflow with state.
-
-        Parameters
-
-            filename (str) – which file to load the workflow from
-        Returns
-
-            nothing
-        Return type
-
-            None
-
     predecessor(name)
-
         Retrieve the jobs that must be run before the specified job.
 
         Parameters
@@ -233,32 +158,10 @@ class Workflow(...):
             list
 
     remove_job(name, state=False)
-
         Remove a particular job from the workflow.
 
-        Parameters
-
-                name (str) – name of job to be removed from workflow
-
-                state (bool) – whether to save workflow with state after job removal
-
-        Returns
-
-            nothing
-        Return type
-
-            None
-
     remove_workflow()
-
         Delete workflow from the local file system.
-
-        Returns
-
-            nothing
-        Return type
-
-            None
 
     run_parallel(directory='~/experiment', order=None, dryrun=False, show=True, period=0.5, filename=None)
 
@@ -277,13 +180,6 @@ class Workflow(...):
                 period (float) – how long to wait after showing the graph
 
                 filename (str) – where to save the graph
-
-        Returns
-
-            nothing
-        Return type
-
-            None
 
     run_topo(order=None, dryrun=False, show=True, filename=None)
 
@@ -307,15 +203,12 @@ class Workflow(...):
             None
 
     save(filename=None)
-
         Save the workflow.
 
     save_with_state(filename, stdout=False)
-
         Save the workflow with state.
 
     sequential_order()
-
         Return a list of the topological order of the workflow.
 
     set_progress(name, percent)
