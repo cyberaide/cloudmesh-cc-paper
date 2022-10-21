@@ -104,25 +104,23 @@ class Workflow:
 
 \begin{figure}[htb]
 \begin{minted}[breaklines]{bash}
-    w = Workflow(filename="workflow.yaml")
-    # load a preexisting work=flow
-    # w.load(filename="source.yaml") 
-    # w.add(filename="source.yaml")
+    w = Workflow(name="workflow-analyze")
+    # load a preexisting workflow
+    # w.load(filename="source.yaml")
     
     # add jobs and dependencies explicitly
     w.add_job(name="fetch-data",
-                command="hostname",
-                host='supercomputer-a' # defined in .ssh
-                label="{name}\nprogress={progress}",
-                kind="local",
-                status="ready",
-                progress=0)
+              exec="hostname",
+              host='supercomputer-a' # defined in .ssh
+              label="{name}\nprogress={progress}",
+              kind="local",
+              status="ready",
+              progress=0)
     w.add_job(name="compute", command="... TBD ...")
     w.add_job(name="analyze", command="... TBD ...")
     w.add_dependencies(
-      dependency="start,fetch-data,compute,analyze"
-    )
-    w.run()
+              dependency="start,fetch-data,compute,analyze")
+    w.run_topo()
 \end{minted}
 \caption{Pseudo code for the Job class with selected methods}
 \label{fig:code-workflow-example}
