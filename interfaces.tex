@@ -321,7 +321,7 @@ progression.
 
 \subsection{Run the workflow}\label{run-the-workflow}
 
-To run a workflow yo can use the various interfaces to do so. As an
+To run a workflow, you can use the various interfaces to do so. As an
 example we will showcase here how to run is in the service mode bey
 either the GUI or a curl call.
 
@@ -342,14 +342,20 @@ $ curl -X 'GET' 'http://127.0.0.1:8000/workflow/run/workflow-example
 To run the workflow with the Python cloudmesh REST API, please use the code
 
 \begin{minted}[breaklines]{python} 
-TBD
+from cloudmesh.cc.workflow import Workflow
+
+w = Workflow(name='workflow-example', load=True)
+w.run_topo()
 \end{minted}
 
-\paragrap{Python request API.} To run the workflow with the Python
+\paragraph{Python request API.} To run the workflow with the Python
 request API, please use the code
 
 \begin{minted}[breaklines]{python}
-TBD
+import requests
+url = f'http://127.0.0.1:8000/workflow/run/workflow-example?show=True'
+r = requests.get(url)
+print(r)
 \end{minted}
 
 
