@@ -342,10 +342,9 @@ $ curl -X 'GET' 'http://127.0.0.1:8000/workflow/run/workflow-example
 To run the workflow with the Python cloudmesh REST API, please use the code
 
 \begin{minted}[breaklines]{python} 
-from cloudmesh.cc.workflow import Workflow
-
-w = Workflow(name='workflow-example', load=True)
-w.run_topo()
+from cloudmesh.cc.workflowrest import RESTWorkflow
+rest = RESTWorkflow()
+result = rest.run_workflow('workflow-example')
 \end{minted}
 
 \paragraph{Python request API.} To run the workflow with the Python
