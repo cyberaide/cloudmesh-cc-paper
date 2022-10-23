@@ -206,16 +206,18 @@ $ curl -X 'GET' \
 As we use a REST service, we can also easily upload the workflow
 through a Python enabled REST call. We will use Python requests to
 demonstrate this upload feature. To showcase the various ways to
-access the service we focus on uploading a tar file that contains the workflow as well as the scripts or programs used in the workflow. The tar file is called {\em workflow.tar}
+access the service we focus on uploading a tar file that contains the
+workflow as well as the scripts or programs used in the workflow. The
+tar file is called {\em workflow.tar}.
 
-To also allow programming against the REST service in Python a Python
-API similar to that pf the commandline mode is
+To also allow programming against the REST service in Python, a Python
+API similar to that of the commandline mode is
 available. Figure~\ref{fig:code-workflow-rest-commandline} showcases
 this API.
 
-To simplify interaction with the Rest service we create a special
+To simplify interaction with the REST service we create a special
 RESTWorkflow class that is similar to the command module API but uses
-instead the REST interface to the service rather than directly
+instead the REST interface to the service rather than direct
 communication with the command client API.
 
 The user can also simply use the requests module in Python to
