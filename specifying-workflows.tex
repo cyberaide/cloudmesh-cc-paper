@@ -34,8 +34,8 @@ Nodes can be customized in various ways within the workflow
 configuration YAML file, including their job types (python, sh, jupyter,
 or slurm), their virtual Python environment (by specifying
 \texttt{venv}), their appearance on the graph, and other
-characteristics.  This is controoled throgh a number of attributes
-used by the nodes in the DAG The attributes summarized in
+characteristics. This is controlled through a number of attributes
+used by the nodes in the DAG. The attributes are summarized in
 Table~\ref{tab:node-attributes}.
 
 \begin{figure}
@@ -105,36 +105,27 @@ script &  The script name to be executed \\
 
 \subsection{Node labels}
 
-One particular usefule attribute is that of a label. If no label is
-used, the name of the node is used as label. However if a label is
-specified one can also use attribte names, and timers to create labels
-with implicit state information. This is don by introducing variables
+One particular useful attribute is that of a label. If no label is
+used, the name of the node is used as label. However, if a label is
+specified one can also use attribute names, and timers to create labels
+with implicit state information. This is done by introducing variables
 through curly braces when defining the labels inside the label defined
 in the nodes within the yaml workflow file.
 
 For example, a label could be defined as showcased in
-Figure \ref{fig:label-job}. The appropriate values will be dynamically
+Figure~\ref{fig:label-job}. The appropriate values will be dynamically
 replaced during the execution of the workflow.
 This creates a node on the graph that looks similar to the node
 showcased in Figure~\ref{fig:label-node}.
-
-Initially, the created and elapsed labels are \texttt{N/A} if the
-workflow has not yet started, but they are replaced during runtime. This
-can be observed by running a workflow in graph view in the web
-interface. Colons must be replaced with \texttt{-\/-} and the years, months, days,
-hours, minutes, and seconds can be arranged as desired, as long as the
-corresponding letters remain consistent (\texttt{\%Y} \texttt{\%m}
-\texttt{\%d} \texttt{\%H} \texttt{\%M} \texttt{\%S} respectively). Also,
-the format of the time must come immediately following the period (see
-Table \ref{fig:labels-list} for a summary of options for defining time
-based attributed to be replaced in the label).
 
 Initially, the created and elapsed labels are \mintinline{bash}|N/A| if the
 workflow has not yet started, but they are replaced during runtime. This
 can be observed by running a workflow in graph view in the web
 interface.
 
-In this format we must use two dashes \mintinline{bash}|--| to separate the various components. However, when rendered the dashes will be replaced with ca colon. Thus you can easily use years, months, days,
+In this format we must use two dashes \mintinline{bash}|--| to separate the various components.
+However, when rendered the dashes will be replaced with a colon.
+Thus you can easily use years, months, days,
 hours, minutes, and seconds can be arranged as desired, as long as the
 corresponding letters remain consistent 
 (\mintinline{bash}|%Y| 
@@ -143,8 +134,12 @@ corresponding letters remain consistent
 \mintinline{bash}|%H| 
 \mintinline{bash}|%M| 
 \mintinline{bash}|%S|
-. The time format must be specified immediately following the period after a format supported time variable. If no format is specified following the period after the variable, the
+).
+The time format must be specified immediately following the period after a format supported time variable.
+If no format is specified following the period after the variable, the
 datetime defaults to American format.
+See Table~\ref{fig:labels-list} for a summary of options for defining time
+based attributed to be replaced in the label.
 
 
 Nodes can be customized in various ways within the workflow
@@ -152,9 +147,6 @@ configuration YAML file, including their job types (python, sh, jupyter,
 or slurm), their virtual Python environment (by specifying
 \mintinline{bash}|venv|), their appearance on the graph, and other
 characteristics.
-
-If no format is specified following the period after the variable, the
-datetime defaults to American format.
 
 
 \begin{figure}
@@ -224,7 +216,7 @@ available \href{https://graphviz.org/doc/info/shapes.html}{shapes}
 and \href{https://graphviz.org/docs/attr-types/style/}{styles} are
 listed in the Graphviz documentation \cite{www-graphviz}.
 
-Figure \ref{fig:shape-style-yaml} is an example of a node in YAML
+Figure~\ref{fig:shape-style-yaml} is an example of a node in YAML
 format that uses a box shape and an empty style. The empty style
 defaults to \mintinline{bash}|filled|, which allows the node to change
 color when the job status is changed.
@@ -278,8 +270,8 @@ echo "# cloudmesh status=done progress=100 pid=$$"
 
 at the end of the script.
 
-For Python scripts and Jupyter notebooks, the script it is easiiests
-to use our build in progress method. and import it from the
+For Python scripts and Jupyter notebooks, it is easiest
+to use our built-in progress method and import it from the
 cloudmesh.common module. The following example demonstrates its use:
 
 \smallskip
@@ -295,25 +287,20 @@ progress(progress=100, filename=filename)
 
 When recording progress, the progress should be ascending between 1
 and 100. The last value must report 100 or the node will not be
-completed and the Workflow gets stuck.  The output of the progress
+completed and the Workflow gets stuck. The output of the progress
 will be written into a \verb|{workflowname}.log| file that will be
-probed continiously by the client to report the progress to the user.
+probed continuously by the client to report the progress to the user.
 
 \subsection{Generating Progress Image as Graph}
 
 The framework has a build in capability to export the progress of the
-workflowin a DAQ.
+workflow in a DAG.
 
-Figure \ref{fig:workflow-process} shows
-the execution and display graph of the workflow
-over time.
-
-
-In Figure \ref{fig:workflow-process} we depict a simple example
+In Figure~\ref{fig:workflow-process} we depict a simple example
 workflow to be executed where each task is executed sequentially. The
 status of the execution can be displayed as table or as graph. In
-Figure \ref{fig:workflow-process}, we showcase how the graph changes
-its appearance over time while using no lable in the start and end
+Figure~\ref{fig:workflow-process}, we showcase how the graph changes
+its appearance over time while using no label in the start and end
 node and the label in the nodes for fetch-data, compute, and analyze:
 
 \begin{minted}[breaklines]{bash}

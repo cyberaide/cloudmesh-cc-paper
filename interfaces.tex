@@ -1,16 +1,16 @@
-\FILE{quickstart.tex}
+\FILE{interfaces.tex}
 
 \section{Cloudmesh-cc Interfaces}
 
 In this section we explain the various ways of interfacing with cloudmesh-cc.
 
-It is important to note that we have a {\em commandline mode} that interfaces directly with the backends while not requiering a service. This includes an easy to use python API.
+It is important to note that we have a {\em commandline mode} that interfaces directly with the backends while not requiring a service. This includes an easy-to-use Python API.
 
-In addition we have used this API to implement a {\em service mode}, so we an stand up a REST service as well as a GUI that can ba accessed through a Web browser.
-Please note that the service mode can also be access through te command line in a terminal. To distinguish how we operate cloudmesh-cc we use the term {\em mode} to deliniate it from a command that is entered ina terminal to query the status of the workflow.
+In addition, we have used this API to implement a {\em service mode}, so we can stand up a REST service as well as a GUI that can be accessed through a Web browser.
+Please note that the service mode can also be accessed through the command line in a terminal. To distinguish how we operate cloudmesh-cc we use the term {\em mode} to delineate it from a command that is entered in a terminal to query the status of the workflow.
 
-We will now discuss tes interfaces in more detail and also showcase
-hwo we can access them.
+We will now discuss these interfaces in more detail and also showcase
+how we can access them.
 
 
 \subsection{Python API}
@@ -18,9 +18,9 @@ hwo we can access them.
 Cloudmesh-cc is implemented in Python. Extensive documentation is
 available in GitHub and through GitHub action it is automatically
 updated \cite{github-cloudmesh-cc}.  We distingush two main classes
-that are easy to use. The first is a {\em Job class} that can adapted
+that are easy to use. The first is a {\em Job class} that can be adapted
 to include new computational resource types for executing jobs. The
-second is a {\em Workflow class} to ccordinate the execution of
+second is a {\em Workflow class} to coordinate the execution of
 multiple jobs. Selected methods of the Job class include are listed in
 Figure~\ref{fig:code-job}. Important to note is that the code for the
 scripts are all managed locally and a synchronization step is invoked
@@ -56,7 +56,7 @@ class Job:
    def watch(period=10):
        """Watch the job and check for changes in the given period."""
 \end{minted}
-\caption{Pseudo code for the Job class with selected methhods}
+\caption{Pseudo code for the Job class with selected methods}
 \label{fig:code-job}
 
 \bigskip
@@ -64,25 +64,25 @@ class Job:
 \begin{minted}[breaklines]{bash}
 class Workflow:
     ...
-    def add_dependencies(dependency)
+    def add_dependencies(dependency):
         """Add a job dependency to the workflow (and the graph)."""
-    add_dependency(source, destination)
+    def add_dependency(source, destination):
         """Add a job dependency to the workflow (and the graph)."""
     def add_job( ... ):
         """Add a job to the workflow with appropriate parameters."""
-    def display(filename=None, name='workflow', first=True)
+    def display(filename=None, name='workflow', first=True):
         """Show the graph of the workflow."""
     def job(name):
         """Return the details of a job within the workflow."""
-    def load(filename, clear=True)
+    def load(filename, clear=True):
         """Load the workflow."""
-    def remove_job(name, state=False)
+    def remove_job(name, state=False):
         """Remove a particular job from the workflow."""
-    def remove_workflow()
+    def remove_workflow():
         """Delete workflow from the local file system."""
-    def run_parallel( ... )
+    def run_parallel( ... ):
         """Run a workflow in a parallel fashion."""
-    def run_topo(order=None, dryrun=False, show=True, filename=None)
+    def run_topo(order=None, dryrun=False, show=True, filename=None):
         """Run the workflow in a topological order."""
     def save(filename=None):
         """Save the workflow."""
@@ -90,14 +90,14 @@ class Workflow:
         """Save the workflow with state."""
     def sequential_order():
         """Return a list of the topological order of the workflow."""
-    property table
+    property table:
         """Return a table of the workflow."""
     def update_progress(name):
         """Manually update the progress of a job according to its log file."""
     def update_status(name, status):
         """Manually update a job’s status."""
 \end{minted}
-\caption{Pseudo code for the Job class with selected methhods}
+\caption{Pseudo code for the Job class with selected methods}
 \label{fig:code-workflow}
 \end{figure}
 
@@ -180,24 +180,28 @@ Figure~\ref{fig:code-workflow-commandline}.
 
 \subsection{Service Mode}
 
-The Python API has ale been used to implement a REST service. To
+The Python API has been used to implement a REST service. To
 easily interact with the REST service we have also added a couple of
-conveneinet commannds one can issue from a terminal. They are listed
+convenient commands one can issue from a terminal. They are listed
 in Figure~\ref{fig:code-workflow-service-commandline}. It is clear for
-these methods that starting stopping and getting the status of the
-service is very easy, In contrast to the commandline mode this service
+these methods that starting, stopping, and getting the status of the
+service is very easy. In contrast to the commandline mode this service
 mode has an additional keyword {\em service} to interact with the rest service.
 
 Certainly one can also directly interact with the REST service API for
-this service. For ease of use we have exposed the interface through
+this service. For ease of use, we have exposed the interface through
 an OpenAPI specification that is available to the user as shown in
 Figure~\ref{fig:openapi}.
 
-
-
-Thus other tools such as curl or other languages supporting url
+Thus, other tools such as curl or other languages supporting url
 requests can be used. A curl example to list the workflow
-specifications uploaded to the service is
+specifications uploaded to the service is as follows:
+
+\begin{minted}[breaklines]{bash}
+$ curl -X 'GET' \
+    'http://127.0.0.1:8000/workflows' \
+    -H 'accept: application/json'
+\end{minted}
 
 As we use a REST service, we can also easily upload the workflow
 through a Python enabled REST call. We will use Python requests to
@@ -272,8 +276,9 @@ interaction is possible in asynchronous mode.
 
 As the service is using also an OpenAPI 2.0 specification the workflow
 can also be uploaded implicitly through the specification
-GUI. Navigate to \texttt{http://127.0.0.1:8000/docs} and use the POST
-Upload method. Then click \texttt{Try\ it\ out} and enter the
+GUI. Navigate to {\scriptsize \verb|http://127.0.0.1:8000/docs|}
+and use the POST Upload method. Then click
+{\em Try\ it\ out} and enter the
 location of the tar file, followed by clicking {\em Execute}.
 
 Obviously, any REST service or REST API can be used allowing to
@@ -289,8 +294,8 @@ appropriate command line.
   $ cms cc stop
 \end{minted}%$
 
-The view can also be achieved by opening the 
-the link {\scriptsize \verb|http://127.0.0.1:8000/}.
+The view can also be achieved by opening the link \linebreak
+{\scriptsize \verb|http://127.0.0.1:8000/|}.
 
 Now the browser provides an interface to view preexisting workflows in both
 a DataTable format and as a graph format. Both views will update
