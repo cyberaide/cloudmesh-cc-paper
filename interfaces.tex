@@ -285,7 +285,7 @@ Obviously, any REST service or REST API can be used allowing to
 interface to it from different programming languages or frameworks.
 
 The web server provides a more customizable, easy-to-use interface for
-the Workflow class which can be started, viewed, and stoped with the
+the Workflow class which can be started, viewed, and stopped with the
 appropriate command line. 
 
 \begin{minted}[breaklines]{bash}
@@ -306,19 +306,23 @@ For a quick and easy example of leveraging this GUI interface, click
 on the Example tab in the left-hand sidebar. Then, a workflow-example
 will appear underneath Workflows. Click on the workflow-example and
 run the workflow by clicking the green Run button in the top-right. As
-the workflow runs, the user is able to click on the Graph button (see
-Figure~\ref{fig:graph}) and back to the Table button (see
-Figure~\ref{fig:table}, as desired, to view the workflow's
-progression.
+the workflow runs, the user is able to click on the Graph button
+to view the graph interface (see Figure~\ref{fig:graph}) and back to the
+Table button for the table interface (see Figure~\ref{fig:table}), as
+desired, to view the workflow's progression.
 
 
 \begin{figure}[htb]
 {\centering
 \includegraphics[width=1.05\columnwidth]{images/service-table.png}}
-\caption{Cloudmesh cc workflow table view}\label{fig:table}
+\caption{Cloudmesh cc workflow table view}
+\label{fig:table}
+\end{figure}
 
-{\includegraphics[width=1.05\columnwidth]{images/service-graph.png}
-  \caption{Cloudmesh cc workflow graph view}}
+\begin{figure}[htb]
+{\centering
+\includegraphics[width=1.05\columnwidth]{images/service-graph.png}}
+\caption{Cloudmesh cc workflow graph view}
 \label{fig:graph}
 \end{figure}
 
@@ -327,7 +331,7 @@ progression.
 \subsection{Run the workflow}\label{run-the-workflow}
 
 To run a workflow, you can use the various interfaces to do so. As an
-example we will showcase here how to run is in the service mode bey
+example we will showcase here how to run is in the service mode by
 either the GUI or a curl call.
 
 \paragraph{GUI.} To run, navigate to homepage at
