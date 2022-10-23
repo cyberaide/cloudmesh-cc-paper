@@ -218,9 +218,10 @@ RESTWorkflow class that is similar to the command module API but uses
 instead the REST interface to the service rather than directly
 communication with the command client API.
 
-If the user wants to use instead just Python requests he can do so as
-follows, while we just showcase the program in
-Figure~\ref{fig:code-workflow-requests} for uploading.
+The user can also simply use the requests module in Python to
+interface with the API. Figure~\ref{fig:code-workflow-requests}
+demonstrates how to use requests to upload a workflow by using
+an archive file that contains the YAML configuration file and the scripts.
 
 \begin{figure}[t]
 \begin{minted}[breaklines]{bash}
