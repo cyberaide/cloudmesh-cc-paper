@@ -111,7 +111,7 @@ class Workflow:
     # add jobs and dependencies explicitly
     w.add_job(name="fetch-data",
               exec="hostname",
-              host='supercomputer-a' # defined in .ssh
+              host="supercomputer-a", # defined in .ssh
               label="{name}\nprogress={progress}",
               kind="local",
               status="ready",
