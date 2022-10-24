@@ -28,11 +28,14 @@ the various benchmarks once the data is available.
    \digraph{cloudmaskwf}{
      rankdir=TB;
      node [shape=box style=rounded];
-      start -> "connect vpn" -> "fetch data" -> "v100 benchmark" -> "disconnect vpn" -> end;
-      "fetch data" -> "p100 benchmark" ->  "disconnect vpn";
-      "fetch data" -> "a100 benchmark" ->  "disconnect vpn";
-      "fetch data" -> "k80 benchmark" ->  "disconnect vpn";
-      "fetch data" -> "rtx2080 benchmark" ->  "disconnect vpn";    
+     start -> amd5095X -> "fetch data amd5095X" -> "benchmark
+     amd5095X" -> end;
+     start -> i13K -> "fetch data i13K" -> "benchmark i13K" -> end;     
+      start -> "connect vpn" -> "fetch data rivanna" -> "v100 benchmark" -> "disconnect vpn" -> end;
+      "fetch data rivanna" -> "p100 benchmark" ->  "disconnect vpn";
+      "fetch data rivanna" -> "a100 benchmark" ->  "disconnect vpn";
+      "fetch data rivanna" -> "k80 benchmark" ->  "disconnect vpn";
+      "fetch data rivanna" -> "rtx2080 benchmark" ->  "disconnect vpn";    
     }
   }
   \vspace{-1cm}
