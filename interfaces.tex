@@ -2,7 +2,8 @@
 
 \section{Cloudmesh-cc Interfaces}
 
-In this section we explain the various ways of interfacing with cloudmesh-cc.
+In this section we explain the various ways of interfacing with
+cloudmesh-cc that are part of our design (see Figure~\ref{fig:arch}).
 
 It is important to note that we have a {\em commandline mode} that interfaces directly with the backends while not requiering a service. This includes an easy to use python API.
 
@@ -272,7 +273,7 @@ interaction is possible in asynchronous mode.
 
 As the service is using also an OpenAPI 2.0 specification the workflow
 can also be uploaded implicitly through the specification
-GUI. Navigate to \texttt{http://127.0.0.1:8000/docs} and use the POST
+GUI. Navigate to {\scriptsize \texttt{http://127.0.0.1:8000/docs}} and use the POST
 Upload method. Then click \texttt{Try\ it\ out} and enter the
 location of the tar file, followed by clicking {\em Execute}.
 
@@ -290,7 +291,7 @@ appropriate command line.
 \end{minted}%$
 
 The view can also be achieved by opening the 
-the link {\scriptsize \verb|http://127.0.0.1:8000/}.
+the link {\scriptsize\texttt http://127.0.0.1:8000/}.
 
 Now the browser provides an interface to view preexisting workflows in both
 a DataTable format and as a graph format. Both views will update
@@ -298,7 +299,7 @@ automatically, in a live fashion, as the workflows are run, reporting
 live job status and progress.
 
 For a quick and easy example of leveraging this GUI interface, click
-on the Example tab in the left-hand sidebar. Then, a workflow-example
+n the Example tab in the left-hand sidebar. Then, a workflow-example
 will appear underneath Workflows. Click on the workflow-example and
 run the workflow by clicking the green Run button in the top-right. As
 the workflow runs, the user is able to click on the Graph button (see
@@ -309,10 +310,13 @@ progression.
 
 \begin{figure}[htb]
 {\centering
-\includegraphics[width=1.05\columnwidth]{images/service-table.png}}
+  \includegraphics[width=1.0\columnwidth]{images/service-table.png}}
+\vspace{-1.0cm}
 \caption{Cloudmesh cc workflow table view}\label{fig:table}
 
-{\includegraphics[width=1.05\columnwidth]{images/service-graph.png}
+\bigskip
+{\centering \includegraphics[width=1.0\columnwidth]{images/service-graph.png}
+\vspace{-1.0cm}
   \caption{Cloudmesh cc workflow graph view}}
 \label{fig:graph}
 \end{figure}
@@ -325,10 +329,9 @@ To run a workflow yo can use the various interfaces to do so. As an
 example we will showcase here how to run is in the service mode bey
 either the GUI or a curl call.
 
-\paragraph{GUI.} To run, navigate to homepage at
-\texttt{http://127.0.0.1:8000/} and click the workflow-example on the
+\paragraph{GUI} To run, navigate to homepage at
+{\scriptsize\texttt http://127.0.0.1:8000/} and click the workflow-example on the
 left side. Then click Run.
-
 
 \paragraph{Curl.} to run a workflow with curl please use
 
