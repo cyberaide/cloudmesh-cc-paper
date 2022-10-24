@@ -2,39 +2,21 @@
 
 \subsection{MNIST Workflow}\label{mnist-workflow}
 
-For this example, we use UVA's Rivanna machine. Please adapt it to your
-HPC machine.
-
-We can test Rivanna's GPUs and benchmark their runtimes for running
+MNIST is a well known program to detect handwritten digits. It
+provides for our work value because it is well understood and is used
+in many educational efforts. Also here we created a workflow that
+integrates the UVA Rivanna HPC (it can easily be adapted to other machines).
+The nice feature about this application is that it can be configured
+to run very quickly while still using various GPUs and benchmark their runtimes for running
 several MNIST Python programs. These programs include machine learning
 processing, convolutional neural network, long short-term memory,
 recurrent neural network, and others. The programs can be found at
 \url{https://github.com/cybertraining-dsc/reu2022/tree/main/code/deeplearning/mnist}
 
-To run the MNIST remote workflow on Rivanna, first, ensure that your UVA
-computing ID is set with the following command:
+As for the workflow we adapted it not only to run one algorithm but
+multiple in an itteration across the GPUs (similar to \ref{fig:cloudmaskwf}).
 
-\smallskip
-\begin{minted}[breaklines]{bash}
-$ cms set username=XXXXXX
-\end{minted}
-\smallskip
-
-where the X's are substituted with your computing ID.
-
-Then, issue commands:
-
-\smallskip
-\begin{minted}[breaklines]{bash}
-$ cd ~/cm/cloudmesh-cc
-$ pytest -v -x --capture=no examples/example_run_mnist_workflow_exec.py
-\end{minted}
-\smallskip
-
-This program uses SLURM and a shell script to iterate through the
-available GPUs on Rivanna, which are V100, A100, K80, P100, and RTX2080.
-
-On a successful run, the output will be similar to the following:
+On a successful run, the output will be recieving runtines similar to:
 
 \begin{table}[!ht]
 \caption{MNIST Performance as obtained by cloudmesh-cc on various graphics cards using workflow scheduling}
