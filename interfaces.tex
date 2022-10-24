@@ -199,10 +199,9 @@ requests can be used. A curl example to list the workflow
 specifications uploaded to the service is as follows:
 
 \begin{minted}[breaklines]{bash}
-$ curl -X 'GET' \
-    'http://127.0.0.1:8000/workflows' \
-    -H 'accept: application/json'
+$ curl -X 'GET'  'http://127.0.0.1:8000/workflows' -H 'accept: application/json'
 \end{minted}
+% $
 
 As we use a REST service, we can also easily upload the workflow
 through a Python-enabled REST call. We will use Python requests to
@@ -262,7 +261,8 @@ print(r.text)
 
 \begin{minted}[breaklines]{bash}
 $ curl -X 'POST' 'http://127.0.0.1:8000/ workflow?archive=workflow-example.tar'                           -H 'accept: application/json' -d ''
-\end{minted}%$
+\end{minted}
+% $
 \caption{Upload to the REST service with curl.}
 \label{fig:code-workflow-curl}
 
@@ -298,8 +298,8 @@ appropriate command line.
   $ cms cc start
   $ cms cc view
   $ cms cc stop
-\end{minted}%$
-
+\end{minted}
+%$
 
 The view can also be achieved by opening the 
 the link {\scriptsize\texttt http://127.0.0.1:8000/}.
@@ -355,7 +355,8 @@ run the example workflow.
 
 \begin{minted}[breaklines]{bash}
 $ curl -X 'GET' 'http://127.0.0.1:8000/workflow/run/workflow-example?show=True' -H 'accept: application/json'
-\end{minted}%$
+\end{minted}
+% $
 \flushleft
 \caption{\parindent0pt Running the example workflow with curl.}
 \label{fig:workflow-run-a}
@@ -366,7 +367,6 @@ from cloudmesh.cc.workflowrest import RESTWorkflow
 rest = RESTWorkflow()
 result = rest.run_workflow('workflow-example')
 \end{minted}
-
 \caption{Running the example workflow with cloudmesh RESTWorkflow API.}
 \label{fig:workflow-run-b}
 \bigskip
