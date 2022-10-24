@@ -25,6 +25,7 @@ clean:
 	rm -f *.ttt
 	rm -f *.blg
 	rm -f comment.cut
+	rm -f cloudmaskwf.dot cloudmaskwf.pdf
 	rm -rf *~
 
 regular:
