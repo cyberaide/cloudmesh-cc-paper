@@ -55,3 +55,6 @@ publish:
 	cd ../../laszewski/laszewski.github.io/papers; git add $(FILENAME).pdf
 	cd ../../laszewski/laszewski.github.io/papers; git commit -m "update $(FILENAME)" $(FILENAME).pdf
 	cd ../../laszewski/laszewski.github.io/papers; git push
+
+p:
+	pdflatex -shell-escape $(FILENAME)
