@@ -2,15 +2,20 @@
 
 \section{Cloudmask Workflow}\label{cloudmask-workflow}
 
-Cloudmesh cc comes with an example workflow that runs Cloudmask, which
-is a program that develops a model to classify sections of satellite
-images. Information regarding Cloudmask can be found at
-\url{https://github.com/laszewsk/mlcommons/tree/main/benchmarks/cloudmask\#readme}
+Cloudmask is a program that develops a model to classify sections
+of satellite images as either containing clouds or clear sky by
+using machine learning. This is beneficial for temperature measurement and
+meteorology.
+Information regarding Cloudmask can be found on its GitHub page \cite{www-cloudmask}.
+As running Cloudmask requires several phases and scripts, including a
+mixture of shell scripts and Python scripts, leveraging Cloudmesh-cc
+provides a much easier runtime instead of manually issuing many commands at
+a terminal.
 
 \subsection{Running the Cloudmask Workflow on
 Rivanna}\label{running-the-cloudmask-workflow-on-rivanna}
 
-To execute the workflow on UVA's HPC supercomputer, Rivanna, first
+To execute the Cloudmask workflow on UVA's HPC supercomputer, Rivanna, first
 ensure that your UVA Computing ID is set with the following command,
 replacing the X's with your ID:
 
