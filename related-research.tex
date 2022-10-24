@@ -3,22 +3,22 @@
 \section{Related Research}
 
 Many different workflow systems have been developed in the past. It
-is out of scope of this document to present a complete overview of all
+is out of the scope of this document to present a complete overview of all
 the different systems. Instead, we compare some selected features of
 the systems and identify features that are important for us. The
 following features are important.
 
 \begin{description}
 
-\item[Batch.] Long running jobs on HPC systems are coordinated through Batch services.
+\item[Batch.] Long-running jobs on HPC systems are coordinated through Batch services.
 
-\item[Resource Reservation.] In some cases access to batch queues on HPC systems take a long time in case of many different tasks it is sometimes useful to researce a number of batch nodes and run many short running programs on them if the need arises. This, however, can often be replaced just with properly coordinated workflows using a batch system. In fact frameworks using such reservation internally implement them using the batch system.
+\item[Resource Reservation.] In some cases access to batch queues on HPC systems take a long time in the case of many different tasks it is sometimes useful to research a number of batch nodes and run many short-running programs on them if the need arises. This, however, can often be replaced just with properly coordinated workflows using a batch system. In fact, frameworks using such reservations internally implement them using the batch system.
 
-\item[Computational Grids.] Grids provide a service level access to distributed HPC computing resources. However Grids popular a decade ago are no longer the predominantly deployed and focus has shifted to Cloud computing.
+\item[Computational Grids.] Grids provide service-level access to distributed HPC computing resources. However, Grids popular a decade ago are no longer predominantly deployed and the focus has shifted to Cloud computing.
 
 \item[Cloud.] Computing resources are these days also available in the cloud as HPC, batch, and compute services, including specialized SaaS offerings that allow to integrate analytics functions into workflows.
 
-\item[REST.] The predominant specification for cloud services uses the REST framework relying on a stateless model. This contrasts the WSRF model that uses stateful services.
+\item[REST.] The predominant specification for cloud services uses the REST framework relying on a stateless model. This contrasts with the WSRF model that uses stateful services.
 
 \item[Specification.] Some work has focused on the specification of the workflows rather.
 
@@ -53,7 +53,7 @@ Cloudmesh  \cite{www-cloudmesh-manual} & HPC, Cloud, on-Premise & Suite
 of Python code for cloud computing. \\
 \hline
 
-Airflow \cite{www-airflow} & HPC, Cloud, Remote Tasks & ``Airflow is a platform created by the community to programmatically author, schedule and monitor workflows.'' \\
+Airflow \cite{www-airflow} & HPC, Cloud, Remote Tasks & ``Airflow is a platform created by the community to programmatically author, schedule, and monitor workflows.'' \\
 \hline
 
 
@@ -62,20 +62,20 @@ Loosely coupled Metacomputer \cite{las-1996-thesis,las-1999-loosely} &
              & Early work on workflow management system connecting multiple supercomputers. \\
 \hline
 
-Karajan CoGkit  \cite{las07-workflow} & Service, Language, HPC, on-Premise & Sophisticated Workflow management system with Dag and loops for Grid computing and loosely coupled compute resources thorugh services. \\
+Karajan CoGkit  \cite{las07-workflow} & Service, Language, HPC, on-Premise & Sophisticated Workflow management system with Dag and loops for Grid computing and loosely coupled compute resources through services. \\
 \hline
 
-Snakemake  \cite{www-snakemake} & Language & ``The Snakemake workflow management system is a tool to create reproducible and scalable data analyses. Workflows are described via a human readable, Python based language. They can be seamlessly scaled to server, cluster, grid and cloud environments, without the need to modify the workflow definition. Finally, Snakemake workflows can entail a description of required software, which will be automatically deployed to any execution environment.'' \\
+Snakemake  \cite{www-snakemake} & Language & ``The Snakemake workflow management system is a tool to create reproducible and scalable data analyses. Workflows are described via a human-readable, Python-based language. They can be seamlessly scaled to server, cluster, grid, and cloud environments, without the need to modify the workflow definition. Finally, Snakemake workflows can entail a description of the required software, which will be automatically deployed to any execution environment.'' \\
 \hline
 
 Gridant  \cite{las-2004-gridant} & Language & 
-Client based workflow management toolkit to orchestrate complex workflows on the fly without substantial help from the service providers. It integrates on premisse and Grid resources. \\
+Client-based workflow management toolkit to orchestrate complex workflows on the fly without substantial help from the service providers. It integrates on premise and Grid resources. \\
 \hline
 
 Keppler  \cite{www-kepler} & Service, GUI & ``Kepler is designed to help scientists, analysts, and computer programmers create, execute, and share models and analyses across a broad range of scientific and engineering disciplines.'' \\
 \hline
 
-Pegasus  \cite{www-pegasus} & DAG, Service, HPC, Coud &  A DAG based workflow management tool for scientific workflow.  \\
+Pegasus  \cite{www-pegasus} & DAG, Service, HPC, Cloud &  A DAG-based workflow management tool for scientific workflow.  \\
 \hline
 
 Swift \cite{las-2007-swift} & Language, Many task & A language for distributed parallel scripting.\\
@@ -129,7 +129,7 @@ Azure Batch \cite{www-azure-batch} & Cloud, Batch & Microsoft Azure documentatio
 \hline
 
   
-% --  Artifact Visualization \cite{www-artifact} & & Argo Workflows documentation for kubernetes which shows how to visualize artifacts. \\
+% --  Artifact Visualization \cite{www-artifact} & & Argo Workflows documentation for Kubernetes which shows how to visualize artifacts. \\
 % \hline
 
 % -- REST Capabilities for RESTful Workflows \cite{www-rest-workflows} & & Article that demonstrates various examples of REST APIs, such as KNIME. \\
