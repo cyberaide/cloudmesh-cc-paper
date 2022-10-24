@@ -58,3 +58,9 @@ publish:
 
 p:
 	pdflatex -shell-escape $(FILENAME)
+
+latex:
+	pdflatex -shell-escape $(FILENAME)
+	bibtex $(FILENAME)
+	pdflatex -shell-escape $(FILENAME)
+	pdflatex -shell-escape $(FILENAME)
