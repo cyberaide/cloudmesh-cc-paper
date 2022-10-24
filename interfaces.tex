@@ -57,7 +57,7 @@ class Job:
    def watch(period=10):
        """Watch the job and check for changes in the given period."""
 \end{minted}
-\caption{Pseudo code for the Job class with selected methods}
+\caption{Pseudo code for the Job class with selected methods.}
 \label{fig:code-job}
 
 \bigskip
@@ -98,7 +98,7 @@ class Workflow:
     def update_status(name, status):
         """Manually update a job’s status."""
 \end{minted}
-\caption{Pseudo code for the Job class with selected methods}
+\caption{Pseudo code for the Job class with selected methods.}
 \label{fig:code-workflow}
 \end{figure}
 
@@ -123,7 +123,7 @@ class Workflow:
               dependency="start,fetch-data,compute,analyze")
     w.run_topo()
 \end{minted}
-\caption{Pseudo code for the Job class with selected methods}
+\caption{Pseudo code for the Job class with selected methods.}
 \label{fig:code-workflow-example}
 
 \bigskip
@@ -138,7 +138,7 @@ class Workflow:
       cms cc workflow status --name=NAME [--output=OUTPUT]
       cms cc workflow graph --name=NAME
 \end{minted}
-\caption{Command line interface to the workflow in terminal mode}
+\caption{Command line interface to the workflow in terminal mode.}
 \label{fig:code-workflow-commandline}
 
 \bigskip
@@ -152,7 +152,7 @@ class Workflow:
       cms cc workflow service add [--name=NAME] [--job=JOB] ARGS...
       cms cc workflow service run --name=NAME
 \end{minted}
-\caption{Command line interface to the workflow in service mode}
+\caption{Command line interface to the workflow in service mode.}
 \label{fig:code-workflow-service-commandline}.
 
 % \bigskip
@@ -160,7 +160,7 @@ class Workflow:
 {\centering
 \includegraphics[width=0.52\columnwidth]{images/upload_api.png}
 }
-\caption{Browser API GUI for Cloudmesh Compute Cluster}
+\caption{Browser API GUI for Cloudmesh Compute Cluster.}
 
 \label{fig:openapi}
 
@@ -244,7 +244,7 @@ class RESTWorkflow
     def upload_workflow( ... ):
         """Upload a workflow by using REST."""
 \end{minted}
-\caption{Pseudo code for the Job class with selected methods}
+\caption{Pseudo code for the Job class with selected methods.}
 \label{fig:code-workflow-rest-commandline}
 
 \bigskip
@@ -255,7 +255,7 @@ r = requests.post(
       'http://127.0.0.1:8000/workflow?archive=workflow-example.tar')
 print(r.text)
 \end{minted}
-\caption{Upload to the REST service with Python requests}
+\caption{Upload to the REST service with Python requests.}
 \label{fig:code-workflow-requests}
 
 \bigskip
@@ -263,7 +263,7 @@ print(r.text)
 \begin{minted}[breaklines]{bash}
 $ curl -X 'POST' 'http://127.0.0.1:8000/ workflow?archive=workflow-example.tar'                           -H 'accept: application/json' -d ''
 \end{minted}%$
-\caption{Upload to the REST service with curl}
+\caption{Upload to the REST service with curl.}
 \label{fig:code-workflow-curl}
 
 \end{figure}
@@ -321,15 +321,17 @@ desired, to view the workflow's progression.
 
 \begin{figure}[htb]
 {\centering
-
-  \includegraphics[width=1.0\columnwidth]{images/service-table.png}}
+  \includegraphics[width=1.0\columnwidth]{images/service-table.png}
+}
 \vspace{-1.0cm}
-\caption{Cloudmesh cc workflow table view}\label{fig:table}
+\caption{Cloudmesh cc workflow table view.}\label{fig:table}
 
 \bigskip
-{\centering \includegraphics[width=1.0\columnwidth]{images/service-graph.png}
+{\centering
+  \includegraphics[width=1.0\columnwidth]{images/service-graph.png}
+ }
 \vspace{-1.0cm}
-  \caption{Cloudmesh cc workflow graph view}}
+ \caption{Cloudmesh cc workflow graph view.}
 
 \label{fig:graph}
 \end{figure}
@@ -338,25 +340,26 @@ desired, to view the workflow's progression.
 
 \subsection{Run the workflow}\label{run-the-workflow}
 
-To run a workflow, you can use the various interfaces to do so. As an
-example we will showcase here how to run is in the service mode by
-either the GUI or a curl call.
+The workflow can be run easily via the GUI. We added a special set of
+buttons to the workflow table and graph display to simplify running of
+the workflow. 
+Nevertherless, certainly the workflow can also be activated while
+calling the appropriate REST call, either through, Python, the OpenAPI
+docs page, or, for example, a curl call such as
+where {\em workflow-example} is the name of the workflow to be
+executed. Figure~\ref{fig:workflow-run-a}-{fig:workflow-run-c} showcases various methods to
+run the example workflow.
 
 
-\paragraph{GUI} To run, navigate to homepage at
-{\scriptsize\texttt http://127.0.0.1:8000/} and click the workflow-example on the
-left side. Then click Run.
-
-\paragraph{Curl.} to run a workflow with curl please use
+\begin{figure}[htb]
 
 \begin{minted}[breaklines]{bash}
-$ curl -X 'GET' 'http://127.0.0.1:8000/workflow/run/workflow-example
-?show=True' -H 'accept: application/json'
+$ curl -X 'GET' 'http://127.0.0.1:8000/workflow/run/workflow-example?show=True' -H 'accept: application/json'
 \end{minted}%$
-
-\paragraph{RESTWorkflow API}
-
-To run the workflow with the Python cloudmesh REST API, please use the code
+\flushleft
+\caption{\parindent0pt Running the example workflow with curl.}
+\label{fig:workflow-run-a}
+\bigskip
 
 \begin{minted}[breaklines]{python} 
 from cloudmesh.cc.workflowrest import RESTWorkflow
@@ -364,8 +367,9 @@ rest = RESTWorkflow()
 result = rest.run_workflow('workflow-example')
 \end{minted}
 
-\paragraph{Python request API.} To run the workflow with the Python
-request API, please use the code
+\caption{Running the example workflow with cloudmesh RESTWorkflow API.}
+\label{fig:workflow-run-b}
+\bigskip
 
 \begin{minted}[breaklines]{python}
 import requests
@@ -374,7 +378,10 @@ r = requests.get(url)
 print(r)
 \end{minted}
 
+\caption{Running the example workflow with requests API.}
+{fig:workflow-run-c}
 
+\end{figure}
 
 
 
