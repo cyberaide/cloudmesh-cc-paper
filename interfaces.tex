@@ -2,10 +2,10 @@
 
 \section{Cloudmesh-cc Interfaces}
 
-In this section we explain the various ways of interfacing with
+In this section, we explain the various ways of interfacing with
 cloudmesh-cc that are part of our design (see Figure~\ref{fig:arch}).
 
-It is important to note that we have a {\em commandline mode} that interfaces directly with the backends while not requiring a service. This includes an easy-to-use Python API.
+It is important to note that we have a {\em command line mode} that interfaces directly with the backends while not requiring a service. This includes an easy-to-use Python API.
 
 In addition, we have used this API to implement a {\em service mode}, so we can stand up a REST service as well as a GUI that can be accessed through a Web browser.
 Please note that the service mode can also be accessed through the command line in a terminal. To distinguish how we operate cloudmesh-cc we use the term {\em mode} to delineate it from a command that is entered in a terminal to query the status of the workflow.
@@ -17,13 +17,13 @@ how we can access them.
 \subsection{Python API}
 
 Cloudmesh-cc is implemented in Python. Extensive documentation is
-available in GitHub and through GitHub action it is automatically
-updated \cite{github-cloudmesh-cc}.  We distingush two main classes
+available in GitHub and through GitHub action, it is automatically
+updated \cite{github-cloudmesh-cc}.  We distinguish two main classes
 that are easy to use. The first is a {\em Job class} that can be adapted
 to include new computational resource types for executing jobs. The
 second is a {\em Workflow class} to coordinate the execution of
 multiple jobs. Selected methods of the Job class include are listed in
-Figure~\ref{fig:code-job}. Important to note is that the code for the
+Figure~\ref{fig:code-job}. Important to note is, that the code for the
 scripts are all managed locally and a synchronization step is invoked
 prior to one running the job to assure that the latest script and
 code to be executed on the compute resource is available.
@@ -169,13 +169,13 @@ class Workflow:
 
 \subsection{Commandline Mode}
 
-The commandline mode is an implementation that does not use a backend
+The command line mode is an implementation that does not use a backend
 service. It runs in the terminal until the workflow is completed. All
 states of the jobs are managed on the compute service on which the job
 is run and the status is replicated into the client on demand. This
 allows easy reporting of the status through a table and a graph
-display using client based rendering tools. The various commands to
-interact with it on the commandline are shown in
+display using client-based rendering tools. The various commands to
+interact with it on the command line are shown in
 Figure~\ref{fig:code-workflow-commandline}.
 
 
@@ -184,9 +184,9 @@ Figure~\ref{fig:code-workflow-commandline}.
 The Python API has been used to implement a REST service. To
 easily interact with the REST service we have also added a couple of
 convenient commands one can issue from a terminal. They are listed
-in Figure~\ref{fig:code-workflow-service-commandline}. It is clear for
+in Figure~\ref{fig:code-workflow-service-commandline}. It is clear from
 these methods that starting, stopping, and getting the status of the
-service is very easy. In contrast to the commandline mode this service
+service is very easy. In contrast to the command line mode, this service
 mode has an additional keyword {\em service} to interact with the rest service.
 
 Certainly one can also directly interact with the REST service API for
@@ -194,7 +194,7 @@ this service. For ease of use, we have exposed the interface through
 an OpenAPI specification that is available to the user as shown in
 Figure~\ref{fig:openapi}.
 
-Thus, other tools such as curl or other languages supporting url
+Thus, other tools such as curl or other languages supporting URL
 requests can be used. A curl example to list the workflow
 specifications uploaded to the service is as follows:
 
@@ -205,20 +205,20 @@ $ curl -X 'GET' \
 \end{minted}
 
 As we use a REST service, we can also easily upload the workflow
-through a Python enabled REST call. We will use Python requests to
+through a Python-enabled REST call. We will use Python requests to
 demonstrate this upload feature. To showcase the various ways to
 access the service we focus on uploading a tar file that contains the
 workflow as well as the scripts or programs used in the workflow. The
 tar file is called {\em workflow.tar}.
 
 To also allow programming against the REST service in Python, a Python
-API similar to that of the commandline mode is
+API similar to that of the command line mode is
 available. Figure~\ref{fig:code-workflow-rest-commandline} showcases
 this API.
 
 To simplify interaction with the REST service we create a special
 RESTWorkflow class that is similar to the command module API but uses
-instead the REST interface to the service rather than direct
+instead of the REST interface to the service rather than direct
 communication with the command client API.
 
 The user can also simply use the requests module in Python to
@@ -274,7 +274,7 @@ $ curl -X 'POST' 'http://127.0.0.1:8000/ workflow?archive=workflow-example.tar' 
 A convenient Web service is included in Cloudmesh cc. It allows the user
 to manage and visualize the status of workflows through a Web browser
 interface. At this time the focus is that the interface can be run by a
-singleuser on the local machine. This allows that remote executions of
+single user on the local machine. This allows remote executions of
 workflow nodes run completely independent from cloudmesh cc and
 interaction is possible in asynchronous mode.
 
@@ -287,11 +287,11 @@ the
 
 location of the tar file, followed by clicking {\em Execute}.
 
-Obviously, any REST service or REST API can be used allowing to
+Obviously, any REST service or REST API can be used allowing the user to
 interface to it from different programming languages or frameworks.
 
 The web server provides a more customizable, easy-to-use interface for
-the Workflow class which can be started, viewed, and stopped with the
+the Workflow class which can be started, viewed and stopped with the
 appropriate command line. 
 
 \begin{minted}[breaklines]{bash}
@@ -343,11 +343,11 @@ desired, to view the workflow's progression.
 The workflow can be run easily via the GUI. We added a special set of
 buttons to the workflow table and graph display to simplify running of
 the workflow. 
-Nevertherless, certainly the workflow can also be activated while
+Certainly, the workflow can also be activated while
 calling the appropriate REST call, either through, Python, the OpenAPI
 docs page, or, for example, a curl call such as
 where {\em workflow-example} is the name of the workflow to be
-executed. Figure~\ref{fig:workflow-run-a}-{fig:workflow-run-c} showcases various methods to
+executed. Figure~\ref{fig:workflow-run-a}-\ref{fig:workflow-run-c} showcases various methods to
 run the example workflow.
 
 
