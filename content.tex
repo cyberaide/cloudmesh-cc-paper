@@ -1270,18 +1270,18 @@ print(r)
 \section{Other Cloudmesh Features}
 
 Cloudmesh comes with a sophisticated package management system,
-allowing to integrate packages on demand targeting varipus providers
-ond capabilities including a build in command shell and not just aonly
-a commanline tool.  Cloudmesh was first develped as a hybrid cloud
-API, commandline and command shell framework. It provided interfaces
+allowing the integration of packages on demand targeting various providers
+and capabilities including a built-in command shell (not just only
+a command line tool). Cloudmesh was first developed as a hybrid cloud
+API, command line and command shell framework. It provided interfaces
 to AWS, Azure, Google, and OpenStack clouds for virtual
-machine\footnote{cloudmesh also provded support for clouds that are no
-longer supported such as Eucalyptsus and open cirrus. Academic clouds
-such as Chameloncloud were also supported.} and data file services. It
-is characterized be defining default templates for virtual machine
-management on these clouds. Hence it was possible to switch with only
-a view commands between clouds and stage virtual machines on them such
-as demonstarted in Figure~\ref{fig:cms}.
+machine\footnote{cloudmesh also provided support for clouds that are no
+longer supported such as Eucalyptus and Open Cirrus. Academic clouds
+such as Chameleon Cloud were also supported.} and data file services. It
+is characterized by defining default templates for virtual machine
+management on these clouds. Hence, it was possible to switch between clouds
+with only a few commands and stage virtual machines on them, such
+as with the commands demonstrated in Figure~\ref{fig:cms}.
 
 \begin{figure}[htb]
 
@@ -1290,18 +1290,18 @@ $ cms vm start --cloud aws
 $ cms vm start --cloud azure
 \end{minted}
 
-  \caption{Simple VM managegment for hybrid clouds}
+  \caption{Simple VM management for hybrid clouds}
 \label{fig:cms}.
 \end{figure}  
 
-In addition we have also developed a pacage called GAS that addresses
-the creation of analytics REST services from python functios. This
+In addition, we have developed a package called GAS that addresses
+the creation of analytics REST services from Python functions. This
 package was developed to address the problem that integrating
 deployment frameworks in the age of cloud computing is often out of
-reach for domain experts.  GAS is a simple frameworks allowing even
+reach for domain experts. GAS is a simple framework allowing even
 non-experts to deploy and host services in the cloud. To avoid vendor
-lock-in it supports multiple vendors through the use of cloudmesh vm
-management \cite{las21-gas}.
+lock-in, it supports multiple vendors through the use of cloudmesh vm
+management~\cite{las21-gas}.
 
 
 % \input{applications.tex}
@@ -1311,7 +1311,7 @@ management \cite{las21-gas}.
 
 We have applied the workflow system on a number of applications. All
 workflows for these applications are available in our GitHub and can
-be adapted easily.  This includes the Cloudmask and MNIST application
+be adapted easily. This includes the Cloudmask and MNIST application
 workflows which we describe next in more details.
 
 
@@ -1327,12 +1327,12 @@ workflows which we describe next in more details.
 Cloudmask is a program that develops a model to classify sections of
 satellite images as either containing clouds or clear sky by using
 machine learning. This is beneficial for temperature measurement and
-meteorology.  Information regarding Cloudmask can be found on its
-GitHub page~\cite{www-cloudmask}.  One of our goals is to run
-Cloudmask for benchmarking.  As benchmarking Cloudmask requires
+meteorology. Information regarding Cloudmask can be found on its
+GitHub page~\cite{www-cloudmask}. One of our goals is to run
+Cloudmask for benchmarking. As benchmarking Cloudmask requires
 several phases and scripts, including a mixture of shell scripts and
 Python scripts, leveraging Cloudmesh-cc provides a much easier runtime
-instead of manually issuing many commands at a terminal.  We have
+instead of manually issuing many commands at a terminal. We have
 created a sample workflow the runs a coordinated workflow across a
 number of hybrid resources. This includes an HPC computer at
 University of Virginia called Rivanna, as well as two desktop
@@ -1356,8 +1356,8 @@ available. The workflow iterates through the five GPUs available on
 Rivanna, including V100, P100, A100, K80, and RTX2080, and runs the
 program three times on each GPU. Each run trains the model with 10,
 30, and 50 epochs for benchmarking. Upon completing a run, the logs
-and benchmarks are written into a results folder.  In the appendix we
-showcase just how to run a portion of this workflow while utilizing
+and benchmarks are written into a results folder. In the appendix we
+showcase how to run a portion of this workflow while utilizing
 only Rivanna (see Appendix~\ref{sec:running-cloudmask}).
 
 
@@ -1369,10 +1369,10 @@ only Rivanna (see Appendix~\ref{sec:running-cloudmask}).
 \subsection{MNIST Workflow}\label{mnist-workflow}
 
 MNIST is a well-known program to detect handwritten digits. It
-provides for our work value because it is well understood and is used
-in many educational efforts. Also here we created a workflow that
-integrates the UVA Rivanna HPC (it can easily be adapted to other
-machines).  The nice feature about this application is that it can be
+provides value for our work because it is well understood and is used
+in many educational efforts. Also, we created a workflow that
+integrates the UVA Rivanna HPC (the workflow can easily be adapted to other
+machines). The nice feature about this application is that it can be
 configured to run very quickly while still using various GPUs and
 benchmark their runtimes for running several MNIST Python
 programs. These programs include machine learning processing,
@@ -1380,7 +1380,7 @@ convolutional neural network, long short-term memory, recurrent neural
 network, and others. The programs can be found on
 GitHub~\cite{www-mnist-programs}.
 
-As for the workflow we adapted it not only to run one algorithm but
+As for the workflow, we adapted it not only to run one algorithm but
 multiple in an iteration across the GPUs (similar to
 \ref{fig:cloudmaskwf}).
 
@@ -1414,23 +1414,23 @@ Analytics Workflow Management with the help of the cloudmesh component
 framework. The component added focuses on the management of workflows
 for computational analytics tasks and jobs. The tasks can be executed
 on remote resources via ssh and even access queuing systems such as
-SLURM. In addition, we can integrate the current computer on which the
+Slurm. In addition, we can integrate the current computer on which the
 workflow is running. This can include operating systems such as Linux,
 macOS, Windows, and even Windows Subsystem for Linux. Through
-cloudmesh access to a command line and a command shell is provided. A
-simple API and a REST interface are provided. The framework has also
+cloudmesh, access to a command line and a command shell is provided. A
+simple API and a REST interface are provided. The framework also has
 an elementary Web browser interface that allows visualizing the
-execution of the workflow.  It is important to know that the workflow
+execution of the workflow. It is important to know that the workflow
 can be started on remote resources and is running completely
 independently from the client tool once a task is started. This allows
 a ``stateless'' model that can synchronize with the remotely started
-jobs on demand. Hence the framework is self-recovering in case of
+jobs on demand. Hence, the framework is self-recovering in case of
 network interruptions or power failure. Due to our experiences with
 real (and many) infrastructure failures at the authors' locations, the
 availability of such a workflow-guided system was
-beneficial. Furthermore, the code developed is rather small and in
-contrast to other systems is less complex. Hence it is suitable for
-educational aspects as it is used for Master's level and undergraduate
+beneficial. Furthermore, the developed code is rather small and, in
+contrast to other systems, is less complex. Hence, it is suitable for
+educational aspects as it is used for master's and undergraduate level
 research projects. The project has also been practically utilized
 while generating benchmarks for the MLCommons Science Working Group
 showcasing real-world applicability beyond a student research project.
@@ -1446,7 +1446,7 @@ showcasing real-world applicability beyond a student research project.
 
 Continued work was in part funded by the NSF CyberTraining: CIC:
 CyberTraining for Students and Technologies from Generation Z with the
-award numbers 1829704 and 2200409 and NIST 60NANB21D151T. We like to
+award numbers 1829704 and 2200409 and NIST 60NANB21D151T. We would like to
 thank the students that participated in the REU for their help and
 evaluation in a pre-alpha version of the code. We are excited that
 this effort contributed significantly to their increased understanding
@@ -1490,7 +1490,7 @@ appropriate operating system:
 
 \begin{description}
 
-\item[Windows.]  Git Bash and Graphviz must be installed.  The user
+\item[Windows.]  Git Bash and Graphviz must be installed. The user
 can use an instance of Chocolatey that is run as an administrator for
 convenience:
 
@@ -1549,9 +1549,9 @@ $ pytest -v -x --capture=no benchmarks/cloudmask/target/rivanna/run_cloudmask_wo
 
 \subsection{Contributing}\label{contributing}
 
-All contributions are done under the Apache License.  The code is
-maintained as an Open Source project on GitHub while using the typical
-GitHub code management tools such as
+All contributions are done under the Apache License. The code is
+maintained as an open-source project on GitHub while using the typical
+GitHub code management tools such as:
 
 \begin{itemize}
 \item
@@ -1568,8 +1568,8 @@ The main branch is the release branch and is supposed to be functional
 at all times. Hence, contributions are first done in other branches,
 and once agreeing that they need to be integrated into the code, they
 are merged into main. All new code must be documented and have
-sufficient automated tests.  Before creating a pull request it is
-important that the tests within the test directory are passing.  The
+sufficient automated tests. Before creating a pull request, it is
+important that the tests within the test directory are passing. The
 repository already contains several pytests that can be leveraged to
 conduct routine testing of the code, including its SSH remote
 functionality, REST capability, and Python interface, among others.
