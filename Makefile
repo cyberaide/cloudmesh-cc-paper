@@ -67,3 +67,7 @@ latex: dot
 
 dot:
 	dot -Tpdf images/cloudmask-wf.dot -o images/cloudmask-wf.pdf
+
+
+word:
+	latex2rtf $(FILENAME) -o $(FILENAME).docx
