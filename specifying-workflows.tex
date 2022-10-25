@@ -209,7 +209,7 @@ characteristics.
 
 \subsection{Shapes and Styles}
 
-As we use graphviz for rendering we have also added the ability to
+As we use graphviz for rendering, we have also added the ability to
 change the shape and style of each node in the graph. The
 available \href{https://graphviz.org/doc/info/shapes.html}{shapes}
 and \href{https://graphviz.org/docs/attr-types/style/}{styles} are
@@ -251,8 +251,8 @@ Workflow class cannot tell if the scripts are done.
 The examples that are provided with cloudmesh-cc are already augmented
 with {\em cloudmesh.progress}. Thus, if a user is running jobs through
 cloudmesh cc workflows, they must integrate progress strings into the
-log files that are monitored. This is available for shell and batch
-scripts, Python and Jupyter.
+log files that are monitored. This is available for shell, batch,
+Python, and Jupyter scripts.
 
 For shell and Slurm scripts, the script must contain a progress update
 lines as follows:
@@ -269,7 +269,7 @@ echo "# cloudmesh status=done progress=100 pid=$$"
 
 at the end of the script.
 
-For Python scripts and Jupyter notebooks, it is the easiest
+For Python scripts and Jupyter notebooks, it is easiest
 to use our built-in progress method and import it from the
 cloudmesh.common module. The following example demonstrates its use:
 
