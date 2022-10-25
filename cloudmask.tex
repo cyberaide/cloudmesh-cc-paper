@@ -22,41 +22,13 @@ our cloudmesh-vpn component that provides the ability to
 connect to the UVA VPN from Python, then fetches the data and executes
 the various benchmarks once the data is available.
 
-
 \begin{figure}[htb]
-  \resizebox{1.0\columnwidth}{!}{
-   \digraph{cloudmaskwf}{
-     rankdir=TB;
-     node [shape=box style=rounded];
-     start -> amd5095X;
-     subgraph cluster_0 {
-         label = "Compute Resource Desktop A";
-      amd5095X -> "fetch data to amd5095X" -> "rtx3090 benchmark";
-     }
-     "rtx3090 benchmark" -> end;
-     
-     start -> "i9-9900K";
-     subgraph cluster_1 {
-         label = "Compute Resource Desktop B";
-     "i9-9900K" -> "fetch data to i9-9900K" -> "rtx3070 benchmark";   
-     }
-     "rtx3070 benchmark" -> end;
-     
-     start -> "connect vpn";
-     subgraph cluster_2 {
-         label = "Compute Resource Rivanna HPC";
-      "connect vpn" -> "fetch data to rivanna" -> "v100 benchmark" -> "disconnect vpn";
-      "fetch data to rivanna" -> "p100 benchmark" ->  "disconnect vpn";
-      "fetch data to rivanna" -> "a100 benchmark" ->  "disconnect vpn";
-      "fetch data to rivanna" -> "k80 benchmark" ->  "disconnect vpn";
-      "fetch data to rivanna" -> "rtx2080 benchmark" ->  "disconnect vpn";
-     }
-     "disconnect vpn" -> end;  
-    }
-  }
-  \vspace{-1cm}
-  \caption{Workflow for Cloudmask}\label{fig:cloudmaskwf}
+\centering
+\includegraphics[width=1.0\columnwidth]{images/cloudmask-wf.pdf}
+\vspace{-1cm}
+\caption{Workflow for Cloudmask}\label{fig:cloudmaskwf}
 \end{figure}
+
 
 To run the workflow, see section~\ref{sec:running-cloudmask}.
 

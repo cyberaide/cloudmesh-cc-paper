@@ -7,7 +7,7 @@ all: $(FILENAME).pdf
 
 # MAIN LATEXMK RULE
 
-$(FILENAME).pdf: $(FILENAME).tex
+$(FILENAME).pdf: dot $(FILENAME).tex
 	latexmk  -shell-escape -quiet -bibtex $(PREVIEW_CONTINUOUSLY) -f -pdf -pdflatex="pdflatex -synctex=1 -interaction=nonstopmode" -use-make $(FILENAME).tex
 
 .PRECIOUS: %.pdf
@@ -25,7 +25,6 @@ clean:
 	rm -f *.ttt
 	rm -f *.blg
 	rm -f comment.cut
-	rm -f cloudmaskwf.dot cloudmaskwf.pdf
 	rm -rf *~
 
 regular:
@@ -57,11 +56,14 @@ publish:
 	cd ../../laszewski/laszewski.github.io/papers; git commit -m "update $(FILENAME)" $(FILENAME).pdf
 	cd ../../laszewski/laszewski.github.io/papers; git push
 
-p:
+p: dot
 	pdflatex -shell-escape $(FILENAME)
 
-latex:
+latex: dot
 	pdflatex -shell-escape $(FILENAME)
 	bibtex $(FILENAME)
 	pdflatex -shell-escape $(FILENAME)
 	pdflatex -shell-escape $(FILENAME)
+
+dot:
+	dot -Tpdf images/cloudmask-wf.dot -o images/cloudmask-wf.pdf
