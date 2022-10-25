@@ -70,6 +70,7 @@ dot:
 
 
 word:
+	cp vonLaszewski-cloudmesh-cc.bbl report.bbl
 	latex2rtf report.tex
 
 flatten:
