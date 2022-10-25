@@ -294,7 +294,7 @@ distributed HPC computing resources. However, Grids (popular a decade
 ago) are no longer predominantly deployed and the focus has shifted to
 Cloud computing.
 
-\item[Cloud.] These days, computing resources are also available in
+\item[Cloud.] Presently, computing resources are also available in
 the cloud as HPC, batch, and compute services, including specialized
 SaaS offerings that allow to integrate analytics functions into
 workflows.
@@ -544,12 +544,14 @@ additional nodes are appended with commas, as in
 In case one wants to execute nodes in parallel, we can simply define
 them through a list such as 
 
+\begin{samepage}
 \begin{minted}[breaklines]{yaml}
   dependencies:
     - start,a,end
     - start,b,end
     - start,c,end
 \end{minted}
+\end{samepage}
 
 if the names of the nodes were $a$, $b$, and $c$. 
 
@@ -621,7 +623,7 @@ kind &  The kind of the job, which can be local, ssh, wsl, or slurm  \\
 \hline
 status &  The status of the job in integer value between 0 and 100 \\
 \hline
-label &  A custom designed label \\
+label &  A custom-designed label \\
 \hline
 script &  The script name to be executed \\
 \hline
@@ -650,8 +652,8 @@ runtime. This can be observed by running a workflow in graph view in
 the web interface.
 
 In this format, we must use two dashes \mintinline{bash}|--| to
-separate the various components.  However, when rendered, the dashes
-will be replaced with a colon.  Thus you can easily use years, months,
+separate the various components. However, when rendered, the dashes
+will be replaced with a colon. Thus you can easily use years, months,
 days, hours, minutes, and seconds can be arranged as desired, as long
 as the corresponding letters remain consistent:
 (\mintinline{bash}|%Y| 
@@ -1042,7 +1044,7 @@ class Workflow:
 \end{figure}
 
 
-\subsection{Commandline Mode}
+\subsection{Command Line Mode}
 
 The command line mode is an implementation that does not use a backend
 service. It runs in the terminal until the workflow is completed. All
@@ -1050,7 +1052,7 @@ states of the jobs are managed on the compute service on which the job
 is run and the status is replicated into the client on demand. This
 allows easy reporting of the status through a table and a graph
 display using client-based rendering tools. The various commands to
-interact with it on the command line are shown in
+interact with workflows on the command line are shown in
 Figure~\ref{fig:code-workflow-commandline}.
 
 
@@ -1084,14 +1086,14 @@ through a Python-enabled REST call. We will use Python requests to
 demonstrate this upload feature. To showcase the various ways to
 access the service, we focus on uploading a tar file that contains the
 workflow as well as the scripts or programs used in the workflow. The
-tar file is called {\em workflow.tar}.
+tar file is called {\em workflow-example.tar}.
 
 To also allow programming against the REST service in Python, a Python
 API similar to that of the command line mode is
 available. Figure~\ref{fig:code-workflow-rest-commandline} showcases
 this API.
 
-To simplify interaction with the REST service, we create a special
+To simplify interaction with the REST service, we have created a special
 {\em RESTWorkflow class} that is similar to the command module API,
 but instead uses the REST interface to the service rather than direct
 communication with the command client API.
@@ -1158,15 +1160,16 @@ cc and interaction is possible in asynchronous mode.
 As the service is using also an OpenAPI 2.0 specification, the
 workflow can also be uploaded implicitly through the specification
 GUI. Navigate to {\scriptsize \texttt{http://127.0.0.1:8000/docs}} and
-use the POST Upload method. Then click \texttt{Try\ it\ out} and enter
-the location of the tar file, followed by clicking {\em Execute}.
+use the POST Upload method. Then click {\scriptsize \texttt{Try\ it\ out}}
+and enter the location of the tar file, followed by clicking
+{\scriptsize \texttt{Execute}}.
 
 Obviously, any REST service or REST API can be used, allowing the user
 to interface to it from different programming languages or frameworks.
 
 The web server provides a more customizable, easy-to-use interface for
-the Workflow class which can be started, viewed and stopped with the
-appropriate command line.
+the Workflow class which can be started, viewed, and stopped with the
+appropriate command.
 
 \begin{minted}[breaklines]{bash}
   $ cms cc start
@@ -1176,7 +1179,7 @@ appropriate command line.
 %$
 
 The view can also be achieved by opening the 
-the link {\scriptsize\texttt http://127.0.0.1:8000/}.
+link \newline {\scriptsize \texttt{http://127.0.0.1:8000/}}.
 
 The browser provides an interface to view preexisting workflows in
 both a DataTable format and as a graph format. Both views will update
@@ -1216,12 +1219,12 @@ desired, to view the workflow's progression.
 
 The workflow can be run easily via the GUI. We added a special set of
 buttons to the workflow table and graph display to simplify running of
-the workflow.  Certainly, the workflow can also be activated while
-calling the appropriate REST call, either through, Python, the OpenAPI
-docs page, or, for example, a curl call such as where {\em
-workflow-example} is the name of the workflow to be
-executed. Figure~\ref{fig:workflow-run-a}-\ref{fig:workflow-run-c}
-showcases various methods to run the example workflow.
+the workflow. Certainly, the workflow can also be activated while
+calling the appropriate REST call, either through Python, the OpenAPI
+docs page, or, for example, a curl call.
+Figures~\ref{fig:workflow-run-a}-\ref{fig:workflow-run-c}
+showcase various methods to run the example workflow, which is called
+{\em workflow-example}.
 
 
 \begin{figure}[htb]
@@ -1335,7 +1338,7 @@ several phases and scripts, including a mixture of shell scripts and
 Python scripts, leveraging Cloudmesh-cc provides a much easier runtime
 instead of manually issuing many commands at a terminal. We have
 created a sample workflow the runs a coordinated workflow across a
-number of hybrid resources. This includes an HPC computer at
+number of hybrid resources. This includes an HPC computer at the
 University of Virginia called Rivanna, as well as two desktop
 computers. This workflow can easily be adapted to include other
 machines. In this particular workflow, we execute the benchmarks on a
@@ -1357,7 +1360,7 @@ available. The workflow iterates through the five GPUs available on
 Rivanna, including V100, P100, A100, K80, and RTX2080, and runs the
 program three times on each GPU. Each run trains the model with 10,
 30, and 50 epochs for benchmarking. Upon completing a run, the logs
-and benchmarks are written into a results folder. In the appendix we
+and benchmarks are written into a results folder. In the appendix, we
 showcase how to run a portion of this workflow while utilizing
 only Rivanna (see Appendix~\ref{sec:running-cloudmask}).
 
@@ -1474,9 +1477,9 @@ of Python and how to develop in a team using the Python ecosystem.
 To leverage cloudmesh-cc, use the cloudmesh-installer to install the
 Cloudmesh suite of repositories. Optionally, to utilize the graph
 visualization you must install also {\em graphviz} must be
-installed. On Windows, Git Bash is required, in addition.  The overall
+installed. On Windows, Git Bash is required, in addition. The overall
 installation is very simple and is supported on a variety of operating
-systems.  We leverage the cloudmesh-installer to locally install the
+systems. We leverage the cloudmesh-installer to locally install the
 cloudmesh suite of repositories by executing the following commands:
 
 \begin{minted}[breaklines]{bash}
@@ -1516,8 +1519,8 @@ $ sudo apt install graphviz -y
 
 \end{description}
 
-To test the workflow program, prepare a cm directory in your home
-directory by executing the following commands:
+To test the workflow program, prepare a {\scriptsize \verb|cm|}
+directory in your home directory by executing the following commands:
 
 \begin{minted}[breaklines]{bash}
 $ cd ~/cm/cloudmesh-cc
