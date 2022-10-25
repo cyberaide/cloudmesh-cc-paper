@@ -70,4 +70,7 @@ dot:
 
 
 word:
-	latex2rtf $(FILENAME) -o $(FILENAME).docx
+	latex2rtf report.tex
+
+flatten:
+	bin/latex-flatten.py $(FILENAME).tex report.tex
