@@ -23,20 +23,35 @@ connect to the UVA VPN from Python, then fetches the data and executes
 the various benchmarks once the data is available.
 
 
+
 \begin{figure}[htb]
   \resizebox{1.0\columnwidth}{!}{
-   \digraph{cloudmaskwf}{
-     rankdir=TB;
+rankdir=TB;
      node [shape=box style=rounded];
-     start -> amd5095X -> "fetch data amd5095X" -> "benchmark
-     amd5095X" -> end;
-     start -> i13K -> "fetch data i13K" -> "benchmark i13K" -> end;     
-      start -> "connect vpn" -> "fetch data rivanna" -> "v100 benchmark" -> "disconnect vpn" -> end;
-      "fetch data rivanna" -> "p100 benchmark" ->  "disconnect vpn";
-      "fetch data rivanna" -> "a100 benchmark" ->  "disconnect vpn";
-      "fetch data rivanna" -> "k80 benchmark" ->  "disconnect vpn";
-      "fetch data rivanna" -> "rtx2080 benchmark" ->  "disconnect vpn";    
-    }
+     start -> amd5095X
+     subgraph cluster_0 {
+         label = "Compute Resource \n Desktop B";
+      amd5095X -> "fetch data to amd5095X" -> "rtx3090 benchmark";
+     }
+     "rtx3090 benchmark" -> end;
+     
+     start -> "i9-9900K"
+     subgraph cluster_1 {
+         label = "Compute Resource \n Desktop A";
+     "i9-9900K" -> "fetch data to i9-9900K" -> "rtx3070 benchmark";   
+     }
+     "rtx3070 benchmark" -> end;
+     
+     start -> "connect vpn";
+     subgraph cluster_2 {
+         label = "Compute Resource \n Rivanna";
+      "connect vpn" -> "fetch data \n to rivanna" -> "v100 benchmark" -> "disconnect vpn";
+      "fetch data \n to rivanna" -> "p100 benchmark" ->  "disconnect vpn";
+      "fetch data \n to rivanna" -> "a100 benchmark" ->  "disconnect vpn";
+      "fetch data \n to rivanna" -> "k80 benchmark" ->  "disconnect vpn";
+      "fetch data \n to rivanna" -> "rtx2080 benchmark" ->  "disconnect vpn";
+     }
+     "disconnect vpn" -> end; 
   }
   \vspace{-1cm}
   \caption{Workflow for Cloudmask}\label{fig:cloudmaskwf}
