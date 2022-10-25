@@ -286,7 +286,7 @@ progress(progress=100, filename=filename)
 
 When recording progress, the progress should be ascending between 1
 and 100. The last value must report 100 or the node will not be
-completed and the Workflow gets stuck. The output of the progress
+completed and the workflow gets stuck. The output of the progress
 will be written into a {\scriptsize \verb|{workflowname}.log|} file that will be
 probed continuously by the client to report the progress to the user.
 
@@ -295,12 +295,12 @@ probed continuously by the client to report the progress to the user.
 The framework has a built-in capability to export the progress of the
 workflow in a DAG.
 
-In Figure~\ref{fig:workflow-process} we depict a simple example
-workflow to be executed where each task is executed sequentially. The
+In Figure~\ref{fig:workflow-process}, we depict a simple example
+workflow to be executed, where each task is executed sequentially. The
 status of the execution can be displayed as a table or as a graph. In
 Figure~\ref{fig:workflow-process}, we showcase how the graph changes
 its appearance over time while using no label in the start and end
-node and the label in the nodes for fetch-data, compute, and analyze:
+node and a defined label in the nodes for fetch-data, compute, and analyze:
 
 \begin{minted}[breaklines]{bash}
 label: "{name}\nprogress={progress}"
