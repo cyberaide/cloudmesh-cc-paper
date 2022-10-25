@@ -3,19 +3,19 @@
 \section{Specifying Workflows}\label{specifying-workflows}
 
 The workflow definition for cloudmesh is rather simple and intuitive.
-An example is provided in Figure~\ref{fig:workflow-example}.  Here a
+An example is provided in Figure~\ref{fig:workflow-example}. Here, a
 DAG with three nodes are specified ($start \rightarrow fetch-data \rightarrow
-compute \rightarrow analyze \rightarrow end $). The workflow executes three
+compute \rightarrow analyze \rightarrow end$). The workflow executes three
 scripts (test-[fetch-data,compute,analyze].sh). It contains a specific start and end node.
 
 \subsection{Dependencies}
 
 Each dependency is specified in the {\em dependency} section while
 providing sequences of names in a list such as
-\verb|-start,fetch-data| or in our case where 3 more nodes are defined an
-additional node is appended with \verb|,compute,analyze,end|.
+\mintinline{bash}|- start,fetch-data| or, in our case where 3 more nodes are defined,
+additional nodes are appended with commas, as in \mintinline{bash}|,compute,analyze,end|.
 
-In case one wants to execute nodes in parallel we can simply define
+In case one wants to execute nodes in parallel, we can simply define
 them through a list such as 
 
 \begin{minted}[breaklines]{yaml}
@@ -33,7 +33,7 @@ if the names of the nodes were $a$, $b$, and $c$.
 Nodes can be customized in various ways within the workflow
 configuration YAML file, including their job types (python, sh, jupyter,
 or slurm), their virtual Python environment (by specifying
-\texttt{venv}), their appearance on the graph, and other
+\mintinline{bash}|venv|), their appearance on the graph, and other
 characteristics. This is controlled through a number of attributes
 used by the nodes in the DAG. The attributes are summarized in
 Table~\ref{tab:node-attributes}.
@@ -91,7 +91,7 @@ user &  The username for the host \\
 \hline
 host &  The hostname \\
 \hline
-kind &  The kind of the job, which can be localhost, ssh, ... TBD  \\
+kind &  The kind of the job, which can be local, ssh, wsl, or slurm  \\
 \hline
 status &  The status of the job in integer value between 0 and 100 \\
 \hline
@@ -107,7 +107,7 @@ script &  The script name to be executed \\
 
 One particular useful attribute is that of a label. If no label is
 used, the name of the node is used as the label. However, if a label is
-specified one can also use attribute names, and timers to create labels
+specified, one can also use attribute names and timers to create labels
 with implicit state information. This is done by introducing variables
 through curly braces when defining the labels inside the label defined
 in nodes within the YAML workflow file.
@@ -124,10 +124,10 @@ can be observed by running a workflow in graph view in the web
 interface.
 
 In this format, we must use two dashes \mintinline{bash}|--| to separate the various components.
-However, when rendered the dashes will be replaced with a colon.
+However, when rendered, the dashes will be replaced with a colon.
 Thus you can easily use years, months, days,
 hours, minutes, and seconds can be arranged as desired, as long as the
-corresponding letters remain consistent 
+corresponding letters remain consistent:
 (\mintinline{bash}|%Y| 
 \mintinline{bash}|%m|
 \mintinline{bash}|%d| 
