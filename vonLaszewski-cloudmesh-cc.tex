@@ -665,7 +665,7 @@ characteristics. This is controlled through a number of attributes
 used by the nodes in the DAG. The attributes are summarized in
 Table~\ref{tab:node-attributes}.
 
-\begin{figure}
+\begin{figure}[htb]
 {\scriptsize
 \begin{verbatim}
 workflow:
@@ -777,7 +777,7 @@ jupyter, or slurm), their virtual Python environment (by specifying
 characteristics.
 
 
-\begin{figure}
+\begin{figure}[htb]
 \smallskip
     {\scriptsize
     \begin{verbatim}
@@ -858,8 +858,8 @@ color when the job status is changed.
 
 
 \begin{figure}[htb]
-    {\scriptsize
-    \begin{verbatim}
+{\scriptsize
+\begin{verbatim}
     workflow:
       nodes:
         start:
@@ -875,9 +875,9 @@ color when the job status is changed.
           name: start
           shape: box
           style: ''
-    \end{verbatim}}
-    \caption{Example of YAML config file that uses shape and style.}
-    \label{fig:shape-style-yaml}
+\end{verbatim}}
+\caption{Example of YAML config file that uses shape and style.}
+\label{fig:shape-style-yaml}
 \end{figure}
 
 \subsection{Reporting Progress}\label{reporting-progress}
@@ -897,19 +897,19 @@ For shell and Slurm scripts, the script must contain a progress update
 lines as follows:
 
 
-{\scriptsize
-\begin{Verbatim}
-  echo "# cloudmesh status=running progress=1 pid="
-\end{Verbatim}
-}
+%{\scriptsize
+%\begin{Verbatim}
+%  echo "# cloudmesh status=running progress=1 pid="
+%\end{Verbatim}
+%}
 
 \parindent0pt at the beginning of the script, and
 
-{\scriptsize
-\begin{verbatim}
-  echo "# cloudmesh status=done progress=100 pid=$$"
-\end{veratim}
-}
+%{\scriptsize
+%\begin{verbatim}
+%  echo "# cloudmesh status=done progress=100 pid="
+%\end{veratim}
+%}
 
 at the end of the script.
 
@@ -918,22 +918,23 @@ built-in progress method and import it from the cloudmesh.common
 module as the example in Figure~\ref{fig:py-progress}. 
 
 
-%\begin{figure}[htb]
+\begin{figure}[htb]
 
-%{\scriptsize
-%\begin{verbatim}
-%  from cloudmesh.common.StopWatch import progress
-%  from cloudmesh.common.Shell import Shell
-%  filename = Shell.map_filename('./py_script.log').path
-%  progress(progress=1, filename=filename)
-%  ... execute your analysis here ...
-%  progress(progress=100, filename=filename)
-%\end{verbatim}}
+{\scriptsize
+\begin{verbatim}
+  from cloudmesh.common.StopWatch import progress
+  from cloudmesh.common.Shell import Shell
+  filename = Shell.map_filename('./py_script.log').path
+  progress(progress=1, filename=filename)
+  ... execute your analysis here ...
+  progress(progress=100, filename=filename)
+\end{verbatim}
+}
 
-%\caption{Progress report with the cloudmesh Python API.}
-%\label{fig:py-progress}
+\caption{Progress report with the cloudmesh Python API.}
+\label{fig:py-progress}
 
-%\end{figure}
+\end{figure}
 
 
 When recording progress, the progress should be ascending between 1
