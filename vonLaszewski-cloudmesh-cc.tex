@@ -897,19 +897,19 @@ For shell and Slurm scripts, the script must contain a progress update
 lines as follows:
 
 
-%{\scriptsize
-%\begin{Verbatim}
-%  echo "# cloudmesh status=running progress=1 pid="
-%\end{Verbatim}
-%}
+{\scriptsize
+\begin{verbatim}
+  echo "# cloudmesh status=running progress=1 pid=$$"
+\end{verbatim}
+}
 
-\parindent0pt at the beginning of the script, and
+at the beginning of the script, and
 
-%{\scriptsize
-%\begin{verbatim}
-%  echo "# cloudmesh status=done progress=100 pid="
-%\end{veratim}
-%}
+{\scriptsize
+\begin{verbatim}
+  echo "# cloudmesh status=done progress=100 pid=$$"
+\end{verbatim}
+}
 
 at the end of the script.
 
