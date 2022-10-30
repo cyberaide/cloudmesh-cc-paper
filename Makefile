@@ -45,12 +45,14 @@ biber:
 	biber -V --tool vonlaszewski.bib | fgrep -v INFO
 	@make -f Makefile clean
 
-zip: clean latex
-	rm -rf ${UPLOAD)
+zip:
+	rm -rf *.zip
+	rm -rf $(UPLOAD)
 	mkdir -p $(UPLOAD)
 	cp $(FILENAME).* $(UPLOAD)
 	cp -r images $(UPLOAD)
-	cd upload; zip -x "*/.DS*" "*/*.git*" "*/*bin*" "*/*zip" "*/*.md" "*/Makefile" -r ../$(FILENAME).zip .
+	cp *.pygtex $(UPLOAD)
+	cd upload; zip -x "*/.DS*" "*/*.git*" "*/*bin*" "*/*zip" "*/*.md" "*/Makefile" "*/*.log" "*/*.aux" "*/*.blg" "*/*.pdf" -r ../$(FILENAME).zip .
 
 flatzip: clean
 	zip -x "*.git*" "*bin*" "*zip" "*.md" "Makefile" -r $(FILENAME).zip .
@@ -69,6 +71,13 @@ latex: dot
 	bibtex $(FILENAME)
 	pdflatex -shell-escape $(FILENAME)
 	pdflatex -shell-escape $(FILENAME)
+
+l: dot
+	pdflatex $(FILENAME)
+	bibtex $(FILENAME)
+	pdflatex $(FILENAME)
+	pdflatex $(FILENAME)
+
 
 dot:
 	dot -Tpdf images/cloudmask-wf.dot -o images/cloudmask-wf.pdf
