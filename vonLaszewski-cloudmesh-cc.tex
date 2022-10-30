@@ -9,6 +9,7 @@
 
 \usepackage[pdf]{graphviz}
 
+\usepackage{fancyvrb}
 \usepackage{todonotes}
 \newcommand{\TODO}[1]{\todo[inline]{#1}}
 \newcommand{\NOTE}[1]{\textcolor{red}{[NOTE: #1]}}
@@ -402,6 +403,8 @@ of the workflows.
 
 \end{description}
 
+
+
 In Table~\ref{tab:workflow-table}, we provide a number of examples for
 the various features we found in workflow systems.
 
@@ -533,12 +536,10 @@ framework is depicted in Figure~\ref{fig:arch}.
 
 \begin{figure}[htb]
 {\centering
-\includegraphics[width=1.0\columnwidth]{./images/cloudmesh-cc-arch.pdf}
+\includegraphics[width=1.0\columnwidth]{images/cloudmesh-cc-arch.pdf}
 }
 \caption{Architecture of the Cloudmesh-cc Framework}\label{fig:arch}
 \end{figure}
-
-
 
 The framework is based on a layered architecture so it can be improved
 and expanded on at each layer. We distinguish two kinds of users,
@@ -793,9 +794,12 @@ characteristics.
     \label{fig:label-job}
 
 \centering
-\includegraphics[width=0.7\columnwidth]{./images/labelmaker-example.png}
+\includegraphics[width=0.7\columnwidth]{images/labelmaker-example.png}
 \caption{An example node with labels.}\label{fig:label-node}
 \end{figure}
+
+
+
 
 \begin{table}[htb]
 \caption{List of possible labels for nodes on the graph.}
@@ -839,7 +843,6 @@ characteristics.
 \end{table}
 
 
-
 \subsection{Shapes and Styles}
 
 As we use graphviz for rendering, we have also added the ability to
@@ -853,7 +856,8 @@ format that uses a box shape and an empty style. The empty style
 defaults to \verb|filled|, which allows the node to change
 color when the job status is changed.
 
-\begin{figure}
+
+\begin{figure}[htb]
     {\scriptsize
     \begin{verbatim}
     workflow:
@@ -876,8 +880,6 @@ color when the job status is changed.
     \label{fig:shape-style-yaml}
 \end{figure}
 
-
-
 \subsection{Reporting Progress}\label{reporting-progress}
 
 When running scripts/jobs inside a workflow, the scripts must leverage
@@ -894,17 +896,18 @@ Python, and Jupyter scripts.
 For shell and Slurm scripts, the script must contain a progress update
 lines as follows:
 
+
 {\scriptsize
-\begin{verbatim}
-  echo "# cloudmesh status=running progress=1 pid=$$"
-\end{verbatim}
+\begin{Verbatim}
+  echo "# cloudmesh status=running progress=1 pid="
+\end{Verbatim}
 }
 
 \parindent0pt at the beginning of the script, and
 
 {\scriptsize
 \begin{verbatim}
-  echo "# cloudmesh status=done progress=100 pid=\$\$"
+  echo "# cloudmesh status=done progress=100 pid=$$"
 \end{veratim}
 }
 
@@ -914,22 +917,23 @@ For Python scripts and Jupyter notebooks, it is easiest to use our
 built-in progress method and import it from the cloudmesh.common
 module as the example in Figure~\ref{fig:py-progress}. 
 
-\begin{figure}[htb]
 
-{\scriptsize
-\begin{verbatim}
-  from cloudmesh.common.StopWatch import progress
-  from cloudmesh.common.Shell import Shell
-  filename = Shell.map_filename('./py_script.log').path
-  progress(progress=1, filename=filename)
-  # execute your analysis here ...
-  progress(progress=100, filename=filename)
-\end{verbatim}}
+%\begin{figure}[htb]
 
-\caption{Progress report with the cloudmesh Python API.}
-\label{fig:py-progress}
+%{\scriptsize
+%\begin{verbatim}
+%  from cloudmesh.common.StopWatch import progress
+%  from cloudmesh.common.Shell import Shell
+%  filename = Shell.map_filename('./py_script.log').path
+%  progress(progress=1, filename=filename)
+%  ... execute your analysis here ...
+%  progress(progress=100, filename=filename)
+%\end{verbatim}}
 
-\end{figure}
+%\caption{Progress report with the cloudmesh Python API.}
+%\label{fig:py-progress}
+
+%\end{figure}
 
 
 When recording progress, the progress should be ascending between 1
@@ -952,6 +956,7 @@ its appearance over time while using no label in the start and end
 node and a defined label in the nodes for fetch-data, compute, and
 analyze:
 
+
 {\scriptsize
 \begin{verbatim}
   label: "{name}\nprogress={progress}"
@@ -962,23 +967,23 @@ analyze:
 \resizebox{1.0\columnwidth}{!}{
 \begin{minipage}[b]{0.18\textwidth}
 Definition and start \\
-\includegraphics[height=9cm]{./images/workflow-example-1.pdf}
+\includegraphics[height=9cm]{images/workflow-example-1.pdf}
 \end{minipage} \ \
 \begin{minipage}[b]{0.18\textwidth}
 Running 1st task \\
-\includegraphics[height=9cm]{./images/workflow-example-1.5.pdf} 
+\includegraphics[height=9cm]{images/workflow-example-1.5.pdf} 
 \end{minipage} \ \
 \begin{minipage}[b]{0.18\textwidth}
 Complete 1st task \\
-\includegraphics[height=9cm]{./images/workflow-example-2.pdf}
+\includegraphics[height=9cm]{images/workflow-example-2.pdf}
 \end{minipage} \ \
 \begin{minipage}[b]{0.18\textwidth}
 Complete 2nd task \\
-\includegraphics[height=9cm]{./images/workflow-example-3.pdf}
+\includegraphics[height=9cm]{images/workflow-example-3.pdf}
 \end{minipage} \ \
 \begin{minipage}[b]{0.18\textwidth}
 Complete workflow \\
-\includegraphics[height=9cm]{./images/workflow-example-5.pdf}
+\includegraphics[height=9cm]{images/workflow-example-5.pdf}
 \end{minipage} 
 }
 \caption{The gradual process of a simple workflow.}\label{fig:workflow-process}
@@ -1107,6 +1112,7 @@ class Workflow:
 \end{figure}
 
 
+
 \begin{figure}[htb]
 {\scriptsize
 \begin{verbatim}
@@ -1145,7 +1151,8 @@ class Workflow:
       cms cc workflow [--name=NAME] --dependencies=DEPENDENCIES
       cms cc workflow status --name=NAME [--output=OUTPUT]
       cms cc workflow graph --name=NAME
-\end{verbatim}
+\end{verbatim}}
+
 \caption{Command line interface to the workflow in terminal mode.}
 \label{fig:code-workflow-commandline}
 
@@ -1161,13 +1168,14 @@ class Workflow:
       cms cc workflow service add [--name=NAME] [--job=JOB] ARGS...
       cms cc workflow service run --name=NAME
 \end{verbatim}}
+
 \caption{Command line interface to the workflow in service mode.}
 \label{fig:code-workflow-service-commandline}.
 
 % \bigskip
 
 {\centering
-\includegraphics[width=0.52\columnwidth]{./images/upload_api.png}
+\includegraphics[width=0.52\columnwidth]{images/upload_api.png}
 }
 \caption{Browser API GUI for Cloudmesh Compute Cluster.}
 
@@ -1340,14 +1348,14 @@ desired, to view the workflow's progression.
 
 \begin{figure}[htb]
 {\centering
-  \includegraphics[width=1.0\columnwidth]{./images/service-table.png}
+  \includegraphics[width=1.0\columnwidth]{images/service-table.png}
 }
 \vspace{-1.0cm}
 \caption{Cloudmesh cc workflow table view.}\label{fig:table}
 
 \bigskip
 {\centering
-  \includegraphics[width=1.0\columnwidth]{./images/service-graph.png}
+  \includegraphics[width=1.0\columnwidth]{images/service-graph.png}
  }
 \vspace{-1.0cm}
  \caption{Cloudmesh cc workflow graph view.}
@@ -1494,7 +1502,7 @@ available.
 
 \begin{figure*}[htb]
 \centering
-\includegraphics[width=0.75\textwidth]{./images/cloudmask-wf.pdf}
+\includegraphics[width=0.75\textwidth]{images/cloudmask-wf.pdf}
 %\vspace{-1cm}
 \caption{Workflow for Cloudmask}\label{fig:cloudmaskwf}
 \end{figure*}
