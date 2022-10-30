@@ -33,6 +33,7 @@ Town Center Four\\
 
 \author{Geoffrey C. Fox}
 \email{gcfexchange@gmail.com}
+\orcid{0000-0003-1017-1391}
 \affiliation{%
   \institution{University of Virginia}
   \streetaddress{Biocomplexity Institute\\
@@ -44,6 +45,7 @@ Town Center Four\\
   \country{USA}
 }
 
+\begin{comment}
 \author{Wo L. Chang}
 \email{wchang@nist.gov}
 \affiliation{%
@@ -55,6 +57,7 @@ Town Center Four\\
   \postcode{20899}
   \country{USA}
 }
+\end{comment}
 
 \renewcommand{\shortauthors}{von Laszewski, et al.}
 
@@ -278,8 +281,12 @@ following features are important.
 
 \begin{description}
 
-\item[Batch.] Long-running jobs on HPC systems are coordinated through
+\item[Batch paralelism.] Long-running jobs on HPC systems are coordinated through
 Batch services.
+
+\itme[Task paralleleism.] Tasks are a logical unit of work that is
+executed by a resource, service, or component. Often trask paralelism
+is used in distributed resource frameworks.  
 
 \item[Resource Reservation.] In some cases, access to batch queues on
 HPC systems take a long time. In the case of many different tasks, it
@@ -334,7 +341,7 @@ LSF \cite{www-lsf} & Batch, HPC & Batch Queue Manager. \\
 SLURM \cite{www-slurm} & Batch, HPC & Batch queue workflow manager. \\
 \hline
 
-Cloudmesh  \cite{www-cloudmesh-manual} & HPC, Cloud, on-Premise & Suite
+Cloudmesh  \cite{www-cloudmesh-manual} & HPC, Cloud, on-Premise, Task & Suite
 of Python code for cloud computing. \\
 \hline
 
@@ -383,10 +390,11 @@ GitHub REST Cancel a Workflow Run \cite{www-github-rest-cancel}
 & GitHub REST API documentation to cancel a GitHub Workflow. \\
 \hline
 
-ArcGIS Rest \cite{www-arcgis-rest} & & ArcGIS documentation for its REST API to interface with the ArcGIS Server. \\
-\hline
+%ArcGIS Rest \cite{www-arcgis-rest} & & ArcGIS documentation for its REST API to interface with the ArcGIS Server. \\
+%\hline
 
-Azure Enterprise Workflow \cite{www-azure-enterprise-workflow} & & Article showcasing how to use Enterprise Workflows with Azure Logic Apps. \\
+Azure Enterprise Workflow \cite{www-azure-enterprise-workflow} & GUI,
+Workflow & Enterprise Workflows with Azure Logic Applications \\
 \hline
 
 WSDL \cite{www-wsdl} & Specification & Microsoft Azure schema reference for the Workflow Definition Language in Azure Logic Apps. \\
@@ -394,13 +402,13 @@ WSDL \cite{www-wsdl} & Specification & Microsoft Azure schema reference for the 
 
   WSRF \cite{www-wsrf} & Specification & OASIS Web Services Resource Framework\\
 
-AWS Workflow \cite{www-aws-workflow} & & Amazon Web Services documentation definition of a workflow.\\
+AWS Workflow \cite{www-aws-workflow} &  & Amazon Web Services documentation definition of a workflow.\\
 \hline
 
-AWS SWF \cite{www-aws-swf} & & Amazon Web Services documentation for managing simple workflows with tasks. \\
+AWS SWF \cite{www-aws-swf} & Task & Amazon Web Services documentation for managing simple workflows with tasks. \\
 \hline
 
-AWS Step Functions \cite{www-aws-stepfunctions} & & Amazon Web Services documentation for visual workflow service. \\
+AWS Step Functions \cite{www-aws-stepfunctions} & GUI, Task & Amazon Web Services documentation for visual workflow service. \\
 \hline
 
 AWS HPC  \cite{www-aws-batch-workflow} & Cloud, HPC & Amazon Web Services documentation for setting workflow dependencies using batch processing in HPC on the cloud. \\
