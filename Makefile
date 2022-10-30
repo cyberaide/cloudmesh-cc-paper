@@ -67,12 +67,6 @@ p: dot
 	pdflatex -shell-escape $(FILENAME)
 
 latex: dot
-	pdflatex -shell-escape $(FILENAME)
-	bibtex $(FILENAME)
-	pdflatex -shell-escape $(FILENAME)
-	pdflatex -shell-escape $(FILENAME)
-
-l: dot
 	pdflatex $(FILENAME)
 	bibtex $(FILENAME)
 	pdflatex $(FILENAME)
