@@ -1,5 +1,6 @@
 FILENAME=vonLaszewski-cloudmesh-cc
 DIR=paper-cloudmesh-cc
+UPLOAD=upload
 
 # .PHONY: $(FILENAME).pdf
 
@@ -44,8 +45,12 @@ biber:
 	biber -V --tool vonlaszewski.bib | fgrep -v INFO
 	@make -f Makefile clean
 
-zip: clean
-	cd ..; zip -x "*/.DS*" "*/*.git*" "*/*bin*" "*/*zip" "*/*.md" "*/Makefile" -r $(DIR)/$(FILENAME).zip $(DIR)
+zip: clean latex
+	rm -rf ${UPLOAD)
+	mkdir -p $(UPLOAD)
+	cp $(FILENAME).* $(UPLOAD)
+	cp -r images $(UPLOAD)
+	cd upload; zip -x "*/.DS*" "*/*.git*" "*/*bin*" "*/*zip" "*/*.md" "*/Makefile" -r ../$(FILENAME).zip .
 
 flatzip: clean
 	zip -x "*.git*" "*bin*" "*zip" "*.md" "Makefile" -r $(FILENAME).zip .
