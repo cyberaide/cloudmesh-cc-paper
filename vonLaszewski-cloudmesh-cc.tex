@@ -1,6 +1,6 @@
 \PassOptionsToPackage{hyphens}{url}
-
 \documentclass[sigplan,screen]{acmart}
+\pdfoutput=1
 % \documentclass[manuscript,screen,review]{acmart}
 
 %\input{format.tex}
@@ -19,15 +19,6 @@
 \setcopyright{none}
 \settopmatter{printacmref=false}
 \renewcommand\footnotetextcopyrightpermission[1]{}
-
-%\usepackage[finalizecache,cachedir=.]{minted}
-%\setminted{fontsize=\scriptsize,xleftmargin=1.5\parindent}
-
-\usepackage[frozencache,cachedir=.]{minted}
-
-% \usepackage{minted}
-%\setminted{fontsize=\footnotesize,xleftmargin=1.5\parindent}
-
 
 % \usepackage{color}
 % \usepackage{listings}
@@ -532,6 +523,7 @@ Infogram \cite{las-02-infogram} & Service & A Peer-to-Peer Information and Job S
 
 \FILE{cc-design.tex}
 
+
 \section{Design}
 
 To fulfill our requirements, we have developed a framework for
@@ -539,10 +531,14 @@ workflow-controlled computing called Cloudmesh compute cluster,
 otherwise referred to as {\em Cloudmesh-cc}. The architecture of the
 framework is depicted in Figure~\ref{fig:arch}.
 
-\begin{figure}[htb] \centering
-\includegraphics[width=1.0\columnwidth]{images/cloudmesh-cc-arch.pdf}
+\begin{figure}[htb]
+{\centering
+\includegraphics[width=1.0\columnwidth]{./images/cloudmesh-cc-arch.pdf}
+}
 \caption{Architecture of the Cloudmesh-cc Framework}\label{fig:arch}
 \end{figure}
+
+
 
 The framework is based on a layered architecture so it can be improved
 and expanded on at each layer. We distinguish two kinds of users,
@@ -637,38 +633,40 @@ and end node.
 \subsection{Dependencies}
 
 Each dependency is specified in the {\em dependency} section while
-providing sequences of names in a list such as \mintinline{bash}|-
-start,fetch-data| or, in our case where 3 more nodes are defined,
+providing sequences of names in a list such as
+{\scriptsize\texttt -start,fetch-data}
+or, in our case where 3 more nodes are defined,
 additional nodes are appended with commas, as in
-\mintinline{bash}|,compute,analyze,end|.
+{\scriptsize\texttt ,compute,analyze,end}.
 
 In case one wants to execute nodes in parallel, we can simply define
 them through a list such as 
 
-\begin{samepage}
-\begin{minted}[breaklines]{yaml}
+
+{\scriptsize
+\begin{verbatim}
   dependencies:
     - start,a,end
     - start,b,end
     - start,c,end
-\end{minted}
-\end{samepage}
+\end{verbatim}
+}
 
 if the names of the nodes were $a$, $b$, and $c$. 
-
 
 \subsection{Nodes}
 
 Nodes can be customized in various ways within the workflow
 configuration YAML file, including their job types (python, sh,
 jupyter, or slurm), their virtual Python environment (by specifying
-\mintinline{bash}|venv|), their appearance on the graph, and other
+{\scriptsize\texttt venv}), their appearance on the graph, and other
 characteristics. This is controlled through a number of attributes
 used by the nodes in the DAG. The attributes are summarized in
 Table~\ref{tab:node-attributes}.
 
 \begin{figure}
-\begin{minted}[breaklines]{yaml}
+{\scriptsize
+\begin{verbatim}
 workflow:
   nodes:
     start:
@@ -701,7 +699,7 @@ workflow:
        name: end
   dependencies:
     - start,fetch-data,compute,analyze,end
-\end{minted}
+\end{verbatim}}
 \caption{Workflow YAML Configuration file.}\label{fig:workflow-example}
 \label{fig:yaml-file}
 \end{figure}
@@ -747,22 +745,22 @@ replaced during the execution of the workflow.  This creates a node on
 the graph that looks similar to the node showcased in
 Figure~\ref{fig:label-node}.
 
-Initially, the created and elapsed labels are \mintinline{bash}|N/A|
+Initially, the created and elapsed labels are {\scriptsize\texttt N/A}
 if the workflow has not yet started, but they are replaced during
 runtime. This can be observed by running a workflow in graph view in
 the web interface.
 
-In this format, we must use two dashes \mintinline{bash}|--| to
+In this format, we must use two dashes {\scriptsize\texttt --} to
 separate the various components. However, when rendered, the dashes
 will be replaced with a colon. Thus you can easily use years, months,
 days, hours, minutes, and seconds can be arranged as desired, as long
 as the corresponding letters remain consistent:
-(\mintinline{bash}|%Y| 
-\mintinline{bash}|%m|
-\mintinline{bash}|%d| 
-\mintinline{bash}|%H| 
-\mintinline{bash}|%M| 
-\mintinline{bash}|%S|).
+({\scriptsize\texttt \%Y} 
+{\scriptsize\texttt \%m}
+{\scriptsize\texttt \%d} 
+{\scriptsize\texttt \%H} 
+{\scriptsize\texttt \%M} 
+{\scriptsize\texttt \%S}).
 The time format must be specified immediately following the period
 after a format-supported time variable.  If no format is specified
 following the period after the variable, the datetime defaults to the
@@ -774,23 +772,28 @@ label.
 Nodes can be customized in various ways within the workflow
 configuration YAML file, including their job types (python, sh,
 jupyter, or slurm), their virtual Python environment (by specifying
-\mintinline{bash}|venv|), their appearance on the graph, and other
+{\scriptsize\texttt venv}), their appearance on the graph, and other
 characteristics.
 
 
 \begin{figure}
 \smallskip
-    \begin{minted}[breaklines]{yaml}
+    {\scriptsize
+    \begin{verbatim}
     workflow:
       nodes:
         start:
-          label: 'start\nCreated={created.%Y/%m/%d, %H--%M--%S}\nWorkflow Started={t0.%Y/%m/%d, %H--%M--%S}\nNow={now.%Y/%m/%d, %H--%M--%S}\nElapsed={dt0.%M--%S}'
-    \end{minted}
+          label: 'start\n
+                  Created={created.%Y/%m/%d, %H--%M--%S}\n
+                  Workflow Started={t0.%Y/%m/%d, %H--%M--%S}\n
+                  Now={now.%Y/%m/%d, %H--%M--%S}\n
+                  Elapsed={dt0.%M--%S}'
+    \end{verbatim}}
     \caption{Example of job label in YAML configuration file.}
     \label{fig:label-job}
 
 \centering
-\includegraphics[width=0.7\columnwidth]{images/labelmaker-example.png}
+\includegraphics[width=0.7\columnwidth]{./images/labelmaker-example.png}
 \caption{An example node with labels.}\label{fig:label-node}
 \end{figure}
 
@@ -847,15 +850,19 @@ listed in the Graphviz documentation \cite{www-graphviz}.
 
 Figure~\ref{fig:shape-style-yaml} is an example of a node in YAML
 format that uses a box shape and an empty style. The empty style
-defaults to \mintinline{bash}|filled|, which allows the node to change
+defaults to \verb|filled|, which allows the node to change
 color when the job status is changed.
 
 \begin{figure}
-    \begin{minted}[breaklines]{yaml}
+    {\scriptsize
+    \begin{verbatim}
     workflow:
       nodes:
         start:
-          label: 'start\nCreated={created.%Y/%m/%d, %H--%M--%S}\nWorkflow Started={t0.}\nElapsed={dt0.}'
+          label: 'start\n
+                  Created={created.%Y/%m/%d, %H--%M--%S}\n
+                  Workflow Started={t0.}\n
+                  Elapsed={dt0.}'
           kind: local
           user: grey
           host: local
@@ -864,7 +871,7 @@ color when the job status is changed.
           name: start
           shape: box
           style: ''
-    \end{minted}
+    \end{verbatim}}
     \caption{Example of YAML config file that uses shape and style.}
     \label{fig:shape-style-yaml}
 \end{figure}
@@ -887,32 +894,42 @@ Python, and Jupyter scripts.
 For shell and Slurm scripts, the script must contain a progress update
 lines as follows:
 
-\begin{minted}[breaklines]{bash}
+{\scriptsize
+\begin{verbatim}
 echo "# cloudmesh status=running progress=1 pid=$$"
-\end{minted}
+\end{verbatim}
+}
 
-at the beginning of the script, and
+\parindent0pt at the beginning of the script, and
 
-\begin{minted}[breaklines]{bash}
-echo "# cloudmesh status=done progress=100 pid=$$"
-\end{minted}
+{\scriptsize
+\begin{verabtim}
+echo "# cloudmesh status=done progress=100 pid=\$\$"
+\end{veratim}
+}
 
 at the end of the script.
 
 For Python scripts and Jupyter notebooks, it is easiest to use our
 built-in progress method and import it from the cloudmesh.common
-module. The following example demonstrates its use:
+module as the example in Figure~\ref{fig:py-progress}. 
 
-\smallskip
-\begin{minted}[breaklines]{python}
-from cloudmesh.common.StopWatch import progress
-from cloudmesh.common.Shell import Shell
-filename = Shell.map_filename('./py_script.log').path
-progress(progress=1, filename=filename)
-# execute your analysis here ...
-progress(progress=100, filename=filename)
-\end{minted}
-\smallskip
+\begin{figure}[htb]
+
+{\scriptsize
+\begin{verbatim}
+  from cloudmesh.common.StopWatch import progress
+  from cloudmesh.common.Shell import Shell
+  filename = Shell.map_filename('./py_script.log').path
+  progress(progress=1, filename=filename)
+  # execute your analysis here ...
+  progress(progress=100, filename=filename)
+\end{verbatim}}
+\caption{Progress report with the cloudmesh Python API.}
+\label{fig:py-progress}
+
+\end{figure}
+
 
 When recording progress, the progress should be ascending between 1
 and 100. The last value must report 100 or the node will not be
@@ -934,31 +951,33 @@ its appearance over time while using no label in the start and end
 node and a defined label in the nodes for fetch-data, compute, and
 analyze:
 
-\begin{minted}[breaklines]{bash}
-label: "{name}\nprogress={progress}"
-\end{minted}
+{\scriptsize
+\begin{verbatim}
+  label: "{name}\nprogress={progress}"
+\end{verbatim}
+}
 
 \begin{figure}[htb]
 \resizebox{1.0\columnwidth}{!}{
 \begin{minipage}[b]{0.18\textwidth}
 Definition and start \\
-\includegraphics[height=9cm]{images/workflow-example-1.pdf}
+\includegraphics[height=9cm]{./images/workflow-example-1.pdf}
 \end{minipage} \ \
 \begin{minipage}[b]{0.18\textwidth}
 Running 1st task \\
-\includegraphics[height=9cm]{images/workflow-example-1.5.pdf} 
+\includegraphics[height=9cm]{./images/workflow-example-1.5.pdf} 
 \end{minipage} \ \
 \begin{minipage}[b]{0.18\textwidth}
 Complete 1st task \\
-\includegraphics[height=9cm]{images/workflow-example-2.pdf}
+\includegraphics[height=9cm]{./images/workflow-example-2.pdf}
 \end{minipage} \ \
 \begin{minipage}[b]{0.18\textwidth}
 Complete 2nd task \\
-\includegraphics[height=9cm]{images/workflow-example-3.pdf}
+\includegraphics[height=9cm]{./images/workflow-example-3.pdf}
 \end{minipage} \ \
 \begin{minipage}[b]{0.18\textwidth}
 Complete workflow \\
-\includegraphics[height=9cm]{images/workflow-example-5.pdf}
+\includegraphics[height=9cm]{./images/workflow-example-5.pdf}
 \end{minipage} 
 }
 \caption{The gradual process of a simple workflow.}\label{fig:workflow-process}
@@ -1011,7 +1030,8 @@ in Figure~\ref{fig:code-job}, where we explain how easy it is to set
 up a workflow with the Python API.
 
 \begin{figure}[!h]
-\begin{minted}[breaklines]{bash}
+{\scriptsize
+\begin{verbatim}
 class Job:
    ...
    def clear():
@@ -1021,7 +1041,8 @@ class Job:
    def get_log(refresh=True):
       """Get the log of the job."""
    def get_pid(refresh=False):
-      """Get the pid that the job is running within determined by the compute resource it is running on."""
+      """Get the pid that the job is running within determined by 
+         the compute resource it is running on."""
    def get_progress(refresh=False):
        """Get the progress of the job from the compute resource."""
    def get_status(refresh=False):
@@ -1031,16 +1052,19 @@ class Job:
    def run():
        """Run the job."""
    def sync():
-       """Synchronise the current directory with the remote. Copies the shell script to the experiment directory and ensures that the file is copied with the sync command."""
+       """Synchronise the current directory with the remote. Copies 
+          the shell script to the experiment directory and ensures 
+          that the file is copied with the sync command."""
    def watch(period=10):
        """Watch the job and check for changes in the given period."""
-\end{minted}
+\end{verbatim}}
 \caption{Pseudo code for the Job class with selected methods.}
 \label{fig:code-job}
 
 \bigskip
 
-\begin{minted}[breaklines]{bash}
+{\scriptsize
+\begin{verbatim}
 class Workflow:
     ...
     def add_dependencies(dependency):
@@ -1072,17 +1096,19 @@ class Workflow:
     property table:
         """Return a table of the workflow."""
     def update_progress(name):
-        """Manually update the progress of a job according to its log file."""
+        """Manually update the progress of a job according to its log 
+           file."""
     def update_status(name, status):
         """Manually update a job’s status."""
-\end{minted}
+\end{verbatim}}
 \caption{Pseudo code for the Job class with selected methods.}
 \label{fig:code-workflow}
 \end{figure}
 
 
 \begin{figure}[htb]
-\begin{minted}[breaklines]{bash}
+{\scriptsize
+\begin{verbatim}
     w = Workflow(name="workflow-analyze")
     # load a preexisting workflow
     # w.load(filename="source.yaml")
@@ -1100,28 +1126,32 @@ class Workflow:
     w.add_dependencies(
               dependency="start,fetch-data,compute,analyze")
     w.run_topo()
-\end{minted}
+\end{verbatim}}
 \caption{Pseudo code for the Job class with selected methods.}
 \label{fig:code-workflow-example}
 
 \bigskip
 
-\begin{minted}[breaklines]{bash}
+{\scriptsize
+\begin{verbatim}
       cms cc workflow add [--name=NAME] [--job=JOB] ARGS...
       cms cc workflow add [--name=NAME] --filename=FILENAME
       cms cc workflow delete [--name=NAME] [--job=JOB]
       cms cc workflow list [--name=NAME] [--job=JOB]
-      cms cc workflow run [--name=NAME] [--job=JOB] [--filename=FILENAME]
+      cms cc workflow run [--name=NAME] 
+                          [--job=JOB] 
+                          [--filename=FILENAME]
       cms cc workflow [--name=NAME] --dependencies=DEPENDENCIES
       cms cc workflow status --name=NAME [--output=OUTPUT]
       cms cc workflow graph --name=NAME
-\end{minted}
+\end{verbatim}
 \caption{Command line interface to the workflow in terminal mode.}
 \label{fig:code-workflow-commandline}
 
 \bigskip
 
-\begin{minted}[breaklines]{bash}
+{\scriptsize
+\begin{verbatim}
       cms cc start [-c] [--reload] [--host=HOST] [--port=PORT]
       cms cc stop
       cms cc status
@@ -1129,14 +1159,14 @@ class Workflow:
       cms cc workflow service list [--name=NAME] [--job=JOB]
       cms cc workflow service add [--name=NAME] [--job=JOB] ARGS...
       cms cc workflow service run --name=NAME
-\end{minted}
+\end{verbatim}}
 \caption{Command line interface to the workflow in service mode.}
 \label{fig:code-workflow-service-commandline}.
 
 % \bigskip
 
 {\centering
-\includegraphics[width=0.52\columnwidth]{images/upload_api.png}
+\includegraphics[width=0.52\columnwidth]{./images/upload_api.png}
 }
 \caption{Browser API GUI for Cloudmesh Compute Cluster.}
 
@@ -1177,9 +1207,10 @@ Thus, other tools such as curl or other languages supporting URL
 requests can be used. A curl example to list the workflow
 specifications uploaded to the service is as follows:
 
-\begin{minted}[breaklines]{bash}
-$ curl -X 'GET'  'http://127.0.0.1:8000/workflows' -H 'accept: application/json'
-\end{minted}
+{\scriptsize
+\begin{verbatim}
+$ curl -X 'GET' 'http://127.0.0.1:8000/workflows' -H 'accept: application/json'
+\end{verbatim}}
 % $
 
 As we use a REST service, we can also easily upload the workflow
@@ -1206,7 +1237,8 @@ archive file that contains the YAML configuration file and the
 scripts.
 
 \begin{figure}[t]
-\begin{minted}[breaklines]{bash}
+{\scriptsize
+\begin{verbatim}
 class RESTWorkflow
     ...
     def add_job(workflow_name, **kwargs):
@@ -1222,26 +1254,30 @@ class RESTWorkflow
         """Run a workflow by using REST."""
     def upload_workflow( ... ):
         """Upload a workflow by using REST."""
-\end{minted}
+\end{verbatim}}
 \caption{Pseudo code for the Job class with selected methods.}
 \label{fig:code-workflow-rest-commandline}
 
 \bigskip
 
-\begin{minted}[breaklines]{python}
+{\scriptsize
+\begin{verbatim}
 import requests
 r = requests.post(
       'http://127.0.0.1:8000/workflow?archive=workflow-example.tar')
 print(r.text)
-\end{minted}
+\end{verbatim}}
 \caption{Upload to the REST service with Python requests.}
 \label{fig:code-workflow-requests}
 
 \bigskip
 
-\begin{minted}[breaklines]{bash}
-$ curl -X 'POST' 'http://127.0.0.1:8000/ workflow?archive=workflow-example.tar'                           -H 'accept: application/json' -d ''
-\end{minted}
+{\scriptsize
+\begin{verbatim}
+$ curl -X 'POST' 'http://127.0.0.1:8000/ 
+                  workflow?archive=workflow-example.tar'
+       -H 'accept: application/json' -d ''
+\end{verbatim}}
 % $
 \caption{Upload to the REST service with curl.}
 \label{fig:code-workflow-curl}
@@ -1270,13 +1306,14 @@ to interface to it from different programming languages or frameworks.
 
 The web server provides a more customizable, easy-to-use interface for
 the Workflow class which can be started, viewed, and stopped with the
-appropriate command.
+appropriate command suc as
 
-\begin{minted}[breaklines]{bash}
+{\scriptsize
+\begin{verbatim}
   $ cms cc start
   $ cms cc view
   $ cms cc stop
-\end{minted}
+\end{verbatim}}
 %$
 
 The view can also be achieved by opening the 
@@ -1299,14 +1336,14 @@ desired, to view the workflow's progression.
 
 \begin{figure}[htb]
 {\centering
-  \includegraphics[width=1.0\columnwidth]{images/service-table.png}
+  \includegraphics[width=1.0\columnwidth]{./images/service-table.png}
 }
 \vspace{-1.0cm}
 \caption{Cloudmesh cc workflow table view.}\label{fig:table}
 
 \bigskip
 {\centering
-  \includegraphics[width=1.0\columnwidth]{images/service-graph.png}
+  \includegraphics[width=1.0\columnwidth]{./images/service-graph.png}
  }
 \vspace{-1.0cm}
  \caption{Cloudmesh cc workflow graph view.}
@@ -1330,30 +1367,32 @@ showcase various methods to run the example workflow, which is called
 
 \begin{figure}[htb]
 
-\begin{minted}[breaklines]{bash}
-$ curl -X 'GET' 'http://127.0.0.1:8000/workflow/run/workflow-example?show=True' -H 'accept: application/json'
-\end{minted}
-% $
-\flushleft
-\caption{\parindent0pt Running the example workflow with curl.}
+{\scriptsize\begin{verbatim}
+$ curl -X 'GET' 'http://127.0.0.1:8000/
+                 workflow/run/workflow-example?show=True'
+       -H 'accept: application/json'
+\end{verbatim}}% $
+
+\caption{Running the example workflow with curl.}
 \label{fig:workflow-run-a}
 \bigskip
 
-\begin{minted}[breaklines]{python} 
+{\scriptsize\begin{verbatim}
 from cloudmesh.cc.workflowrest import RESTWorkflow
 rest = RESTWorkflow()
 result = rest.run_workflow('workflow-example')
-\end{minted}
+\end{verbatim}}
+
 \caption{Running the example workflow with cloudmesh RESTWorkflow API.}
 \label{fig:workflow-run-b}
 \bigskip
 
-\begin{minted}[breaklines]{python}
+{\scriptsize\begin{verbatim}
 import requests
 url = f'http://127.0.0.1:8000/workflow/run/workflow-example?show=True'
 r = requests.get(url)
 print(r)
-\end{minted}
+\end{verbatim}}
 
 \caption{Running the example workflow with requests API.}
 \label{fig:workflow-run-c}
@@ -1390,10 +1429,10 @@ as with the commands demonstrated in Figure~\ref{fig:cms}.
 
 \begin{figure}[htb]
 
-\begin{minted}[breaklines]{bash}
+{\scriptsize\begin{verbatim}
 $ cms vm start --cloud aws
 $ cms vm start --cloud azure
-\end{minted}
+\end{verbatim}}
 
   \caption{Simple VM management for hybrid clouds}
 \label{fig:cms}.
@@ -1451,7 +1490,7 @@ available.
 
 \begin{figure*}[htb]
 \centering
-\includegraphics[width=0.75\textwidth]{images/cloudmask-wf.pdf}
+\includegraphics[width=0.75\textwidth]{./images/cloudmask-wf.pdf}
 %\vspace{-1cm}
 \caption{Workflow for Cloudmask}\label{fig:cloudmaskwf}
 \end{figure*}
@@ -1582,12 +1621,12 @@ installation is very simple and is supported on a variety of operating
 systems. We leverage the cloudmesh-installer to locally install the
 cloudmesh suite of repositories by executing the following commands:
 
-\begin{minted}[breaklines]{bash}
+{\scriptsize\begin{verbatim}
 $ mkdir ~/cm
 $ cd ~/cm
 $ pip install cloudmesh-installer -U
 $ cloudmesh-installer get cc
-\end{minted}
+\end{verbatim}}
 
 To install graphviz you can use the following commands on the
 appropriate operating system:
@@ -1598,34 +1637,38 @@ appropriate operating system:
 can use an instance of Chocolatey that is run as an administrator for
 convenience:
 
-\begin{minted}[breaklines]{bash}
-$ choco install git.install --params "/GitAndUnixToolsOnPath /Editor:Nano /PseudoConsoleSupport /NoAutoCrlf" -y
+{\scriptsize\begin{verbatim}
+$ choco install git.install
+        --params "/GitAndUnixToolsOnPath
+                  /Editor:Nano
+                  /PseudoConsoleSupport
+                  /NoAutoCrlf" -y
 $ choco install graphviz -y
-\end{minted}
+\end{verbatim}}
 
 \item[macOS.] Graphviz must be installed. The user can use Homebrew
 for convenience:
 
-\begin{minted}[breaklines]{bash}
+{\scriptsize\begin{verbatim}
 $ brew install graphviz
-\end{minted}
+\end{verbatim}}
 
 \item[Linux.] Graphviz must be installed. The user can use apt for
 convenience:
 
-\begin{minted}[breaklines]{bash}
+{\scriptsize\begin{verbatim}
 $ sudo apt install graphviz -y
-\end{minted}
+\end{verbatim}}
 
 \end{description}
 
 To test the workflow program, prepare a {\scriptsize \verb|cm|}
 directory in your home directory by executing the following commands:
 
-\begin{minted}[breaklines]{bash}
+{\scriptsize\begin{verbatim}
 $ cd ~/cm/cloudmesh-cc
 $ pytest -v -x --capture=no tests
-\end{minted}
+\end{verbatim}}
 
 A variety of separate tests are available that test individual
 capabilities.
@@ -1639,12 +1682,13 @@ capabilities.
 
 To run the Cloudmask workflow, run the following commands:
 
-\begin{minted}[breaklines]{bash}
+{\scriptsize\begin{verbatim}
 $ cd ~/cm
 $ git clone https://github.com/laszewsk/mlcommons.git
 $ cd mlcommons
-$ pytest -v -x --capture=no benchmarks/cloudmask/target/rivanna/run_cloudmask_workflow.py
-\end{minted}
+$ pytest -v -x --capture=no
+         benchmarks/cloudmask/target/rivanna/run_cloudmask_workflow.py
+\end{verbatim}}
 
 
 % \input{contributing.tex}
