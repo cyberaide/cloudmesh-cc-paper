@@ -1,10 +1,10 @@
 strict digraph {
      rankdir=TB;
      node [shape=box style=rounded];
-     start -> amd5095X
+     start -> amd5950X
      subgraph cluster_0 {
          label = "Compute Resource \n Desktop A";
-      amd5095X -> "fetch data to amd5095X" -> "rtx3090 benchmark";
+      amd5950X -> "fetch data to amd5950X" -> "rtx3090 benchmark";
      }
      "rtx3090 benchmark" -> end;
      
